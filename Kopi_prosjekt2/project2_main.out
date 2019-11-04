@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Theory}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Logistic regression}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Gradient Descent Method}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Standard/Steepest Gradient Descent}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Stochastic Gradient Descent}{subsection.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Artificial Neural Networks}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Backpropagation \(ANN\)}{subsection.2.3}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Measuring performance}{subsection.2.3}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Data description}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Method}{}% 11
+\BOOKMARK [1][-]{section.4}{Results}{}% 12
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 13
+\BOOKMARK [1][-]{section.6}{REMEMBER}{}% 14
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 15
+\BOOKMARK [1][-]{section.8}{References}{}% 16

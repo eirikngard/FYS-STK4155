@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{blindtext}
+\usepackage{tree-dvips}
+\usepackage{amsmath}
+\usepackage{multicol}
+%\pagestyle{headings} Writes the heading on top of the page.
+\begin{document}
+
+\title{Regression Analysis of the Franke Function and on Real Terrain Data \thanks{No procrastination}}
+\date{2019\\ Septemmber}
+\author{Eirik Nordgård\\ Geophysical Institute,\ University of Oslo}
+\maketitle
+
+\begin{abstract}
+The abstract gives the reader a quick overview of what has been done and the most important results. Try to be to the point and state your main findings
+\end{abstract}
+
+All material for project 1 may be found on \textbf{link til github}
+\pagebreak
+
+\begin{multicols}{2}
+
+
+\section{Introduction}
+
+The main aim of this project is to study various linear regression methods in detail. Ordinary Least Squares (OLS), Ridge regression and Lasso regression are the methods which will be investigated. Models using linear regression assumes linear inputs X1, X2,...,Xp. Even though there are many other, no-linear models you might think outperforms the linear models, they actually a couple of advantages compared to the non-linear models. They are simple to use and provide interpretable descriptions of how the inputs affect the outputs. In situations with small numbers of training cases or if the signal-to-noise ratio i small, linear models can outperform non-linear models in prediction. Also, applying linear methods to transformations of the inputs expands their scope tremendously.\footnote{(FROM HASTIE; P.66 (43))}
+
+\section{Theory}
+
+Some general words on the theory for this field needed? 
+
+\subsection{Linear Regression Models}
+
+Important.\footnote{Somewhere include definition of cost function and f=y+e osv which is very basic. Define the design matrix somewhere. Concept of fitting}
+
+\subsubsection{Ordinary Least Squares (OLS)}
+
+In general we want to predict a real-valued output Y with an input vector $X^T=(X_1,X_2,...,X_p)$. Hence the linear model has the form
+
+$$f(X)=\beta _0 + \sum\limits_{i=1}^n x_j$$
+
+where $\beta$ are unknown coefficients.
+
+For statistical analysis we usually use a set of training data $(x_1,y_1)...(x_N,y_N)$ to estimate the $\beta$ parameters. The most popular estimation method is the least squares method \textbf{Hastie 44}, where the coefficients $\beta=(\beta_0,\beta_1,...,\beta_p)^T$ are picked to find a linear function X that minimize the residual sum of squares\footnote{Hastie 45}.
+
+$$RSS(\beta)=\sum\limits_{i=1}^N(y_i-f(x_i))^2$$
+		  $$=\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^p(x_{ij}\beta_j))^2$$
+		 
+Furthermore, assuming the training data represent independent and random draws from the population or if all $y_i$ in the training data are conditionally independent given the inputs $x_i$, $RSS(\beta)$ can be rewritten as 
+
+$$RSS(\beta)=(y-X\beta)^T(y-X\beta)$$
+
+with the unique solution
+
+$$\hat{\beta}^{OLS}=(X^TX)^{-1}X^Ty$$	
+
+Here the hat-rematk indikates this is a predicted value for the true $\beta$. This notation will keep this meaning throughout this text \footnote{Make sure this is the case, dont confuse with ytilde}.
+
+To estimate the confidence interval of the $\beta$ obtained by the OLSn we need to calculate the variance, $\sigma^2$, of $\hat{\beta}$. Here we must assume uncorrelated observations of $y_i$ and that the variance is constant. Additionally the $x_i$ must be non-random. Derived from equation of $\hat{\beta}$ above we then have\footnote{by Hastie 47}
+
+$$Var(\hat{\beta})=(X^TX)^{-1}\sigma ^2 $$
+where,
+$$\sigma ^2 = \frac{1}{N-p-1} \sum\limits_{i=1}^N (y_i-\hat{y}_i)^2$$
+
+$Var(\hat{\beta})$ is called a covariance matrix of the $\beta$ parameter. The denominator in eq. (for sigma) makes it an unbiased estimator of $\sigma^2$. 
+
+Then the 95\% confidence intervall for the $\hat{\beta}$ is\footnote{chek if this is the one to use, and what is v here}. 
+
+$$\hat{\beta}_j-z^{1-\alpha}v_j^\frac{1}{2}\hat{\sigma}\leq\hat{\beta}\leq\hat{\beta}_j+z^{1-\alpha}v_j^\frac{1}{2}\hat{\sigma}$$
+
+Here $z^{1-\alpha}$ is the 1-$\alpha$ percentile of a normal distribution. For the 95\% confidence interval we have $\alpha =0,025$ and $z^{1-0,025}=1,96$ \footnote{from my statistics book, at the back.}
+
+Everythin on this part is from HASTIE.
+
+\subparagraph{Pros/cons with the OLS (BREAFLY)?}
+
+\subsubsection{RIDGE Regression}
+
+Ridge regression is a shrinkage method very similar to OLS. The goal of ridge regression is to shrink the regression coefficients. This is done by imposing a penalty on their size, minimizing the penalized residual sum of squares. The penalty, $\lambda$, is often called a hyper-parameter. Large value of $\lambda$ results in large amount of shrinkage. The ridge shrinking problem can be written as
+
+$$\hat{\beta}^{RIDGE}=\underset{\beta}{argmin}\lbrace\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\beta_j^2\rbrace$$
+
+with solution 
+
+$$\beta^{RIDGE}=(X^T X + \lambda I)^{-1} X^T y$$
+
+Here I is the $pxp$ identity matrix. 
+
+\subsubsection{LASSO Regression}
+
+Information on LASSO regression here. 
+
+\subsubsection{Cross-Validation}
+
+When creating a model you want to estimate the prediction error (performance) of the model. To test the prediction performance we spit the data into two sets, a training set and a test set. The training set plays the role of the original data which the model it self is built upon, while the test data is novel data which is used to evaluate the prediction performance of the model. This splitting procedure can be done for a collection of penalty parameter choices, $\lambda$. Performing the splitting many times allows us to pick the $\lambda$ that yields the model with the best prediction performance on average. Additionally we would like to set aside a validation set to evaluate the predictive performance of our model. This set is picked to allow the model to test on data it has not seen before. $K-fold cross validation$ handles this problem, since data sets are normally too small to allow us to set aside a validation set. Another problem arising when doing this repetitive splitting is that some data samples may end up in a vast majority of the splits in the training or test sets. This may influence the prediction evaluation. \textit{k}-fold cross-validation handles this by structuring the data splitting\footnote{Source: Hastie 7.10 (page 260) and lecture notes on regression}.
+
+\subsubsection{\textit{k}-fold Cross-Validation}
+ 
+The data are divided into \textit{k} more or less equally sized, exclusive subsets.\footnote{Typical choices for \textit{k} is 5 or 10. Further information on this is found in Hastie et. al page 261}. For each split, one of the subsets acts as the test set while all the remaining subsets acts as the training set. This is repeated $\textit{k}-1$ times for many splits. Such splitting results in a balanced representation of the data points in both training and test set for all the splits. Still the division into the \textit{k} subsets involves some degree of randomness, which may be fully excluded when choosing \textit{k}=\textit{n} \footnote{what is n?}. This particular case is referred to as leave-one-out cross-validation.\footnote{Se more on LOOCV in...}. 
+
+\subsubsection{Bias-Variance Tradeoff}
+
+
+$$C(X,\beta)=\frac{1}{n}\sum\limits_{i=0}^{n-1}(y_i-\tilde{y})^2=E((y-\tilde{y})^2)$$
+change E and to square brackets here
+
+can be rewritten as 
+
+$$E((y-\tilde{y})^2)$$
+$$=\frac{1}{n}\sum\limits_i(f_i-E\tilde{y}^2+\frac{1}{n}\sum\limits_t(\tilde{y}_i-E\tilde{y}^2+\sigma^2$$
+change E and abs values
+
+When creating a predictive model it is important to consider the prediction errors such as variance and bias of the model. What we call the bias-variance tradeoff is problem of minimizing both the bias and the variance at the same time. The bias is the difference the average prediction of the model and the true value which the model is trying to predict. High bias corresponds to a oversimplification of the model, thus underfitting the data. This will often lead to high errors on training and test data \footnote{OBS chech if this is correct}. 
+$$Some equation for the bias$$
+   
+The variance is the variability of the model prediction for a given data point which indicated the spread of the data. High variance is often a result of overfitting, which means that the model captures too much of the noise along with the underlying datapattern. \textbf{write more on variance furter up} Thus, models with high variance does not generalize on the data it has not yet seen. 
+
+\textbf{Possibly place this first eq. further up}
+In general we want to predict a variable $Y$ using the design matrix $X$ (defines earlier). We have 
+
+$$Y=f(X)+\epsilon$$
+
+where $\epsilon$ is $N(0,\gamma)$.
+
+For this section until here:\footnote{source,towards data science "Understanding the bias-variance tradeoff, see link on phone.}
+
+
+The following part is from wikipedia.
+
+Our training set consists of $x_1,x_2,...,x_n$ and some more general things of f, x and y.\footnote{referr to equation definition in the beginning if it is the same as this}.
+
+
+The objective is to find  function $\hat{f}(x)$, denoted $\hat{f}$, that in the best possible way approximates some true function $f(x)$, denoted $f$. \textit{The best way possible} is made by minimizing the MSE for $y$ and $\hat{f}(x)$\footnote{eq. number for MSE} for all $x$. 
+For any function $\hat{f}$ we can decompose the expected error\footnote{what is expetede error} like this:
+
+$$E[(y-\hat{f}(x))^2]=Bias[\hat{f}(x)])^2+Var[\hat{f}(x)]+\sigma^2$$
+
+where $$Bias[\hat{f}(x)]=E[\hat{f}(x)]-E[f(x)]$$
+and $$Var[\hat{f}(x)]=E[\hat{f}(x)^2] - E[\hat{f}(x)]^2$$
+
+Since $\epsilon$ and $\hat{f}$ are independent,
+%\begin{multiline}
+$$E[(y-\hat{f})^2]=E[(f+\epsilon-\hat{f})^2]$$
+$$=E[(f+\epsilon-\hat{f}+E[\hat{f}]-E[\hat{f})^2]$$
+$$=E[(f-E[\hat{f}])^2]+E[\epsilon^2]+E[E[\hat{f}-$$$$\hat{f})^2]+2E[(f-E[\hat{f}])\epsilon]+2E[\epsilon(E[\hat{f}]$$ $$-\hat{f})]+2E[(E[\hat{f}]-\hat{f})(f-E[\hat{f}])]$$
+$$=(f-E[\hat{f}])^2+E[\epsilon^2]+E[(E[\hat{f}]-\hat{f})^2]$$   $$+2(f-E[\hat{f}])E[\epsilon]$$
+$$+2E[\epsilon]E[E[\hat{f}]-\hat{f}]$$
+$$+2E[E[\hat{f}]-\hat{f}](f-E[\hat{f}])$$
+$$=(f-E[\hat{f}])^2+E[\epsilon^2]+E[E[\hat{f}-\hat{f})^2]$$
+$$=(f-E[\hat{f}])^2+Var[y]+Var[\hat{f}]$$
+$$=Bias[\hat{f}]^2+Var[y]+Var[\hat{f}]$$
+$$=Bias[\hat{f}]^2+\sigma^2+Var[\hat{f}]$$
+%\end{multiline*}
+
+
+
+Note\footnote{This derivation is from wikipedia}.
+
+We can rewrite equation (\textbf{number}) to 
+
+$$E_{rr}(x)$$
+$$=Bias^2+Variance+Irreducibleerror$$
+
+
+The bias term is the squared difference between the true mean and the expected value of the estimate. As the complexity $k$ of a model increases, the bias will most likely also increase. The variance term will decrease as the inverse of $k$. The last term is the variance of the irreducible error. This is simply a measure of noise in our the data which is always present and therefore unavoidable.  
+
+The bias-variance tradeoff is therefore about balancing the bias and the variance to a point where they both are acceptable, where the test error is at a minimum. Too high model complexity results in high variance, whereas too low complexity results in too high bias and vice versa\footnote{From Hastie last of ch. 3}.
+
+See more on bias variance trade off in Hatie. ch. 7. 
+Possibly also solution to proof task in 7.3
+
+The more complex our model $\hat{f}(x)$ is, the more data points it will capture, and the lower the bias will be. However, complexity will make the model "move" more to capture the data points, and hence its variance will be larger\footnote{direct citation from wikipedia on bias-variance tradeoff}.
+
+
+\section{Method}
+Describe the methods and algorithms
+You need to explain how you implemented the methods and also say something about the structure of your algorithm and present some parts of your code
+You should plug in some calculations to demonstrate your code, such as selected runs used to validate and verify your results. The latter is extremely important!! A reader needs to understand that your code reproduces selected benchmarks and reproduces previous results, either numerical and/or well-known closed form expressions.
+
+Regarding the python code, I have made three separate codes for this project, one for each regression method. In each code I have done the respective regression, cross-validated and analysed the results. I chose to do so because of my sparse knowledge with structuring code in python. Each code therefore provides results from each of the three regression methods. This includes results from both the analysis of the Franke function and the terrain data.   
+
+Defining the Franke function is done using the code provided in in the Project1 PDF %\cite{GIT adress to project1 pdf}.
+For the design matrix, I start of with ravel x and y if they are (whatever ravel does, googleit). Then looping over each polynomial degree, returning the design matrix $X$ with rows $[1, x, y, x^2, xy, xy^2, etc.]$. The inputs are x, y and argument $n$, the degree of the polynomial I want to fit. Then I am c 
+
+%Function for creating a design X-matrix with rows 
+ %   [1, x, y, x^2, xy, xy^2 , etc.] Input is x and y mesh or %raveled mesh, 
+%    keyword agruments n is the degree of the polynomial you %want to fit.
+%	""" 
+
+\subsection{Real Terrain Data (RTD)}
+
+\section{Results}
+Present your results
+Give a critical discussion of your work and place it in the correct context.
+Relate your work to other calculations/studies
+An eventual reader should be able to reproduce your calculations if she/he wants to do so. All input variables should be properly explained.
+Make sure that figures and tables should contain enough information in their captions, axis labels etc so that an eventual reader can gain a first impression of your work by studying figures and tables only.
+
+\subsection{Comparison of regression methods}
+
+\section{Conclusion and perspectives}
+State your main findings and interpretations
+Try as far as possible to present perspectives for future work
+Try to discuss the pros and cons of the methods and possible improvements
+
+\section{Appendices}
+Additional calculations used to validate the codes
+Selected calculations, these can be listed with few comments
+Listing of the code if you feel this is necessary
+You can consider moving parts of the material from the methods section to the appendix. You can also place additional material on your webpage or GitHub page..
+
+\section{References}
+Give always references to material you base your work on, either scientific articles/reports or books.
+Refer to articles as: name(s) of author(s), journal, volume (boldfaced), page and year in parenthesis.
+Refer to books as: name(s) of author(s), title of book, publisher, place and year, eventual page numbers
+
+
+Testing references. Have used \textit{Hastie Book of Statistics} \cite{Hastie}
+, the regression lecture slides \cite{Gitlink} and a webpage \cite{webpage}. The fist and the third refference is \cite{Hastie,webpage}.
+
+\medskip
+
+\begin{thebibliography}{9}
+\bibitem{Hastie}
+Ola Normann (Forfatter)
+\textit{Haste Elements of Statistical Learning}.
+[\textit{Some undertitle of this book}].
+Cappelen, UiO, IBN, årstall feks 1999).
+
+\bibitem{Gitlink}
+Morten blabla teacher of the course.
+\textit{Machinelearning, Linear Regression}
+Utgitt av Morten, Norge, Oslo, 2010. 
+ 
+\bibitem{website}
+Wikipedia: Bias-variance tradeoff
+\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+Correct link above ofc
+\end{thebibliography} 
+ 
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,171 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  13 SEP 2019 11:46
+entering extended mode
+**./Test_document.tex
+(Test_document.tex
+LaTeX2e <2018-12-01>
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls
+"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size12.clo"
+File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tree-dvips\lingm
+acros.sty"
+\c@enums=\count88
+\widelabel=\dimen103
+\c@tempcnt=\count89
+\c@enumsi=\count90
+\eeindent=\dimen104
+)
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tree-dvips\tree-
+dvips.sty"
+tree-dvips version .91 of May 16, 1995
+\nodemargin=\dimen105
+\treelinewidth=\dimen106
+\dashlength=\dimen107
+\arrowwidth=\dimen108
+\arrowlength=\dimen109
+\arrowinset=\dimen110
+\pos@t=\toks14
+\pos@b=\toks15
+\pos@l=\toks16
+\pos@r=\toks17
+\pos@tl=\toks18
+\pos@tr=\toks19
+\pos@bl=\toks20
+\pos@br=\toks21
+\@arrow=\count91
+\@tempdimc=\dimen111
+)
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.st
+y"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
+)
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.st
+y"
+Package: babel 2019/07/19 3.33 The Babel package
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\switch.d
+ef"
+File: switch.def 2019/07/19 3.33 Babel switching mechanism
+)
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-english\en
+glish.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.de
+f"
+File: babel.def 2019/07/19 3.33 Babel common definitions
+\babel@savecnt=\count92
+\U@D=\dimen112
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel
+.def")
+\bbl@dirlevel=\count93
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\multicol.s
+ty"
+Package: multicol 2018/12/27 v1.8v multicolumn formatting (FMi)
+\c@tracingmulticols=\count94
+\mult@box=\box27
+\multicol@leftmargin=\dimen113
+\c@unbalance=\count95
+\c@collectmore=\count96
+\doublecol@number=\count97
+\multicoltolerance=\count98
+\multicolpretolerance=\count99
+\full@width=\dimen114
+\page@free=\dimen115
+\premulticols=\dimen116
+\postmulticols=\dimen117
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box28
+\last@line=\box29
+\maxbalancingoverflow=\dimen118
+\mult@rightbox=\box30
+\mult@grightbox=\box31
+\mult@gfirstbox=\box32
+\mult@firstbox=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\c@columnbadness=\count100
+\c@finalcolumnbadness=\count101
+\last@try=\dimen119
+\multicolovershoot=\dimen120
+\multicolundershoot=\dimen121
+\mult@nat@firstbox=\box51
+\colbreak@box=\box52
+\mc@col@check@num=\count102
+) (Test_document.aux)
+\openout1 = `Test_document.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+ [1
+
+
+Non-PDF special ignored!
+<special> header=tree-dvips91.pro
+{C:/Users/Eirik N/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(Test_document.aux) ) 
+Here is how much of TeX's memory you used:
+ 1015 strings out of 492895
+ 14073 string characters out of 3122799
+ 86889 words of memory out of 3000000
+ 4982 multiletter control sequences out of 15000+200000
+ 4544 words of font info for 17 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 23i,4n,23p,180b,155s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eirik N/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on Test_document.pdf (1 page, 25359 bytes).
+PDF statistics:
+ 14 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
