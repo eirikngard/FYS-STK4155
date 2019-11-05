@@ -283,6 +283,7 @@ pred = reg.predict(XTest)
 print(f"MSE = {sklearn.metrics.mean_squared_error(yTest, pred)}")
 print(f"R2 = {reg.score(XTest, yTest)}")
 #%%
+'''
 # building our neural network
 
 n_inputs, n_features = XTrain.shape
@@ -405,13 +406,15 @@ for i in range(1000):
     hidden_bias -= eta * dBh
     
 print("Accuracy using NN with backpropagation: " + str(accuracy_score(predict(XTrain), yTrain)))
-
+'''
 #%%
-from NeuralNet_Nielsen import Network
+'''
+from NeuralNet_Nielsen import NeuralNetwork
 lag = [1,2,3]
-net = Network(lag)
+net = NeuralNetwork(lag)
 train = np.vstack((XTrain, yTrain))
 test = np.vstack((XTest, yTest))
-net.SGD(train,50,50,0.001,test_data=test)
+net.SGD(XTrain,50,50,0.001,test_data=None)
 #try something like this:
 #3 hidden layers, 50 hidden neurons, 30 epochs, 500 batch size.
+'''
