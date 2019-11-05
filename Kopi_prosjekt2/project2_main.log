@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  4 NOV 2019 09:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  5 NOV 2019 10:44
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -522,39 +522,39 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 [6] [7
 
 ]
-Underfull \hbox (badness 4084) in paragraph at lines 389--389
+Underfull \hbox (badness 4084) in paragraph at lines 390--390
 [] []\OT1/cmr/m/n/10.95 M. Hjorth-Jensen Lec-ture Notes in FYS-STK4155. \OT1/cm
 r/m/it/10.95 Data Anal-y-sis and Ma-chine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--389
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
 \OT1/cmr/m/it/10.95 Learn-ing: Lin-ear Re-gres-sion and more Ad-vanced Re-gres-
 sion Anal-y-sis. \OT1/cmr/m/n/10.95 URL:
  []
 
 
-Overfull \hbox (7.96138pt too wide) in paragraph at lines 389--389
+Overfull \hbox (7.96138pt too wide) in paragraph at lines 390--390
 \OT1/cmr/m/n/10.95 https://compphysics.github.io/MachineLearning/doc/pub/Regres
 sion/html/Regression.html
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 392.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 393.
 [8
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 392.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 393.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 392.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 392.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 393.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 393.
 Package rerunfilecheck Info: File `project2_main.out' has not changed.
 (rerunfilecheck)             Checksum: 41C8ED48833A05D1C8838C91B76FAB79;991.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 392.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 393.
  ) 
 Here is how much of TeX's memory you used:
  6670 strings out of 492895
@@ -585,7 +585,7 @@ Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Eirik N/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
 /Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb>
-Output written on project2_main.pdf (8 pages, 264311 bytes).
+Output written on project2_main.pdf (8 pages, 264405 bytes).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
  58 named destinations out of 1000 (max. 500000)

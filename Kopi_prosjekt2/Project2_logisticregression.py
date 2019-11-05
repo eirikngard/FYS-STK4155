@@ -127,7 +127,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 onehotencoder = OneHotEncoder(categories="auto")
 
 X = ColumnTransformer(
-    [("", onehotencoder, [1,2,3]),],
+    [("", onehotencoder, [1,2,3,5,6,7,8,9,10]),],
     remainder="passthrough"
 ).fit_transform(X)
 
@@ -138,7 +138,7 @@ Splitting data in train and test data
 
 from sklearn.model_selection import train_test_split
 # Train-test split
-trainingShare = 0.5 
+trainingShare = 0.8 
 seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
@@ -146,8 +146,22 @@ XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, 
 
 # Input Scaling
 sc = StandardScaler()
-XTrain = sc.fit_transform(XTrain)
-XTest = sc.transform(XTest)
+XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
+XTest[:,-14:] = sc.transform(XTest[:,-14:])
+
+#%%
+#Downsampling, correcting for scewed distribution
+#This part make sure we can train on equally many 0(pay) and 1(not pay)
+X
+inkluder_alle=np.where(yTrain==1)
+velg_noen=np.where(yTrain==0)
+velg_noen[0][:len(inkluder_alle[0])]
+sample_idx = np.concatenate((inkluder_alle[0], velg_noen[0][:len(inkluder_alle[0])]))
+
+XTrain = XTrain[sample_idx]
+yTrain=yTrain[sample_idx]
+#dowsampling er correcting for scewed dtribution.
+
 #%%
 
 """
@@ -175,7 +189,7 @@ def r2(data, model):
 Finding Beta through Gradient Descent (GD)
 '''
 #m=1896
-beta = np.random.randn(29)*np.sqrt(1/29)
+beta = np.random.randn(75)*np.sqrt(1/75)
 eta = 1e-5
 Niterations = 1000
 
@@ -201,7 +215,7 @@ Acc1=np.mean(y_pred == yTrain)
 
 #Own accuracy score for logistic regression using scikit 
 from sklearn.linear_model import LogisticRegression
-logreg=LogisticRegression(solver='lbfgs')
+logreg=LogisticRegression(solver='lbfgs',fit_intercept=False,penalty='l2')
 y_pred_log=logreg.fit(XTrain,yTrain.ravel()).predict(XTrain) #X design matrix and y data''
 y_pred_log[y_pred_log >= 0.5] = 1
 y_pred_log[y_pred_log <= 0.5] = 0
@@ -215,7 +229,7 @@ Acc3=accuracy_score(yTrain, y_pred)#, normalize=False)
 '''
 Finding Beta through Stocastic (random) Gradient Descent (SGD)
 '''
-theta = np.random.randn(29)*np.sqrt(1/29)
+theta = np.random.randn(75)*np.sqrt(1/75)
 eta = 1e-5
 
 n_epochs = 50
@@ -227,7 +241,7 @@ def learning_schedule(t):
 for epoch in range(n_epochs):
     for i in range(m):
         random_index = np.random.randint(m)
-        xi = XTrain[random_index:random_index+1]
+        xi = XTrain[random_index:random_index+1]#b_idx
         yi = yTrain[random_index:random_index+1]
         p1=np.exp(xi.dot(theta))/(1+np.exp(xi.dot(theta)))#sigoid
         #gradient = xi.T @ ((xi @ theta)-yi)
@@ -245,6 +259,134 @@ y_pred_sgd[y_pred_sgd >= 0.5] = 1
 y_pred_sgd[y_pred_sgd <= 0.5] = 0
 
 Acc_sgd=np.mean(y_pred_sgd == yTrain)
+#%%
+'''
+Finding Beta through Stocastic (random) Gradient Descent (SGD) VERSION 2
+
+Med denne trenger du ikke mini_batch_update i NN
+'''
+    
+def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
+    theta2 = np.random.randn(75)*np.sqrt(1/75)
+    #eta2 = 1e-1
+    #epochs = 50 
+    #t0, t1 = 5, epochs
+    #m=len(XTrain)
+    
+    n_samples, n_cols = X.shape
+    idx = np.arange(n_samples)
+    np.random.shuffle(idx)
+    #batch_size=100
+    splits = int(n_samples/batch_size)
+    batches = np.array_split(idx,splits)
+    
+    for i in range(epochs):
+        np.random.shuffle(X)
+        for b_idx in batches:
+            #b_idx = np.random.randint(m)
+            xi2 = X[b_idx]
+            yi2 = Y[b_idx]
+            p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
+            gradient2 = xi2.T.dot(p12-yi2)
+            theta2 = theta2 - eta2*gradient2
+            
+    return theta2
+
+def predict(X,theta):
+    pred = X @ theta
+    
+    y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
+    y_pred[y_pred >= 0.5] = 1
+    y_pred[y_pred < 0.5] = 0
+    return y_pred
+    #return accuracy*100
+
+def accuracy(prediction,Y):
+    accuracy = np.mean(prediction == Y)
+    return accuracy*100
+
+#%%
+#Own accuracy score for logistic regression using scikit 
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+logreg=LogisticRegression(solver='lbfgs',fit_intercept=False,penalty='l2')
+y_pred_log=logreg.fit(XTrain,yTrain.ravel()).predict(XTrain) #X design matrix and y data''
+y_pred_log[y_pred_log >= 0.5] = 1
+y_pred_log[y_pred_log <= 0.5] = 0
+print("Accuracy by scikit, on logreg: {}".format(accuracy_score(yTrain,y_pred_log)*100))
+#%%
+
+etas = np.logspace(-2,0,3)
+epo=np.arange(10)
+train_accuracy = np.zeros((len(etas),len(epo)))
+for e in etas:
+    for ep in range(len(epo)): 
+        w =  sto_grad_des(XTrain,yTrain,epochs=ep,batch_size=20,eta2=e)
+        test_result = predict(XTest,w)
+        train_result = predict(XTrain,w)
+        test_acc = accuracy(test_result,yTest) 
+        train_acc = accuracy(train_result,yTrain)
+        
+        test_sci_acc = accuracy_score(yTest, test_result)
+        train_sci_acc = accuracy_score(yTrain, train_result)
+        
+        train_accuracy = accuracy_score(yTest,test_result)
+    
+#    print("Own accuracy test, SGD: {}".format(test_acc))
+#    print("Own accuracy train, SGD: {}".format(train_acc))
+#    print("Accuracy by scikit test: {}".format(test_sci_acc*100))
+#    print("Accuracy by scikit train: {} \n".format(train_sci_acc*100))
+#%% 
+"""
+Visualisering
+"""
+import seaborn as sns
+
+fig, ax = plt.subplots(figsize = (10, 10))
+sns.heatmap(train_accuracy, annot=True, ax=ax, cmap="viridis")
+ax.set_title("Training Accuracy")
+ax.set_ylabel("$\eta$")
+ax.set_xlabel("$\epoch$")
+plt.show()
+#w =  sto_grad_des(XTrain,yTrain,epochs=40,batch_size=100,eta2=1e-2)
+#result = predict(XTrain,yTrain,w)
+#print(f'Own accuracy, SGD: {result:.2f}',"%")
+#%%
+"""
+theta2 = np.random.randn(75)*np.sqrt(1/75)
+eta2 = 1e-2
+epochs = 50 
+t0, t1 = 5, epochs
+m=len(XTrain)
+
+n_samples, n_cols = XTrain.shape
+idx = np.arange(n_samples)
+np.random.shuffle(idx)
+batch_size=20
+splits = int(n_samples/batch_size)
+batches = np.array_split(idx,splits)
+
+for i in range(epochs):
+    np.random.shuffle(XTrain)
+    for b_idx in batches:
+        random_index = np.random.randint(m)
+        xi2 = XTrain[b_idx]
+        yi2 = yTrain[b_idx]
+        p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
+        gradient2 = xi2.T.dot(p12-yi2)
+        theta2 = theta2 - eta2*gradient2
+#    return theta2
+        
+pred_sgd2 = XTrain @ theta2
+
+y_pred_sgd2=np.exp(pred_sgd2)/(1+np.exp(pred_sgd2))#prediksjon, y gjennom sigmoid
+y_pred_sgd2[y_pred_sgd2 >= 0.5] = 1
+y_pred_sgd2[y_pred_sgd2 <= 0.5] = 0
+
+Acc_sgd2=np.mean(y_pred_sgd2 == yTrain)
+print(f'Own accuracy, SGD: {Acc_sgd2:.2f}')
+"""
 #%%
 #Using two variables beacause they use two in the article
 print() 
@@ -408,13 +550,17 @@ for i in range(1000):
 print("Accuracy using NN with backpropagation: " + str(accuracy_score(predict(XTrain), yTrain)))
 '''
 #%%
-'''
+"""
 from NeuralNet_Nielsen import NeuralNetwork
 lag = [1,2,3]
 net = NeuralNetwork(lag)
-train = np.vstack((XTrain, yTrain))
-test = np.vstack((XTest, yTest))
-net.SGD(XTrain,50,50,0.001,test_data=None)
+train = np.vstack((XTrain.T, yTrain))
+#test = np.vstack((XTest, yTest))
+#SGD(self , training_data , epochs , mini_batch_size , eta, test_data=None):
+#net.SGD(training_data , 30, 10, 3.0, test_data=test_data)
+k=(2,2)
+dat=(XTrain,yTrain)
+net.SGD(train,30,10,0.01,test_data=None)
 #try something like this:
 #3 hidden layers, 50 hidden neurons, 30 epochs, 500 batch size.
-'''
+"""
