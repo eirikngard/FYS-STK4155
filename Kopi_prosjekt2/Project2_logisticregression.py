@@ -27,7 +27,9 @@ df.head()
 print('# of entries before clean up: {}'.format(len(df.index)))
 
 # Remove instances with zeros only for past bill statements and paid amounts
-'''
+
+      #The two at the top her can be removed
+"""
 df = df.drop(df[(df.BILL_AMT1 == 0) &
                 (df.BILL_AMT2 == 0) &
                 (df.BILL_AMT3 == 0) &
@@ -41,7 +43,7 @@ df = df.drop(df[(df.PAY_AMT1 == 0) &
                 (df.PAY_AMT4 == 0) &
                 (df.PAY_AMT5 == 0) &
                 (df.PAY_AMT6 == 0)].index)
-'''
+
 df = df.drop(df[(df.BILL_AMT1 == 0) &
                 (df.BILL_AMT2 == 0) &
                 (df.BILL_AMT3 == 0) &
@@ -54,7 +56,7 @@ df = df.drop(df[(df.BILL_AMT1 == 0) &
                 (df.PAY_AMT4 == 0) &
                 (df.PAY_AMT5 == 0) &
                 (df.PAY_AMT6 == 0)].index)
-
+"""
 
 # Remove illegal education value
 df = df.drop(df[(df.EDUCATION == 0) |
@@ -111,6 +113,7 @@ for variable in variables:
 #print correlation
 corr.loc['default payment next month']
 '''
+
 #%%
 data=df.to_numpy()
 X=data[:,:-1]
@@ -287,7 +290,7 @@ def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
             xi2 = X[b_idx]
             yi2 = Y[b_idx]
             p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
-            gradient2 = xi2.T.dot(p12-yi2)
+            gradient2 = xi2.T.dot(p12-yi2)/batch_size
             theta2 = theta2 - eta2*gradient2
             
     return theta2
@@ -305,6 +308,10 @@ def accuracy(prediction,Y):
     accuracy = np.mean(prediction == Y)
     return accuracy*100
 
+w =  sto_grad_des(XTrain,yTrain,epochs=40,batch_size=100,eta2=1e-2)
+
+test_result = predict(XTest,w)
+train_result = predict(XTrain,w)
 #%%
 #Own accuracy score for logistic regression using scikit 
 from sklearn.linear_model import LogisticRegression
@@ -316,23 +323,33 @@ y_pred_log[y_pred_log >= 0.5] = 1
 y_pred_log[y_pred_log <= 0.5] = 0
 print("Accuracy by scikit, on logreg: {}".format(accuracy_score(yTrain,y_pred_log)*100))
 #%%
-
-etas = np.logspace(-2,0,3)
-epo=np.arange(10)
+from sklearn.linear_model import SGDClassifier
+etas = np.logspace(-6,0,7)
+epo=np.arange(20)
 train_accuracy = np.zeros((len(etas),len(epo)))
-for e in etas:
-    for ep in range(len(epo)): 
+test_accuracy = np.zeros((len(etas),len(epo)))
+for i,e in enumerate(etas):
+    for ep in range(20): 
         w =  sto_grad_des(XTrain,yTrain,epochs=ep,batch_size=20,eta2=e)
+        
         test_result = predict(XTest,w)
         train_result = predict(XTrain,w)
+        
         test_acc = accuracy(test_result,yTest) 
         train_acc = accuracy(train_result,yTrain)
         
-        test_sci_acc = accuracy_score(yTest, test_result)
-        train_sci_acc = accuracy_score(yTrain, train_result)
+        #test_sci_acc = accuracy_score(yTest, test_result)
+        #train_sci_acc = accuracy_score(yTrain, train_result)
         
-        train_accuracy = accuracy_score(yTest,test_result)
-    
+        train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
+        test_accuracy[i,ep] = accuracy_score(yTest,test_result)
+        #sjekk om prediskjon i sklearn matcher ed min. Kan være at jeg har for
+        #få epoker, eller at datasettet ikke lar seg løse med logistic regression
+        #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
+        #det greit at det ser radom ut
+clf = SGDClassifier()
+y_pred_scikit = clf.fit(XTrain,yTrain.ravel()).predict(XTrain)
+
 #    print("Own accuracy test, SGD: {}".format(test_acc))
 #    print("Own accuracy train, SGD: {}".format(train_acc))
 #    print("Accuracy by scikit test: {}".format(test_sci_acc*100))
@@ -343,15 +360,21 @@ Visualisering
 """
 import seaborn as sns
 
-fig, ax = plt.subplots(figsize = (10, 10))
-sns.heatmap(train_accuracy, annot=True, ax=ax, cmap="viridis")
-ax.set_title("Training Accuracy")
-ax.set_ylabel("$\eta$")
-ax.set_xlabel("$\epoch$")
+#fig, ax = plt.subplots(figsize = (10, 10))
+plt.figure()
+sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
+plt.title("Training Accuracy")
+plt.ylabel("$\eta$ logspace")
+plt.xlabel("epoch")
 plt.show()
-#w =  sto_grad_des(XTrain,yTrain,epochs=40,batch_size=100,eta2=1e-2)
-#result = predict(XTrain,yTrain,w)
-#print(f'Own accuracy, SGD: {result:.2f}',"%")
+
+plt.figure()
+sns.heatmap(test_accuracy)#, annot=True, ax=ax, cmap="viridis")
+plt.title("Test Accuracy")
+plt.ylabel("$\eta$ logspace")
+plt.xlabel("epoch")
+plt.show()
+
 #%%
 """
 theta2 = np.random.randn(75)*np.sqrt(1/75)
