@@ -343,12 +343,14 @@ for i,e in enumerate(etas):
         
         train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
         test_accuracy[i,ep] = accuracy_score(yTest,test_result)
-        #sjekk om prediskjon i sklearn matcher ed min. Kan være at jeg har for
+        #sjekk om prediskjon i sklearn matcher med min. Kan være at jeg har for
         #få epoker, eller at datasettet ikke lar seg løse med logistic regression
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
         #det greit at det ser radom ut
-clf = SGDClassifier()
+eta=1e-4
+clf = SGDClassifier(learning_rate=eta)
 y_pred_scikit = clf.fit(XTrain,yTrain.ravel()).predict(XTrain)
+train_accuracy_sci = accuracy_score(yTrain,y_pred_scikit) 
 
 #    print("Own accuracy test, SGD: {}".format(test_acc))
 #    print("Own accuracy train, SGD: {}".format(train_acc))
