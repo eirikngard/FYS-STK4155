@@ -100,20 +100,6 @@ df = df.drop(df[(df.PAY_AMT1 < 0) |
 
 print('# of entries after clean up: {}'.format(len(df.index)))
 
-'''
-#Look at value count after clean up
-for variable in variables:
-    print('Variable '+variable)
-    print('Value|Count')
-    print(df[variable].value_counts())
-    print('\n')
-    
-#Look again at correlation, after clean up
-
-#print correlation
-corr.loc['default payment next month']
-'''
-
 #%%
 data=df.to_numpy()
 X=data[:,:-1]
