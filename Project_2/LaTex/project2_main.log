@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  7 NOV 2019 19:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  7 NOV 2019 19:40
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -552,8 +552,8 @@ Package rerunfilecheck Warning: File `project2_main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `project2_main.out':
-(rerunfilecheck)             Before: 41C8ED48833A05D1C8838C91B76FAB79;991
-(rerunfilecheck)             After:  1CB5C5028E39481FD3A8D0DA3883F48E;1007.
+(rerunfilecheck)             Before: 1CB5C5028E39481FD3A8D0DA3883F48E;1007
+(rerunfilecheck)             After:  F53DDA8347AF020F602DBC41061E2526;1007.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -562,7 +562,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 393.
 Here is how much of TeX's memory you used:
  6670 strings out of 492895
  100554 string characters out of 3122799
- 207715 words of memory out of 3000000
+ 207716 words of memory out of 3000000
  10466 multiletter control sequences out of 15000+200000
  11895 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -588,7 +588,7 @@ Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Eirik N/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
 /Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb>
-Output written on project2_main.pdf (8 pages, 264937 bytes).
+Output written on project2_main.pdf (8 pages, 264953 bytes).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
  58 named destinations out of 1000 (max. 500000)
