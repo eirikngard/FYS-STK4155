@@ -100,7 +100,7 @@ df = df.drop(df[(df.PAY_AMT1 < 0) |
 
 print('# of entries after clean up: {}'.format(len(df.index)))
 
-#%%
+
 data=df.to_numpy()
 X=data[:,:-1]
 y=data[:,23]
@@ -141,15 +141,13 @@ XTest[:,-14:] = sc.transform(XTest[:,-14:])
 #%%
 #Downsampling, correcting for scewed distribution
 #This part make sure we can train on equally many 0(pay) and 1(not pay)
-X
-inkluder_alle=np.where(yTrain==1)
-velg_noen=np.where(yTrain==0)
-velg_noen[0][:len(inkluder_alle[0])]
-sample_idx = np.concatenate((inkluder_alle[0], velg_noen[0][:len(inkluder_alle[0])]))
+all_=np.where(yTrain==1)
+some_=np.where(yTrain==0)
+some_[0][:len(all_[0])]
+sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-#dowsampling er correcting for scewed dtribution.
 
 #%%
 
@@ -173,24 +171,69 @@ def r2(data, model):
     r2 = 1-np.sum((data-model)**2)/np.sum((data-np.mean(data))**2) 
     return r2
 
+
+#(Normal) Gradient Descent (GD)
+
+def normal_gradient_descent(eta=1e-5,Niterations=1000):
+    #m=1896
+    beta = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
+    #eta = 1e-5
+    #Niterations = 1000
+    
+    for iter in range(Niterations):
+        p=np.exp(XTrain.dot(beta))/(1+np.exp(XTrain.dot(beta)))#sigoid
+        gradients = XTrain.T.dot(p-yTrain) #gradients does not descend. Derivative of cost -X^T(y-p)
+        beta = beta-eta*gradients
+    return beta
+
+#Stochastic Gradient Descent (SGD)
+def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
+    theta2 = np.random.randn(75)*np.sqrt(1/75)
+    #eta2 = 1e-1
+    #epochs = 50 
+    #t0, t1 = 5, epochs
+    #m=len(XTrain)
+    
+    n_samples, n_cols = X.shape
+    idx = np.arange(n_samples)
+    np.random.shuffle(idx)
+    #batch_size=100
+    splits = int(n_samples/batch_size)
+    batches = np.array_split(idx,splits)
+    
+    for i in range(epochs):
+        np.random.shuffle(X)
+        for b_idx in batches:
+            #b_idx = np.random.randint(m)
+            xi2 = X[b_idx]
+            yi2 = Y[b_idx]
+            p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
+            gradient2 = xi2.T.dot(p12-yi2)/batch_size
+            theta2 = theta2 - eta2*gradient2
+            
+    return theta2
+
+def predict(X,theta):
+    pred = X @ theta
+    
+    y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
+    y_pred[y_pred >= 0.5] = 1
+    y_pred[y_pred < 0.5] = 0
+    return y_pred
+    #return accuracy*100
+
+def accuracy(prediction,Y):
+    accuracy = np.mean(prediction == Y)
+    return accuracy*100
+
+
 #%%
 '''
-Finding Beta through Gradient Descent (GD)
+Testing GD
 '''
-#m=1896
-beta = np.random.randn(75)*np.sqrt(1/75)
-eta = 1e-5
-Niterations = 1000
-
-for iter in range(Niterations):
-    p=np.exp(XTrain.dot(beta))/(1+np.exp(XTrain.dot(beta)))#sigoid
-    gradients = XTrain.T.dot(p-yTrain) #gradients does not descend. Derivative of cost -X^T(y-p)
-    beta = beta-eta*gradients
-    
-    #sjekk om cost minimeres 
-y_predict_new = XTrain @ beta #y_predict_new = XTrain.dot(beta)
-
-#print(f'MSE is {mse(yTrain,y_predict_new):.5f}')
+y_predict_new = predict(XTrain,normal_gradient_descent(eta=1e-2)) 
+print(accuracy(y_predict_new,yTrain))
+print(f'MSE is {mse(yTrain,y_predict_new):.5f}')
 
 #%%
 '''
@@ -255,44 +298,6 @@ Finding Beta through Stocastic (random) Gradient Descent (SGD) VERSION 2
 Med denne trenger du ikke mini_batch_update i NN
 '''
     
-def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
-    theta2 = np.random.randn(75)*np.sqrt(1/75)
-    #eta2 = 1e-1
-    #epochs = 50 
-    #t0, t1 = 5, epochs
-    #m=len(XTrain)
-    
-    n_samples, n_cols = X.shape
-    idx = np.arange(n_samples)
-    np.random.shuffle(idx)
-    #batch_size=100
-    splits = int(n_samples/batch_size)
-    batches = np.array_split(idx,splits)
-    
-    for i in range(epochs):
-        np.random.shuffle(X)
-        for b_idx in batches:
-            #b_idx = np.random.randint(m)
-            xi2 = X[b_idx]
-            yi2 = Y[b_idx]
-            p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
-            gradient2 = xi2.T.dot(p12-yi2)/batch_size
-            theta2 = theta2 - eta2*gradient2
-            
-    return theta2
-
-def predict(X,theta):
-    pred = X @ theta
-    
-    y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
-    y_pred[y_pred >= 0.5] = 1
-    y_pred[y_pred < 0.5] = 0
-    return y_pred
-    #return accuracy*100
-
-def accuracy(prediction,Y):
-    accuracy = np.mean(prediction == Y)
-    return accuracy*100
 
 w =  sto_grad_des(XTrain,yTrain,epochs=40,batch_size=100,eta2=1e-2)
 
