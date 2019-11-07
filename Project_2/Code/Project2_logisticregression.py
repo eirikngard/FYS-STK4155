@@ -28,36 +28,6 @@ print('# of entries before clean up: {}'.format(len(df.index)))
 
 # Remove instances with zeros only for past bill statements and paid amounts
 
-      #The two at the top her can be removed
-"""
-df = df.drop(df[(df.BILL_AMT1 == 0) &
-                (df.BILL_AMT2 == 0) &
-                (df.BILL_AMT3 == 0) &
-                (df.BILL_AMT4 == 0) &
-                (df.BILL_AMT5 == 0) &
-                (df.BILL_AMT6 == 0)].index)
-
-df = df.drop(df[(df.PAY_AMT1 == 0) &
-                (df.PAY_AMT2 == 0) &
-                (df.PAY_AMT3 == 0) &
-                (df.PAY_AMT4 == 0) &
-                (df.PAY_AMT5 == 0) &
-                (df.PAY_AMT6 == 0)].index)
-
-df = df.drop(df[(df.BILL_AMT1 == 0) &
-                (df.BILL_AMT2 == 0) &
-                (df.BILL_AMT3 == 0) &
-                (df.BILL_AMT4 == 0) &
-                (df.BILL_AMT5 == 0) &
-                (df.BILL_AMT6 == 0) &
-                (df.PAY_AMT1 == 0) &
-                (df.PAY_AMT2 == 0) &
-                (df.PAY_AMT3 == 0) &
-                (df.PAY_AMT4 == 0) &
-                (df.PAY_AMT5 == 0) &
-                (df.PAY_AMT6 == 0)].index)
-"""
-
 # Remove illegal education value
 df = df.drop(df[(df.EDUCATION == 0) |
                 (df.EDUCATION == 5) |
@@ -73,14 +43,14 @@ df = df.drop(df[(df.PAY_0 == -2) |
                 (df.PAY_4 == -2) |
                 (df.PAY_5 == -2) |
                 (df.PAY_6 == -2)].index)
-"""
+
 df = df.drop(df[(df.PAY_0 == 0) |
                 (df.PAY_2 == 0) |
                 (df.PAY_3 == 0) |
                 (df.PAY_4 == 0) |
                 (df.PAY_5 == 0) |
                 (df.PAY_6 == 0)].index)
-"""
+
 # Remove negative bill and pay amounts
 df = df.drop(df[(df.BILL_AMT1 < 0) |
                 (df.BILL_AMT2 < 0) |
@@ -95,8 +65,6 @@ df = df.drop(df[(df.PAY_AMT1 < 0) |
                 (df.PAY_AMT4 < 0) |
                 (df.PAY_AMT5 < 0) |
                 (df.PAY_AMT6 < 0)].index)
-
-
 
 print('# of entries after clean up: {}'.format(len(df.index)))
 
@@ -116,8 +84,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 onehotencoder = OneHotEncoder(categories="auto")
 
 X = ColumnTransformer(
-    [("", onehotencoder, [1,2,3,5,6,7,8,9,10]),],
-    remainder="passthrough"
+    [("", onehotencoder, [1,2,3,4,5,6,7,8,9]),],
+    remainder="passthrough",sparse_threshold=0
 ).fit_transform(X)
 
 #%%
@@ -132,7 +100,7 @@ seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
                                               random_state=seed)
-#%%
+
 # Input Scaling
 sc = StandardScaler(with_mean=False)
 XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
@@ -188,7 +156,7 @@ def normal_gradient_descent(eta=1e-5,Niterations=1000):
     return beta
 
 #Stochastic Gradient Descent (SGD)
-def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
+def sto_grad_des(X,Y,epochs=40,batch_size=200,eta2=1e-4):
     #theta2 = np.random.randn(75)*np.sqrt(1/75)
     theta2 = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
    
@@ -205,8 +173,11 @@ def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
             #b_idx = np.random.randint(m)
             xi2 = X[b_idx]
             yi2 = Y[b_idx]
+            #print(yi2)
             p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
+            #print(p12)
             gradient2 = xi2.T.dot(p12-yi2)/batch_size
+            #print(gradient2)
             theta2 = theta2 - eta2*gradient2
             
     return theta2
@@ -296,7 +267,7 @@ train_accuracy = np.zeros((len(etas),len(epo)))
 test_accuracy = np.zeros((len(etas),len(epo)))
 for i,e in enumerate(etas):
     for ep in range(20): 
-        w =  sto_grad_des(XTrain,yTrain,epochs=ep,batch_size=20,eta2=e)
+        w =  sto_grad_des(XTrain,yTrain,epochs=20,batch_size=100,eta2=1e-3)
         
         test_result = predict(XTest,w)
         train_result = predict(XTrain,w)
@@ -309,6 +280,7 @@ for i,e in enumerate(etas):
         
         train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
         test_accuracy[i,ep] = accuracy_score(yTest,test_result)
+        
         #sjekk om prediskjon i sklearn matcher med min. Kan være at jeg har for
         #få epoker, eller at datasettet ikke lar seg løse med logistic regression
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
@@ -331,7 +303,7 @@ Visualisering with a heatmap
 import seaborn as sns
 
 plt.figure()
-#sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
+sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
 plt.title("Training Accuracy")
 plt.ylabel("$\eta$ logspaced learning parameter")
 plt.xlabel("epoch")
@@ -391,18 +363,10 @@ network = sklearn.neural_network.MLPRegressor(
 #reg = reg.fit(XTrain, yTrain)
 reg = network.fit(XTrain, yTrain)
 pred=reg.predict(XTest)
-#pred_ = X @ reg
-#%%
 
-#y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
 pred[pred >= 0.5] = 1
 pred[pred < 0.5] = 0
 
-#%%
-
-# See some statistics
-#pred_ = reg.predict(XTest)
-#pred2_ = predict(XTest,pred_)
 real_accuracy_nn = accuracy(pred,yTest)
 real_accuracy_nn2 = accuracy_score(yTest,pred)*100
 print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
@@ -410,131 +374,13 @@ print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn2))
 
 #Kan skrive i rapport at for videre arbeid, prøv med/uten downsampling. 
 
+#All over, my accuracy scores is way better if not removing all the 
+#0s in PAY data, but if i keep them, my SGD fails, returning only nan.
+
+# For future work: look at other parameters to evaluate the network
+# and regression methods.
 #%%
-'''
-# building our neural network
 
-n_inputs, n_features = XTrain.shape
-n_hidden_neurons = 50
-n_categories = 10
-
-# we make the weights normally distributed using numpy.random.randn
-
-# weights and bias in the hidden layer
-hidden_weights = np.random.randn(n_features, n_hidden_neurons)
-hidden_bias = np.zeros(n_hidden_neurons) + 0.01
-
-# weights and bias in the output layer
-output_weights = np.random.randn(n_hidden_neurons, n_categories)
-output_bias = np.zeros(n_categories) + 0.01
-#%%
-# setup the feed-forward pass, subscript h = hidden layer
-
-def sigmoid(x):
-    return 1/(1 + np.exp(-x))
-
-def feed_forward(X):
-    # weighted sum of inputs to the hidden layer
-    z_h = np.matmul(X, hidden_weights) + hidden_bias #X=a 
-    # activation in the hidden layer
-    a_h = sigmoid(z_h)
-    
-    # weighted sum of inputs to the output layer
-    z_o = np.matmul(a_h, output_weights) + output_bias
-    
-    # softmax output
-    # axis 0 holds each input and axis 1 the probabilities of each category
-    exp_term = np.exp(z_o)
-    probabilities = exp_term / np.sum(exp_term, axis=1, keepdims=True)
-    
-    return probabilities
-
-probabilities = feed_forward(XTrain)
-
-
-# we obtain a prediction by taking the class with the highest likelihood
-def predict(X):
-    probabilities = feed_forward(X)
-    return np.argmax(probabilities, axis=1)
-
-predictions = predict(XTrain)
-
-#%%
-# to categorical turns our integer vector into a onehot representation
-from sklearn.metrics import accuracy_score
-
-# one-hot in numpy
-def to_categorical_numpy(integer_vector):
-    integer_vector=yTrain
-    n_inputs = len(integer_vector)
-    n_categories = np.max(integer_vector) + 9# to get 10 entries in Y in backpropagation
-    onehot_vector = np.zeros((n_inputs, n_categories))
-    onehot_vector[range(n_inputs), integer_vector] = 1
-    
-    return onehot_vector
-
-#onehottest = to_categorical_numpy(yTrain)#Not used for anything, just tested
-#%%
-#Y_train_onehot, Y_test_onehot = to_categorical(Y_train), to_categorical(Y_test)
-Y_train_onehot, Y_test_onehot = to_categorical_numpy(yTrain), to_categorical_numpy(yTest)
-
-def feed_forward_train(X):
-    # weighted sum of inputs to the hidden layer
-    z_h = np.matmul(X, hidden_weights) + hidden_bias
-    # activation in the hidden layer
-    a_h = sigmoid(z_h)
-    
-    # weighted sum of inputs to the output layer
-    z_o = np.matmul(a_h, output_weights) + output_bias
-    # softmax output
-    # axis 0 holds each input and axis 1 the probabilities of each category
-    exp_term = np.exp(z_o)
-    probabilities = exp_term / np.sum(exp_term, axis=1, keepdims=True)
-    
-    # for backpropagation need activations in hidden and output layers
-    return a_h, probabilities
-
-
-#%%
-def backpropagation(X, Y):
-    a_h, probabilities = feed_forward_train(X)
-    
-    # error in the output layer
-    error_output = probabilities - Y
-    # error in the hidden layer
-    error_hidden = np.matmul(error_output, output_weights.T) * a_h * (1 - a_h)
-    
-    # gradients for the output layer
-    output_weights_gradient = np.matmul(a_h.T, error_output)
-    output_bias_gradient = np.sum(error_output, axis=0)
-    
-    # gradient for the hidden layer
-    hidden_weights_gradient = np.matmul(X.T, error_hidden)
-    hidden_bias_gradient = np.sum(error_hidden, axis=0)
-
-    return output_weights_gradient, output_bias_gradient, hidden_weights_gradient, hidden_bias_gradient
-
-#print("Old accuracy on training data: " + str(accuracy_score(predict(XTrain), yTrain)))
-
-#%%
-eta = 0.01
-lmbd = 0.01
-for i in range(1000):
-    # calculate gradients
-    dWo, dBo, dWh, dBh = backpropagation(XTrain, Y_train_onehot)
-    
-    # regularization term gradients
-    dWo += lmbd * output_weights
-    dWh += lmbd * hidden_weights
-    
-    # update weights and biases
-    output_weights -= eta * dWo
-    output_bias -= eta * dBo
-    hidden_weights -= eta * dWh
-    hidden_bias -= eta * dBh
-    
-print("Accuracy using NN with backpropagation: " + str(accuracy_score(predict(XTrain), yTrain)))
-'''
 #%%
 """
 from NeuralNet_Nielsen import NeuralNetwork
