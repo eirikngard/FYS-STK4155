@@ -189,11 +189,8 @@ def normal_gradient_descent(eta=1e-5,Niterations=1000):
 #Stochastic Gradient Descent (SGD)
 def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
     theta2 = np.random.randn(75)*np.sqrt(1/75)
-    #eta2 = 1e-1
-    #epochs = 50 
-    #t0, t1 = 5, epochs
-    #m=len(XTrain)
-    
+    #theta = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
+   
     n_samples, n_cols = X.shape
     idx = np.arange(n_samples)
     np.random.shuffle(idx)
@@ -232,30 +229,25 @@ def accuracy(prediction,Y):
 Testing GD
 '''
 y_predict_new = predict(XTrain,normal_gradient_descent(eta=1e-2)) 
-print(accuracy(y_predict_new,yTrain))
-print(f'MSE is {mse(yTrain,y_predict_new):.5f}')
+print("Acuracy score GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
+print(f'MSE is {mse(yTrain,y_predict_new):.3f}')
 
 #%%
 '''
 Calculate accuracy score for Logsistic regression
 '''
-#Own accuracy score for own logistic regression using own Gradient Descent 
-y_pred=np.exp(y_predict_new)/(1+np.exp(y_predict_new))#prediksjon
-y_pred[y_pred >= 0.5] = 1
-y_pred[y_pred <= 0.5] = 0
-Acc1=np.mean(y_pred == yTrain)
-
 #Own accuracy score for logistic regression using scikit 
 from sklearn.linear_model import LogisticRegression
 logreg=LogisticRegression(solver='lbfgs',fit_intercept=False,penalty='l2')
 y_pred_log=logreg.fit(XTrain,yTrain.ravel()).predict(XTrain) #X design matrix and y data''
-y_pred_log[y_pred_log >= 0.5] = 1
-y_pred_log[y_pred_log <= 0.5] = 0
-Acc2=np.mean(y_pred_log == yTrain)
+accuracy_logreg_sci = accuracy(y_pred_log,yTrain)
+print("Accuracy for logistic legression by scikit: {:.3f}".format(accuracy_logreg_sci))
 
 #Accuracy from scikit on own logistic regression 
 from sklearn.metrics import accuracy_score
-Acc3=accuracy_score(yTrain, y_pred)#, normalize=False)
+acc_by_sci_logreg = accuracy_score(yTrain, y_pred_log)#, normalize=False)
+print("Accuracy bu scikit for logistic legression by scikit: {:.3f} \n"\
+      .format(acc_by_sci_logreg))
 
 #%%
 '''
@@ -294,26 +286,8 @@ Acc_sgd=np.mean(y_pred_sgd == yTrain)
 #%%
 '''
 Finding Beta through Stocastic (random) Gradient Descent (SGD) VERSION 2
-
 Med denne trenger du ikke mini_batch_update i NN
 '''
-    
-
-w =  sto_grad_des(XTrain,yTrain,epochs=40,batch_size=100,eta2=1e-2)
-
-test_result = predict(XTest,w)
-train_result = predict(XTrain,w)
-#%%
-#Own accuracy score for logistic regression using scikit 
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-
-logreg=LogisticRegression(solver='lbfgs',fit_intercept=False,penalty='l2')
-y_pred_log=logreg.fit(XTrain,yTrain.ravel()).predict(XTrain) #X design matrix and y data''
-y_pred_log[y_pred_log >= 0.5] = 1
-y_pred_log[y_pred_log <= 0.5] = 0
-print("Accuracy by scikit, on logreg: {}".format(accuracy_score(yTrain,y_pred_log)*100))
-#%%
 from sklearn.linear_model import SGDClassifier
 etas = np.logspace(-6,0,7)
 epo=np.arange(20)
@@ -338,71 +312,50 @@ for i,e in enumerate(etas):
         #få epoker, eller at datasettet ikke lar seg løse med logistic regression
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
         #det greit at det ser radom ut
-eta=1e-4
-clf = SGDClassifier(learning_rate=eta)
+#%%
+"""
+SGD by scikit-learn
+"""
+clf = SGDClassifier()
 y_pred_scikit = clf.fit(XTrain,yTrain.ravel()).predict(XTrain)
-train_accuracy_sci = accuracy_score(yTrain,y_pred_scikit) 
+train_accuracy_sci = accuracy_score(yTrain,y_pred_scikit)*100 
+train_accuracy_own = accuracy(y_pred_scikit,yTrain)
 
-#    print("Own accuracy test, SGD: {}".format(test_acc))
-#    print("Own accuracy train, SGD: {}".format(train_acc))
-#    print("Accuracy by scikit test: {}".format(test_sci_acc*100))
-#    print("Accuracy by scikit train: {} \n".format(train_sci_acc*100))
+print("Acc by me on SGD by scikit: {:.3f}".format(train_accuracy_own))
+print("Acc by scikit on SGD by scikit: {:.3f}".format(train_accuracy_sci))
 #%% 
 """
-Visualisering
+Visualisering with a heatmap
 """
 import seaborn as sns
 
-#fig, ax = plt.subplots(figsize = (10, 10))
 plt.figure()
-sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
+#sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
 plt.title("Training Accuracy")
-plt.ylabel("$\eta$ logspace")
+plt.ylabel("$\eta$ logspaced learning parameter")
 plt.xlabel("epoch")
 plt.show()
 
 plt.figure()
 sns.heatmap(test_accuracy)#, annot=True, ax=ax, cmap="viridis")
+plt.colorbar()
 plt.title("Test Accuracy")
-plt.ylabel("$\eta$ logspace")
+plt.ylabel("$\eta$ logspaced learning parameter")
 plt.xlabel("epoch")
 plt.show()
+#%%
+#Trying a subplot with the two figures above on same color scale
+fig, (ax, ax2, cax) = plt.subplots(ncols=3,figsize=(8,8),
+      gridspec_kw={"width_ratios":[1,1,0.1]})
+plt.suptitle("Heatmap of training and test accuracy with varying epoch and eta")
+fig.subplots_adjust(wspace=0.1)
+im=ax.imshow(train_accuracy,vmin=0.2,vmax=0.9)
+im2=ax2.imshow(test_accuracy,vmin=0.2,vmax=0.9)
+fig.colorbar(im,cax=cax)
+plt.show
 
 #%%
-"""
-theta2 = np.random.randn(75)*np.sqrt(1/75)
-eta2 = 1e-2
-epochs = 50 
-t0, t1 = 5, epochs
-m=len(XTrain)
 
-n_samples, n_cols = XTrain.shape
-idx = np.arange(n_samples)
-np.random.shuffle(idx)
-batch_size=20
-splits = int(n_samples/batch_size)
-batches = np.array_split(idx,splits)
-
-for i in range(epochs):
-    np.random.shuffle(XTrain)
-    for b_idx in batches:
-        random_index = np.random.randint(m)
-        xi2 = XTrain[b_idx]
-        yi2 = yTrain[b_idx]
-        p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
-        gradient2 = xi2.T.dot(p12-yi2)
-        theta2 = theta2 - eta2*gradient2
-#    return theta2
-        
-pred_sgd2 = XTrain @ theta2
-
-y_pred_sgd2=np.exp(pred_sgd2)/(1+np.exp(pred_sgd2))#prediksjon, y gjennom sigmoid
-y_pred_sgd2[y_pred_sgd2 >= 0.5] = 1
-y_pred_sgd2[y_pred_sgd2 <= 0.5] = 0
-
-Acc_sgd2=np.mean(y_pred_sgd2 == yTrain)
-print(f'Own accuracy, SGD: {Acc_sgd2:.2f}')
-"""
 #%%
 #Using two variables beacause they use two in the article
 print() 
@@ -437,7 +390,9 @@ reg = sklearn.neural_network.MLPRegressor(
 reg = reg.fit(XTrain, yTrain)
 
 # See some statistics
-pred = reg.predict(XTest)
+pred_ = reg.predict(XTest)
+real_accuracy_nn = accuracy_score(yTest,pred_)
+#print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
 print(f"MSE = {sklearn.metrics.mean_squared_error(yTest, pred)}")
 print(f"R2 = {reg.score(XTest, yTest)}")
 #%%
