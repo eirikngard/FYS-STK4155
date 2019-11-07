@@ -43,14 +43,14 @@ df = df.drop(df[(df.PAY_0 == -2) |
                 (df.PAY_4 == -2) |
                 (df.PAY_5 == -2) |
                 (df.PAY_6 == -2)].index)
-
+"""
 df = df.drop(df[(df.PAY_0 == 0) |
                 (df.PAY_2 == 0) |
                 (df.PAY_3 == 0) |
                 (df.PAY_4 == 0) |
                 (df.PAY_5 == 0) |
                 (df.PAY_6 == 0)].index)
-
+"""
 # Remove negative bill and pay amounts
 df = df.drop(df[(df.BILL_AMT1 < 0) |
                 (df.BILL_AMT2 < 0) |
@@ -107,7 +107,6 @@ XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
 XTest[:,-14:] = sc.transform(XTest[:,-14:])
 
 #%%
-"""
 #Downsampling, correcting for scewed distribution
 #This part make sure we can train on equally many 0(pay) and 1(not pay)
 all_=np.where(yTrain==1)
@@ -117,7 +116,7 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-"""
+
 #%%
 
 """
@@ -200,7 +199,8 @@ def accuracy(prediction,Y):
 '''
 Testing GD
 '''
-y_predict_new = predict(XTrain,normal_gradient_descent(eta=1e-2)) 
+beta=normal_gradient_descent()
+y_predict_new = predict(XTrain,beta) 
 print("Acuracy score GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
 print(f'MSE is {mse(yTrain,y_predict_new):.3f}')
 
@@ -225,6 +225,7 @@ print("Accuracy bu scikit for logistic legression by scikit: {:.3f} \n"\
 '''
 Finding Beta through Stocastic (random) Gradient Descent (SGD)
 '''
+"""
 theta = np.random.randn(75)*np.sqrt(1/75)
 eta = 1e-5
 
@@ -255,6 +256,7 @@ y_pred_sgd[y_pred_sgd >= 0.5] = 1
 y_pred_sgd[y_pred_sgd <= 0.5] = 0
 
 Acc_sgd=np.mean(y_pred_sgd == yTrain)
+"""
 #%%
 '''
 Finding Beta through Stocastic (random) Gradient Descent (SGD) VERSION 2
@@ -331,24 +333,11 @@ plt.show
 
 #%%
 #Using two variables beacause they use two in the article
-print() 
-print("Classification accuracy for LOGISTIC REGRESSION ")
-print("--------------------------------")
-print(f'Own accuracy, GD: {Acc1:.2f}') #Gir accuracy sore for prediksjonen 
-print(f'Own accuracy, LOGREG by scikit: {Acc2:.2f}') #Gir accuracy sore for prediksjonen 
-print(f'Scikit accuracy, GD: {Acc3:.2f}') #Gir accuracy sore for prediksjonen 
-print(f'Own accuracy, SGD: {Acc_sgd:.2f}')
-print()
-print(f'MEAN: {(Acc_sgd+Acc1+Acc2+Acc3)/4:.2f}') 
-print()
-print("Article result:", 1-0.2)
 
-
-#%%
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
 Feed Forward Neural Network code implementing
 back propagation algorithm
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
 # Implement neural network
 #This paragraph is from github (Øyvind or something)
 import sklearn.neural_network
@@ -368,9 +357,7 @@ pred[pred >= 0.5] = 1
 pred[pred < 0.5] = 0
 
 real_accuracy_nn = accuracy(pred,yTest)
-real_accuracy_nn2 = accuracy_score(yTest,pred)*100
 print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
-print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn2))
 
 #Kan skrive i rapport at for videre arbeid, prøv med/uten downsampling. 
 
@@ -396,3 +383,21 @@ net.SGD(train,30,10,0.01,test_data=None)
 #try something like this:
 #3 hidden layers, 50 hidden neurons, 30 epochs, 500 batch size.
 """
+#%%
+
+print() 
+print("Classification accuracy for LOGISTIC REGRESSION ")
+print("--------------------------------")
+print("Acuracy score GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
+print("Accuracy for logistic legression by scikit: {:.3f}".format(accuracy_logreg_sci))
+print("Accuracy bu scikit for logistic legression by scikit: {:.3f} \n"\
+      .format(acc_by_sci_logreg))
+print("Acc by me on SGD by scikit: {:.3f}".format(train_accuracy_own))
+print("Acc by scikit on SGD by scikit: {:.3f}".format(train_accuracy_sci))
+print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
+
+
+#print(f'MEAN: {(Acc_sgd+Acc1+Acc2+Acc3)/4:.2f}') 
+print()
+print("Article result:", 1-0.2)
+
