@@ -73,14 +73,14 @@ df = df.drop(df[(df.PAY_0 == -2) |
                 (df.PAY_4 == -2) |
                 (df.PAY_5 == -2) |
                 (df.PAY_6 == -2)].index)
-
+"""
 df = df.drop(df[(df.PAY_0 == 0) |
                 (df.PAY_2 == 0) |
                 (df.PAY_3 == 0) |
                 (df.PAY_4 == 0) |
                 (df.PAY_5 == 0) |
                 (df.PAY_6 == 0)].index)
-
+"""
 # Remove negative bill and pay amounts
 df = df.drop(df[(df.BILL_AMT1 < 0) |
                 (df.BILL_AMT2 < 0) |
@@ -132,13 +132,14 @@ seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
                                               random_state=seed)
-
+#%%
 # Input Scaling
-sc = StandardScaler()
+sc = StandardScaler(with_mean=False)
 XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
 XTest[:,-14:] = sc.transform(XTest[:,-14:])
 
 #%%
+"""
 #Downsampling, correcting for scewed distribution
 #This part make sure we can train on equally many 0(pay) and 1(not pay)
 all_=np.where(yTrain==1)
@@ -148,7 +149,7 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-
+"""
 #%%
 
 """
@@ -188,8 +189,8 @@ def normal_gradient_descent(eta=1e-5,Niterations=1000):
 
 #Stochastic Gradient Descent (SGD)
 def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
-    theta2 = np.random.randn(75)*np.sqrt(1/75)
-    #theta = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
+    #theta2 = np.random.randn(75)*np.sqrt(1/75)
+    theta2 = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
    
     n_samples, n_cols = X.shape
     idx = np.arange(n_samples)
@@ -199,7 +200,7 @@ def sto_grad_des(X,Y,epochs=40,batch_size=100,eta2=1e-2):
     batches = np.array_split(idx,splits)
     
     for i in range(epochs):
-        np.random.shuffle(X)
+        np.random.shuffle(X) 
         for b_idx in batches:
             #b_idx = np.random.randint(m)
             xi2 = X[b_idx]
@@ -338,7 +339,7 @@ plt.show()
 
 plt.figure()
 sns.heatmap(test_accuracy)#, annot=True, ax=ax, cmap="viridis")
-plt.colorbar()
+#plt.colorbar()
 plt.title("Test Accuracy")
 plt.ylabel("$\eta$ logspaced learning parameter")
 plt.xlabel("epoch")
@@ -379,22 +380,36 @@ back propagation algorithm
 # Implement neural network
 #This paragraph is from github (Øyvind or something)
 import sklearn.neural_network
-reg = sklearn.neural_network.MLPRegressor(
-    hidden_layer_sizes=(100, 20),
+network = sklearn.neural_network.MLPRegressor(
+    hidden_layer_sizes=(20, 20),activation='logistic',
     learning_rate="adaptive",
-    learning_rate_init=0.01,
-    max_iter=1000,
-    tol=1e-7,
+    learning_rate_init=0.01,batch_size=2000,
+    max_iter=200,
+    tol=1e-4,
     verbose=True,
 )
-reg = reg.fit(XTrain, yTrain)
+#reg = reg.fit(XTrain, yTrain)
+reg = network.fit(XTrain, yTrain)
+pred=reg.predict(XTest)
+#pred_ = X @ reg
+#%%
+
+#y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
+pred[pred >= 0.5] = 1
+pred[pred < 0.5] = 0
+
+#%%
 
 # See some statistics
-pred_ = reg.predict(XTest)
-real_accuracy_nn = accuracy_score(yTest,pred_)
-#print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
-print(f"MSE = {sklearn.metrics.mean_squared_error(yTest, pred)}")
-print(f"R2 = {reg.score(XTest, yTest)}")
+#pred_ = reg.predict(XTest)
+#pred2_ = predict(XTest,pred_)
+real_accuracy_nn = accuracy(pred,yTest)
+real_accuracy_nn2 = accuracy_score(yTest,pred)*100
+print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
+print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn2))
+
+#Kan skrive i rapport at for videre arbeid, prøv med/uten downsampling. 
+
 #%%
 '''
 # building our neural network
