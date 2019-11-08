@@ -208,13 +208,13 @@ y = f(\sum\limits_{i=1}^n w_ix_i + b_i) = f(u)
 a^l = \sigma(w^la^{l-1} + b^l)
 \label{al}
 \end{equation}
-where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $w^la^{l-1}+b^l$, hereafter called $z^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$.(Sigma is the same as f above i think.SJEKK). $z^l$ is called the weighted input to the neurons in layer $l$. 
+where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $w^la^{l-1}+b^l$, hereafter called $z^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$.(Sigma is the same as f above i think.SJEKK\footnote{sjekk om f og sigma er det samme}). $z^l$ is called the weighted input to the neurons in layer $l$. 
 \\
 
 Then, for backpropagation to work, it is necessary to assume the the cost function can be written as an average $C = \frac{1}{n}\sum_x C_x$ over cost functions $C_x$ for individual training points, x. Also, the cost function must be able to be written as a function of the outputs from the neural network (SIDE 42 NIELSEN). 
 \\
 
-While computing the  derivatives of the cost $\frac{\partial C}{\partial b^l}$ and $\frac{\partial C}{\partial w^l}$, an error will occur. This error is just referred to as \textit{error}, and is written $\delta_j^l$ in the j-th neuron in the l-th layer. The quantity $\frac{\partial C}{\partial z^l}$ provides a good estimate of this error (EXPLENATION for why IN page 44 Nielsen), and from here 
+While computing the  derivatives of the cost $\frac{\partial C}{\partial b^l}$ and $\frac{\partial C}{\partial w^l}$, an error will occur. This error is just referred to as \textit{error}, and is written $\delta_j^l$ in the j-th neuron in the l-th layer. For later notation, the k-th neuron is belongs to the (l-1)-th layer. The quantity $\frac{\partial C}{\partial z_j^l}$ provides a good estimate of this error (EXPLENATION for why IN page 44 Nielsen), and from here 
 
 \begin{equation}
 \delta_j^l = \frac{\partial C}{\partial z_j^l}
@@ -224,7 +224,7 @@ While computing the  derivatives of the cost $\frac{\partial C}{\partial b^l}$ a
 of neuron j in layer l. Backpropagation then relates $\delta$ to the derivatives of the cost. Rewriting eq. \eqref{del1} gives
 
 \begin{equation}
-\delta^l = \frac{\partial C}{\partial a^l} \sigma(z^l)
+\delta_j^l = \frac{\partial C}{\partial a_j^l} \sigma(z_j^l)
 \label{del2}
 \end{equation}
 
@@ -242,7 +242,7 @@ In eq. \eqref{del2} $\nabla_aC$ expresses the rate of change of C with respect t
 which in terms of the error in the next layer, $\delta^{l+1}$, is
 
 \begin{equation}
-\delta^l = ((x^{l+1})^T\delta^{l+1})\odot \sigma(z^l)
+\delta^l = ((w^{l+1})^T\delta^{l+1})\odot \sigma(z^l)
 \label{del3}
 \end{equation}
 
@@ -250,52 +250,48 @@ The name \textit{backpropagation} arises from eq. \eqref{del3}.  Here the error 
 
 Eq. \eqref{del3} finally allows us to obtain equations for the partial derivatives with respect to the bias and the weights, respectively
 
-\begin{equation*}
-\begin{aligned}
+\begin{equation}
 \frac{\partial C}{\partial b_j^l} = \delta_j^l \\
+\end{equation}
+
+simplified to 
+\begin{equation}
 \frac{\partial C}{\partial b} = \delta
-\end{aligned}
-This \ is \ not \ numbered!!
-\end{equation*}
+\end{equation}
 
 and
 
-\begin{equation*}
-\begin{aligned}
+\begin{equation}
 \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1}\delta_j^l \\
-\frac{\partial C}{\partial w} = a_{in}\delta_{out}
-\end{aligned}
 \label{part1}
-\end{equation*}
+\end{equation}
+
+simplified to 
+\begin{equation}
+\frac{\partial C}{\partial w} = a_{in}\delta_{out}
+\end{equation}
 
 Eq.\eqref{part1} has a very useful consequence. When the activation a is small, the derivative will also be small. This means that the gradient changes fairly little during a gradient descent, meaning the weight \textit{learns slowly}. 
 
 The resulting backpropagation algorithm then looks something like this:
 \begin{enumerate}
 \item \textbf{Input} x: Find corresponding activation $a^l$ for the input layer.
-\item \textbf{Feedforward}: For $l = 2,3,...,L$ compute $z^l$ (EQ HASENT NUMBER YET) and $a^l$ (eq.\eqref{al}).
-\item \textbf{Output error $\delta^l$}: Compute  
+\item \textbf{Feedforward:} For $l = 2,3,...,L$ compute $z^l$ (EQ HASENT NUMBER YET) and $a^l$ (eq.\eqref{al}).
+\item \textbf{Output error $\delta^L$:} Compute vector $\delta^L = \nabla_aC \odot\sigma(z^L)$ 
+\item \textbf{Backpropagate the error:} Compute $\delta^l = ((w^{l+1})^T\delta^{l+1})\odot \sigma(z^l)$ for each l.
+\item \textbf{Output:} Gradient of the cost function: $\frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1}\delta_j^l$ and    $\frac{\partial C}{\partial b_j^l} = \delta_j^l$
 \end{enumerate}
 
 \cite{Nielsen}
 
-
-
-Example of multilined eq:
-\begin{equation}
-\begin{multlined}
-\frac{dC(\beta)}{d\beta_j}= \frac{d}{d\beta}[\frac{1}{n}\sum\limits_{i=0}^{n-1}(y_i-\beta_0x_{i,0}\\-\beta_1x_{i,1}-...-\beta_{n-1}x_{i,n-1})^2] = 0
-\end{multlined}
-\end{equation}
 
 \subsubsection{Measuring performance}
 
 Maybe include some words on how i measure the performance of the models. Have used accuracy score. Possibly use area under curve and F1 score. 
 
 \subsection{Data description}
-Two datasets are used in this project. The first is data provided by the Franke Function (INCLUDE FUNCTION). This is data mimicking a landscape. 
 
-The second data set is credit card data from credit card holders in Taiwan. In total the dataset contains 23 variables, which is used to employ a response variable, \textit{default payment} with value \textit{1 = pay, 0 = not pay}. The dataset contains the following information:
+The data set used in this analysis is credit card data from credit card holders in Taiwan. In total the dataset contains 23 variables, which is used to employ a response variable, \textit{default payment} with value \textit{1 = default = not pay, 0 = not default = pay}. The dataset contains the following information:
    
 \begin{itemize}
 \item X1: Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.
@@ -321,9 +317,18 @@ paid in August, 2005;...;X23 = amount paid in April,
 2005.\cite{data}
 \end{itemize}
 
+All of these variables determines the probability of whether a client defaults or not on his/her debt the following month. 
+
+
 \section{Method}
 
-\section{Results}
+\subsection{Data Preparation} 
+Not processed in any way, the dataset is roughly $30000 X 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set: $EDUACTION = 0,5,6$.$ MARRIGE = 0$. $PAY_X = -2$. $BILL_AMTX < 0$. $PAY_AMTX < 0$. Additionally, according to Vladimir G. Drugov \cite{vladimir} $86,5$ of $PAY_X$ has the illegal value 0. 
+Removing these would mean loosing too much of the total data, so these values are not removed. We are then left with $22455 X 23$ data points.
+\footnote{ONEHOTENCODEING. Why encode those we encode.} Containing a lot more not default $(0)$ than default $(1)$, the data is very skewed. This may result in models gaining better performance in predicting zeros than ones. To correct this skewed distribution the data is down-sampled so that the model can be trained on equally many zeros and ones. This leaves $12977 x$ \footnote{insert correct number according to onehot here.}.
+
+\section{Conclusion}
+Something here
 
 \section{Conclusion}
 
@@ -340,6 +345,12 @@ For example, suppose the network was mistakenly classifying an image as an "8" w
 \item Write about Softmax somewhere. You are using this in your code. 
 \end{itemize}
 
+Example of multilined eq:
+\begin{equation}
+\begin{multlined}
+\frac{dC(\beta)}{d\beta_j}= \frac{d}{d\beta}[\frac{1}{n}\sum\limits_{i=0}^{n-1}(y_i-\beta_0x_{i,0}\\-\beta_1x_{i,1}-...-\beta_{n-1}x_{i,n-1})^2] = 0
+\end{multlined}
+\end{equation}
  
 \section{Appendix}
 
@@ -384,7 +395,12 @@ I-Cheng Y. and Che-hui L.
 URL:
 %https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/%dsi_05_classification_databases/2.1-lesson/assets/datasets/%DefaultCreditCardClients_yeh_2009.pdf
 Det er et problem med å få lagt til linken 
+
+\bibitem{vladimir}
+URL:
+%https://rstudio-pubs-static.s3.amazonaws.com/%281390_8a4ea1f1d23043479814ec4a38dbbfd9.html#repayment-status-%pay_x
 \end{thebibliography} 
+
 
 \end{@twocolumnfalse}
 ]

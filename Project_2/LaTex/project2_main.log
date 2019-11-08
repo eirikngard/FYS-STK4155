@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  8 NOV 2019 08:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  8 NOV 2019 11:31
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -503,64 +503,75 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--216
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 273--274
+Underfull \hbox (badness 2142) in paragraph at lines 274--275
+[]\OT1/cmr/m/n/10.95 Eq.[] has a very use-ful con-se-quence.
+ []
+
+
+Underfull \hbox (badness 1466) in paragraph at lines 276--277
 []\OT1/cmr/m/n/10.95 The re-sult-ing back-prop-a-ga-tion al-go-rithm
  []
 
 [5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 301.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 297.
 
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 301.
-[6] [7
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 297.
 
-]
-Underfull \hbox (badness 4084) in paragraph at lines 390--390
+Underfull \hbox (badness 1264) in paragraph at lines 326--329
+\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 5\OML/cmm/m/it/10.
+95 ; \OT1/cmr/m/n/10.95 6$.$\OML/cmm/m/it/10.95 MARRIGE \OT1/cmr/m/n/10.95 = 0$
+. $\OML/cmm/m/it/10.95 PAY[] \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95  \OT1/cmr
+/m/n/10.95 2$.
+ []
+
+[6] [7]
+Underfull \hbox (badness 4084) in paragraph at lines 406--406
 [] []\OT1/cmr/m/n/10.95 M. Hjorth-Jensen Lec-ture Notes in FYS-STK4155. \OT1/cm
 r/m/it/10.95 Data Anal-y-sis and Ma-chine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 406--406
 \OT1/cmr/m/it/10.95 Learn-ing: Lin-ear Re-gres-sion and more Ad-vanced Re-gres-
 sion Anal-y-sis. \OT1/cmr/m/n/10.95 URL:
  []
 
 
-Overfull \hbox (7.96138pt too wide) in paragraph at lines 390--390
+Overfull \hbox (7.96138pt too wide) in paragraph at lines 406--406
 \OT1/cmr/m/n/10.95 https://compphysics.github.io/MachineLearning/doc/pub/Regres
 sion/html/Regression.html
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 393.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
 [8
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 393.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 393.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 393.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `project2_main.out' has not changed.
-(rerunfilecheck)             Checksum: F53DDA8347AF020F602DBC41061E2526;1007.
+(rerunfilecheck)             Checksum: 1C5A03F8646BDA03CC7E0FD4E71B7720;1077.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 393.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 6670 strings out of 492895
- 100554 string characters out of 3122799
- 207716 words of memory out of 3000000
- 10466 multiletter control sequences out of 15000+200000
+ 6683 strings out of 492895
+ 100704 string characters out of 3122799
+ 207746 words of memory out of 3000000
+ 10468 multiletter control sequences out of 15000+200000
  11895 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,11n,31p,1104b,381s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 28i,11n,31p,1104b,404s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX
@@ -582,9 +593,9 @@ Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Eirik N/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
 /Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb>
-Output written on project2_main.pdf (8 pages, 264953 bytes).
+Output written on project2_main.pdf (8 pages, 276729 bytes).
 PDF statistics:
- 252 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
