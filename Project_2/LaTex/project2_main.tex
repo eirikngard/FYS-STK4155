@@ -323,9 +323,21 @@ All of these variables determines the probability of whether a client defaults o
 \section{Method}
 
 \subsection{Data Preparation} 
-Not processed in any way, the dataset is roughly $30000 X 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set: $EDUACTION = 0,5,6$.$ MARRIGE = 0$. $PAY_X = -2$. $BILL_AMTX < 0$. $PAY_AMTX < 0$. Additionally, according to Vladimir G. Drugov \cite{vladimir} $86,5$ of $PAY_X$ has the illegal value 0. 
-Removing these would mean loosing too much of the total data, so these values are not removed. We are then left with $22455 X 23$ data points.
-\footnote{ONEHOTENCODEING. Why encode those we encode.} Containing a lot more not default $(0)$ than default $(1)$, the data is very skewed. This may result in models gaining better performance in predicting zeros than ones. To correct this skewed distribution the data is down-sampled so that the model can be trained on equally many zeros and ones. This leaves $12977 x$ \footnote{insert correct number according to onehot here.}.
+Not processed in any way, the dataset is roughly $30000\: \times\: 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set:
+\begin{itemize}
+\item[] $EDUACTION = 0,5,6$
+\item[] $MARRIGE = 0$
+\item[] $PAY\_X = -2$
+\item[] $BILL\:AMT\text\_X < 0$
+\item[] $PA\:AMT\_X < 0$
+\end{itemize}
+Encode categorical integer features as a one-hot numeric array
+
+Additionally, according to Vladimir G. Drugov \cite{vladimir} $86,5 \%$ of $PAY\_X$ has the illegal value 0. 
+Removing these would mean loosing too much of the total data, so these values are not removed. We are then left with $22455\: \times\: 23$ data points.
+A One-hot-encoder from scikit-learn is used to encode categorical integer values into one-hot numeric arrays. This feature give all the categorical columns value of 0 or 1. Our data matrix is now of dimensionality $22455\: \times\: 81$. Finally, the remaining data is standardised using scikit-learns feature StandardScaler. 
+\\ 
+Containing a lot more not default $(0)$ than default $(1)$, the data is very skewed. This may result in models gaining better performance in predicting zeros than ones. To correct this skewed distribution the data is down-sampled so that the model can be trained on equally many zeros and ones. This leaves $12977\: \times\: 81$ data points. 
 
 \section{Conclusion}
 Something here

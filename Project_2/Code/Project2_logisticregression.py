@@ -71,7 +71,7 @@ print('# of entries after clean up: {}'.format(len(df.index)))
 
 data=df.to_numpy()
 X=data[:,:-1]
-y=data[:,23]
+y=data[:,23] #Output
 
 #%%
 '''
@@ -83,8 +83,9 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
  # Categorical variables to one-hot's
 onehotencoder = OneHotEncoder(categories="auto")
 
+#OneHotEncode all categorical feature (except age/column 4)
 X = ColumnTransformer(
-    [("", onehotencoder, [1,2,3,4,5,6,7,8,9]),],
+    [("", onehotencoder, [1,2,3,5,6,7,8,9,10]),],
     remainder="passthrough",sparse_threshold=0
 ).fit_transform(X)
 
@@ -94,21 +95,20 @@ Splitting data in train and test data
 '''
 
 from sklearn.model_selection import train_test_split
-# Train-test split
+# Train-test split, using trainingshare of 0.8
 trainingShare = 0.8 
 seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
                                               random_state=seed)
 
-# Input Scaling
+# Input Scaling of the remaining columns (the last 14).
 sc = StandardScaler(with_mean=False)
 XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
 XTest[:,-14:] = sc.transform(XTest[:,-14:])
 
 #%%
 #Downsampling, correcting for scewed distribution
-#This part make sure we can train on equally many 0(pay) and 1(not pay)
 all_=np.where(yTrain==1)
 some_=np.where(yTrain==0)
 some_[0][:len(all_[0])]
