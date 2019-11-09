@@ -173,11 +173,10 @@ output = 1 \ if \sum_i w_ix_i \ \geq \ threshold
 \end{aligned}
 \end{equation*}
 
-This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. It is apparent that logistic regression in a way is a single layered neural network. \textbf{For understanding, the next paragraph states an simple example.}
+This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. It is apparent that logistic regression in a way is a single layered neural network. \textbf{For understanding, the next paragraph states an simple example (paragraph in raw file.}
 \\ 
 
-Imagine you want to visit the cabin. Two inputs may be if the weather is nice or not, and if you get to see yo grandmother or not. The output is simply to go or not to go to the cabin. Then the question is what weighs most, the weather or you being able to visit your grandmother. Say the threshold is 3. The weight for nice weather is 2 and the weight for visiting the grandmother is 2. Then you actually require both nice weather and that you get to see you grandmother to go to the cabin. If the weather is nice, but you cant see your grandmother, we have $1*2 + 0*2 = 2 < 3$ and the threshold is not reached. Similarly if the weather is bad, but you can see your grandmother we have $0*2 + 1*2 = 2 < 3$. But as both requirements are fulfilled we have $1*2 + 1*2 = 4 > 3$ and the threshold is reached, giving the binary output of 1, which in this case means you are going to the cabin. IF the threshold were lowered to 1, you would go to the cabin even though only one of the inputs were fulfilled. Thus, changing the weights and the threshold yields different decision making. 
-\\
+%Imagine you want to visit the cabin. Two inputs may be if the weather is nice or not, and if you get to see yo grandmother or not. The output is simply to go or not to go to the cabin. Then the question is what weighs most, the weather or you being able to visit your grandmother. Say the threshold is 3. The weight for nice weather is 2 and the weight for visiting the grandmother is 2. Then you actually require both nice weather and that you get to see you grandmother to go to the cabin. If the weather is nice, but you cant see your grandmother, we have $1*2 + 0*2 = 2 < 3$ and the threshold is not reached. Similarly if the weather is bad, but you can see your grandmother we have $0*2 + 1*2 = 2 < 3$. But as both requirements are fulfilled we have $1*2 + 1*2 = 4 > 3$ and the threshold is reached, giving the binary output of 1, which in this case means you are going to the cabin. IF the threshold were lowered to 1, you would go to the cabin even though only one of the inputs were fulfilled. Thus, changing the weights and the threshold yields different decision making. 
 
 If the perceptron where to make a wrong classification, a problem arises. The desired path of action would be to make small changes is the biases or weights of the network and check if it then made the correct classification. If not, you would repeat this process making small changes until the classification succeeds. However, making small changes in biases or weights is actually resulting in very large changes in the output. This problem is solved using another type of neuron, namely the \textit{sigmoid}. 
 \\
@@ -194,13 +193,13 @@ output = \frac{1}{1 + e^{-\sum w_ix_i-b}}
 a^l = \sigma(w^la^{l-1} + b^l)
 \label{al}
 \end{equation}
-where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $z^l = w^la^{l-1}+b^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$.(Sigma is the same as f above i think.SJEKK\footnote{sjekk om f og sigma er det samme}). $z^l$ is called the weighted input to the neurons in layer $l$. 
+where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $z^l = w^la^{l-1}+b^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$. $z^l$ is called the weighted input to the neurons in layer $l$. 
 \\
 
-Then, for backpropagation to work, it is necessary to assume the the cost function can be written as an average $C = \frac{1}{n}\sum_x C_x$ over cost functions $C_x$ for individual training points, x. Also, the cost function must be able to be written as a function of the outputs from the neural network (SIDE 42 NIELSEN). 
+Then, for backpropagation to work, it is necessary to assume the the cost function can be written as an average $C = \frac{1}{n}\sum_x C_x$ over cost functions $C_x$ for individual training points, x. Also, the cost function must be able to be written as a function of the outputs from the neural network \cite{Nielsen}. 
 \\
 
-While computing the  derivatives of the cost $\frac{\partial C}{\partial b^l}$ and $\frac{\partial C}{\partial w^l}$, an error will occur. This error is just referred to as \textit{error}, and is written $\delta_j^l$ in the j-th neuron in the l-th layer. For later notation, the k-th neuron is belongs to the (l-1)-th layer. The quantity $\frac{\partial C}{\partial z_j^l}$ provides a good estimate of this error (EXPLENATION for why IN page 44 Nielsen), and from here 
+While computing the  derivatives of the cost $\frac{\partial C}{\partial b^l}$ and $\frac{\partial C}{\partial w^l}$, an error will occur. This error is just referred to as \textit{error}, and is written $\delta_j^l$ in the j-th neuron in the l-th layer. For later notation, the k-th neuron is belongs to the (l-1)-th layer. The quantity $\frac{\partial C}{\partial z_j^l}$ provides a good estimate of this error, and from here 
 
 \begin{equation}
 \delta_j^l = \frac{\partial C}{\partial z_j^l}
@@ -220,7 +219,7 @@ which vectorized is
 \label{del2}
 \end{equation}
 
-In eq. \eqref{del2} $\nabla_aC$ expresses the rate of change of C with respect to the activation output. Further rewriting gives 
+In eq. \eqref{del2} $\nabla_aC$ expresses the rate of change of C with respect to the activation output. $\odot$ is the Hadamard product. Further rewriting gives 
 \begin{equation}
 \delta^l = (a^l - y)\odot \sigma(z^l)
 \end{equation}
@@ -270,13 +269,9 @@ The resulting backpropagation algorithm then looks something like this:
 
 \cite{Nielsen}
 
-\subsubsection{Measuring performance}
-
-Maybe include some words on how i measure the performance of the models. Have used accuracy score. Possibly use area under curve and F1 score. 
-
 \subsection{Data description}
 
-The data set used in this analysis is credit card data from credit card holders in Taiwan. In total the dataset contains 23 variables, which is used to employ a response variable, \textit{default payment} with value \textit{1 = default = not pay, 0 = not default = pay}. The dataset contains the following information:
+The data set used in this analysis is credit card data from credit card holders in Taiwan. In total the dataset contains 23 variables, which is used to employ an output variable, \textit{default payment}, with value \textit{1 = default = not pay, 0 = not default = pay}. According to Yeh and Lien \cite{data} the dataset contains the following parameters:
    
 \begin{itemize}
 \item X1: Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.
@@ -299,16 +294,14 @@ X13 = amount of bill statement in August,
 \item X18–X23: Amount of previous payment (NT dollar).
 X18 = amount paid in September, 2005; X19 = amount
 paid in August, 2005;...;X23 = amount paid in April,
-2005.\cite{data}
+2005.
 \end{itemize}
-
-All of these variables determines the probability of whether a client defaults or not on his/her debt the following month. 
 
 
 \section{Method}
 
 \subsection{Data Preparation} 
-Not processed in any way, the dataset is roughly $30000\: \times\: 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set:
+Without processing, the dataset is roughly $30000\: \times\: 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set:
 \begin{itemize}
 \item[] $EDUACTION = 0,5,6$
 \item[] $MARRIGE = 0$
@@ -316,22 +309,21 @@ Not processed in any way, the dataset is roughly $30000\: \times\: 23$ data poin
 \item[] $BILL\:AMT\text\_X < 0$
 \item[] $PA\:AMT\_X < 0$
 \end{itemize}
-Encode categorical integer features as a one-hot numeric array
 
 Additionally, according to Vladimir G. Drugov \cite{vladimir} $86,5 \%$ of $PAY\_X$ has the illegal value 0. 
 Removing these would mean loosing too much of the total data, so these values are not removed. We are then left with $22455\: \times\: 23$ data points.
-A One-hot-encoder from scikit-learn is used to encode categorical integer values into one-hot numeric arrays. This feature give all the categorical columns value of 0 or 1. Our data matrix is now of dimensionality $22455\: \times\: 81$. Finally, the remaining data is standardised using scikit-learns feature StandardScaler. 
+A one-hot-encoder from scikit-learn is used to encode categorical integer values into one-hot numeric arrays. This feature give all the categorical columns value of 0 or 1. Our data matrix is now of dimensionality $22455\: \times\: 81$. Finally, the remaining data is standardised using scikit-learns feature StandardScaler. 
 \\ 
 Containing a lot more not default $(0)$ than default $(1)$, the data is very skewed. This may result in models gaining better performance in predicting zeros than ones. To correct this skewed distribution the data is down-sampled so that the model can be trained on equally many zeros and ones. This leaves $12977\: \times\: 81$ data points. 
-
-\section{Conclusion}
-Something here
 
 \section{Conclusion}
 
 And we'd like the network to learn weights and biases so that the output from the network correctly classifies the digit.
 
 For example, suppose the network was mistakenly classifying an image as an "8" when it should be a "9". We could figure out how to make a small change in the weights and biases so the network gets a little closer to classifying the image as a "9". And then we'd repeat this, changing the weights and biases over and over to produce better and better output. The network would be learning.
+
+\section{Future Work}
+Possibly use area under curve and F1 score. Finish NN. 
 
 \section{REMEMBER}
 \begin{itemize}
@@ -375,31 +367,28 @@ Hastie, Trevor. Tibshirani, Robert. Friedman, Jerome.
 \textit{Data Mining, Interference, and Prediction}.
 Second Edition.
 Springer, 2009.
-Chapter 3, Chapter 7
+Chapter 4, Chapter 11
 
 \bibitem{slides}
 M. Hjorth-Jensen
-Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Linear Regression and more Advanced Regression Analysis.}
+Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Logistic Regression and Neural Networks.}
 URL:
-https://compphysics.github.io/MachineLearning/doc/pub/Regression/html/Regression.html  
+https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/LogReg
+URL: https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/NeuralNet  
 Unpublished, 2019. 
- 
-\bibitem{wiki}
-Wikipedia: Bias-Variance tradeoff
-URL:
-\url{https://en.wikipedia.org/wiki/Bias–variance_tradeoff}
-Read: 23.09.2019
 
 \bibitem{Nielsen}
-Nilsen BLABLABLA
-URL
+Nielsen, Michael 
+URL:
+http://neuralnetworksanddeeplearning.com
+Downloaded 13.10.19
  
 \bibitem{data}
-The comparisons of data ining techniques for the predictive accuracy of probability of default of credit card clients. 
+The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. 
 I-Cheng Y. and Che-hui L.
 URL:
-%https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/%dsi_05_classification_databases/2.1-lesson/assets/datasets/%DefaultCreditCardClients_yeh_2009.pdf
-Det er et problem med å få lagt til linken 
+%https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf
+Could not add link 
 
 \bibitem{vladimir}
 URL:
