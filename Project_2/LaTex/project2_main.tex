@@ -7,6 +7,7 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{amssymb}
 \graphicspath{ {./Latex/} }
 
 %\pagestyle{headings} Writes the heading on top of the page.
@@ -22,10 +23,11 @@
 \maketitle
 \begin{abstract}
 Here you can write your abstract
+
 \end{abstract}
 
 All material for this project may be found on 
-\url{https://github.com/eirikngard/Project2}
+\url{https://github.com/eirikngard/FYS-STK4155/tree/master/Project_2}
 
 \end{@twocolumnfalse}
 ]
@@ -33,7 +35,11 @@ All material for this project may be found on
 
 \section{Introduction}
 
-In this project credit card data is used to determine
+In this project credit card data with 23 features is used to determine whether the clients will default or not default their debt. The data output thus is binary, 1 for default and 0 for not default, and prediction these includes solving a classification problem. In this project this is done using logistic regression and neural networks. Overall, the main goal is to assess which model best predicts the outcome based on the 23 features in the data, and how adjusting parameters of these models affect the result. The performance is measured by the accuracy score, which simply is a measure of how often the given model predict correct outcome. Accuracy score ranges from 0 to 1, 1 being a perfect classifier.    
+\begin{gather*}
+Accuracy = \frac{\sum\limits_{i=1}^n I(y_i = y_i)}{n}
+\end{gather*}
+\\
 
 \section{Theory}
 
@@ -42,7 +48,7 @@ In this project credit card data is used to determine
 
 Logistic regression is used to solve classification problems. These are problems concerning outcomes, $y_i$, in form of discrete variables. Commonly the classification problems in question has two possible outcomes, true or false. Using the credit card data as an example, the two outcomes would be if a client would pay his/hers debt or not. This type of outcome is often calleed binary outcome, and can easily be programmed as 1 or 0.
 
-The dependent variables (outcomes) $y_i$ are discrete, ranging from $k=0,...,K-1$ where $K$ is classes. The main goal is to predict the output classes from a designmatrix $\hat{X} \in R^{nXp}$ (change R to real numbers R) made of \textit{n} samples carrying \textit{p} features/predictors. The simplest output is perhaps a binary output, only having values 0 or 1 meaning yes/no, true/false, pay/dont pay etc. From there it is desired to identify the classes to which new unseen samples belong. 
+The dependent variables (outcomes) $y_i$ are discrete, ranging from $k=0,...,K-1$ where $K$ is classes. The main goal is to predict the output classes from a designmatrix $\hat{X} \in \mathbb{R}^{nXp}$ made of \textit{n} samples carrying \textit{p} features/predictors. The simplest output is perhaps a binary output, only having values 0 or 1 meaning yes/no, true/false, pay/dont pay etc. From there it is desired to identify the classes to which new unseen samples belong. 
 
 A descrete output can be obtained in several ways, but the simplest may be to have a sign function, which maps the output of a linear regressor to values ${0,1}, f(a)=sign(a) = 1$ if $a$ $\geq$ 0 and 0 if otherwise.  Although this model is very simple, in many cases it might be convenient to know the probability of an output belonging a given caegory rather than a single value. This is done using the \textit{logistic function}, and is often called a "soft classifier".  The classifier outputs the probability of $x_i$ belonging to a category $y_i=\{0,1\}$. In this case the classifier is given by a \textit{Sigmoid} function, often reffered to as a likelihood function. The Sigmoid function $p(y)$ is given by\cite{slides}
 
@@ -51,6 +57,15 @@ p(y) = \frac{1}{1+e^{-y}}  = \frac{e^y}{1+e^y}
 \label{p1}
 \end{equation}
 
+and looks like this 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{Sigmoid}
+\caption{Plain Sigmoid as example of likelihood function}
+\label{Sigmoid}
+\end{figure}
+
 Like other likelihoods,  eq. \eqref{p1} here we have that the likelihood  $p(y_i = 0) = 1-p(y_i = 1) $, always resulting in a summed likelihood of 1. Assuming two classes $y_i$  being either 0 or 1, we have
 
 \begin{equation}
@@ -58,7 +73,7 @@ Like other likelihoods,  eq. \eqref{p1} here we have that the likelihood  $p(y_i
 y_i=\beta_0+\beta_1x_i+...+\beta_nx_i
 \end{equation}
 
-Ued in in eq.\eqref{p1}, this gives 
+Used in in eq.\eqref{p1}, this gives 
 
 \begin{equation}
 \label{y2}
@@ -67,18 +82,18 @@ p(y_i=1\mid x_i,\hat{\beta}) = \frac{e{\beta_0+\beta_1x_i}}{1+e{\beta_0+\beta_1x
 and 
 \begin{equation}
 \label{y3}
-p(y_i=0\mid x_i,\hat{\beta}) = 1 - p(y_i=1\mid x_i\hat{\beta}
+p(y_i=0\mid x_i,\hat{\beta}) = 1 - p(y_i=1\mid x_i\hat{\beta})
 \end{equation}
 
 Eq. \eqref{y2} and eq. \eqref{y3} can then be used to find the maximum likelihood of an event. The product of all individual probabilities of a specific outcome $y_i$ is used to obtain a log-likelihood function, which in turn gives the cost function 
 
-\begin{equation*}
-\begin{aligned}
-C(\hat{\beta}=\sum\limits_{i=1}^{n}\big(y_i log p(y_i=1\vert x_i,\hat{\beta})\\ 
-+(1-y_i)log\big[1-p(y_i=1\vert x_i,\hat{\beta}\big]\big)
-\end{aligned}
+\begin{equation}
+\begin{multlined}
+C(\hat{\beta})=\sum\limits_{i=1}^{n}\big(y_i\: log\: p(y_i=1\vert x_i,\hat{\beta})\\ 
++(1-y_i)\:log\: \big[1-p(y_i=1\vert x_i,\hat{\beta}\big]\big)
+\end{multlined}
 \label{c1}
-\end{equation*}
+\end{equation}
 
 Eq. \eqref{c1} is called the \textit{cross entropy}. Being convex, a local minimizer of this function will also be a global minimizer. Hence, minimizing eq. \eqref{c1} with respect to each $\beta$ gives 
 
@@ -95,48 +110,36 @@ and
 \label{min2}
 \end{equation}
 
-It is worth mentioning that far from all of these functions are convex. Many cost functions used in machine learning are in fact non-convex and of high dimensionality. Compressing eq. \eqref{min1} and eq. \eqref{min2} we get the following expressions for the first and the second derivative:
+It is worth mentioning that far from all cost functions are convex. Many cost functions used in machine learning are in fact non-convex and of high dimensionality. Compressing eq. \eqref{min1} and eq. \eqref{min2} we get the following expressions for the first derivative. This is the gradient used in the gradient descent method explained later.
 
 \begin{equation}
 \frac{\partial C(\hat{\beta})}{\partial\hat{\beta}}=-\hat{X}^T(\hat{y}-\hat{p})
 \label{compcost1}
 \end{equation}
 
-\begin{equation}
-\frac{\partial^2C(\hat{\beta})}{\partial\hat{\beta}\partial\hat{\beta}^T}=\hat{X}^T\hat{W}\hat{X}
-\label{compcost2}
-\end{equation}
+%\begin{equation}
+%\frac{\partial^2C(\hat{\beta})}{\partial\hat{\beta}\partial%\hat{\beta}^T}=\hat{X}^T\hat{W}\hat{X}
+%\label{compcost2}
+%\end{equation}
 
-where $\hat{y}$ is a vector with n elements $y_i$, the $n x p$ matrix $\hat{X}$ containing the $x_i$ values, the vector $\hat{p}$ is the fitted probabilities $p(y_i\mid x_i,\hat{\beta}$ and $\hat{W}$ being a diagonal matrix with elements $p(y_i\mid xi,\hat{\beta})(1-p(y_i\mid xi,\hat{\beta})$ (skal y =1 i denne?). These derivatives are used to create the Hessian matrix, later used to solve the minimization problem. Unlike in linear regression, solving these for $\hat{\beta}$ now requires a gradient descent method\cite{slides}. 
+where $\hat{y}$ is a vector with n elements $y_i$, the $n x p$ matrix $\hat{X}$ containing the $x_i$ values and the vector $\hat{p}$ is the fitted probabilities $p(y_i\mid x_i,\hat{\beta})$.
+%and 
+%$\hat{W}$ being a diagonal matrix with elements $p(y_i\mid xi,%\hat{\beta})(1-p(y_i\mid xi,\hat{\beta})$. These derivatives %are used to create the Hessian matrix, later used to solve the %minimization problem. Unlike in linear regression, solving %these for $\hat{\beta}$ now requires a gradient descent method
+\footnote{here is a paragraph on Hessian. check if i use this later}
+\cite{slides}. 
 
 \subsection{Gradient Descent Method}
 
-The idea of a gradient descent (GD) method is that a function $F(x)$, with $x=x_1,...,x_n$, decreases fastest if one goes from x in the direction of the negative gradient $-gradientF(x)$. If 
+The idea of a gradient descent (GD) method is that a function $F(x)$, with $x=x_1,...,x_n$, decreases fastest if one goes from $x$ in the direction of the negative gradient $-\nabla F(x)$. If 
 \begin{equation}
 x_{v+1}=x_v-\gamma_v\nabla F(x_v)
 \label{GD1}
 \end{equation}
-where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>0$. For small enough $\gamma_v$ we will then have $F(x_{v+1}>=F(x_v)$, meaning we are always moving towards smaller values and eventually a minimum of F\footnote{this paragraph until here is almost copy of a paragraph in slides of Splines. Migth wanna find another introdction to avoid copying}. Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function. 
+where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>0$. The gradient used in eq. \eqref{GD1} is obtained by eq. \eqref{compcost1}. For small enough $\gamma_v$ we will then have $F(x_{v+1}\geq F(x_v)$, meaning we are always moving towards smaller values and eventually a minimum of F \cite{slides}.
+\\ 
+Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function. 
 
-Maby include a paragraph on convex functions, as it is desired to have such functions to proceed with GD?
-
-
-
-
-Logistic regresseion er som et neuralt nettverk uten layers. 
-
-The cost function I actuallu used: 
-
-\begin{equation}
-C(\hat{\beta})=-\sum\limits_{i=1}^n (y_i(\beta_0+\beta_1x_i)-log(1+e^{\beta_0+\beta_1x_i})
-\label{crossen}
-\end{equation}
-
-Eq. \eqref{crossen} is known as the cross entropy, and provide the gradient used for the standard gradient descent. The gradient is the derivative of eq. \eqref{crossen} with respect to $\hat{\beta}$, thus
-
-\begin{equation}
-\frac{\partial C(\hat{\beta})}{\partial \hat{\beta}} = -\hat{X}^T(\hat{y}-\hat{p}
-\end{equation} 
+\textbf{Logistic regresseion er som et neuralt nettverk uten layers.} 
 \footnote{Make sure p (sigmoid) is defined somewhere above}
 \cite{slides}. 
 
@@ -151,10 +154,17 @@ Anyhow, I have used stochastic gradient descent with linear regression as well, 
 
 \subsection{Artificial Neural Networks}
 
-Artificial Neural Networks (ANN) is a computational system that by training on examples can learn to perform tasks. Increasing the number of examples the ANN can learn from will increase the accuracy of the tasks performed. It is called artificial neural network because it is supposed to mimic a biological system such as a brain, where neurons interact by sending signals in the form of mathematical functions. The ANN is constructed in layers containing an arbitrary number of neutrons, which in turn is connected by a weight variable. Similarly to an actual brain, the neurons in a ANN can only communicate with each other if the incoming signal exceeds a certain threshold value. If the signal is "strong" enough, an output is sent forward, but is this activation threshold is not reached the neuron remain inactive, providing zero output\cite{slides}. 
+Artificial Neural Networks (ANN) is a computational system that by training on examples can learn to perform tasks. Increasing the number of examples the ANN can learn from will increase the accuracy of the tasks performed. It is called artificial neural network because it is supposed to mimic a biological system such as a brain, where neurons interact by sending signals in the form of mathematical functions. The ANN is constructed in layers containing an arbitrary number of neutrons, which in turn is connected by a weight variable. Similarly to an actual brain, the neurons in a ANN can only communicate with each other if the incoming signal exceeds a certain threshold value. If the signal is "strong" enough, an output is sent forward, but if this activation threshold is not reached the neuron remain inactive, providing zero output\cite{slides}. 
 \\
 
-The neurons described above may be on different forms. One type of artificial neuron is called the \textit{perceptron}.This works by taking $n$ binary inputs $x_1,x_2,...,x_n$ and producing one single binary output. The importance of each binary input is represented by $n$ weights, $w_1,w_2,...,w_n$. The binary output is determined by if the weighted sum of inputs is less or greater than a threshold (bias) value. Thus,
+The neurons described above may be on different forms. One type of artificial neuron is called the \textit{perceptron}, and it has the general form 
+
+\begin{equation}
+y = \sigma (\sum\limits_{i=1}^n w_ix_i + b_i) = \sigma (z)
+\label{neu1}
+\end{equation}
+
+This works by taking $n$ binary inputs $x_1,x_2,...,x_n$ and producing one single binary output. The importance of each binary input is represented by $n$ weights, $w_1,w_2,...,w_n$. The binary output is determined by if the weighted sum of inputs is less or greater than a threshold (bias) value. Thus,
 
 \begin{equation*}
 \begin{aligned}
@@ -163,7 +173,7 @@ output = 1 \ if \sum_i w_ix_i \ \geq \ threshold
 \end{aligned}
 \end{equation*}
 
-This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. For understanding, the next paragraph states an simple example.
+This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. It is apparent that logistic regression in a way is a single layered neural network. \textbf{For understanding, the next paragraph states an simple example.}
 \\ 
 
 Imagine you want to visit the cabin. Two inputs may be if the weather is nice or not, and if you get to see yo grandmother or not. The output is simply to go or not to go to the cabin. Then the question is what weighs most, the weather or you being able to visit your grandmother. Say the threshold is 3. The weight for nice weather is 2 and the weight for visiting the grandmother is 2. Then you actually require both nice weather and that you get to see you grandmother to go to the cabin. If the weather is nice, but you cant see your grandmother, we have $1*2 + 0*2 = 2 < 3$ and the threshold is not reached. Similarly if the weather is bad, but you can see your grandmother we have $0*2 + 1*2 = 2 < 3$. But as both requirements are fulfilled we have $1*2 + 1*2 = 4 > 3$ and the threshold is reached, giving the binary output of 1, which in this case means you are going to the cabin. IF the threshold were lowered to 1, you would go to the cabin even though only one of the inputs were fulfilled. Thus, changing the weights and the threshold yields different decision making. 
@@ -172,25 +182,11 @@ Imagine you want to visit the cabin. Two inputs may be if the weather is nice or
 If the perceptron where to make a wrong classification, a problem arises. The desired path of action would be to make small changes is the biases or weights of the network and check if it then made the correct classification. If not, you would repeat this process making small changes until the classification succeeds. However, making small changes in biases or weights is actually resulting in very large changes in the output. This problem is solved using another type of neuron, namely the \textit{sigmoid}. 
 \\
 
-This neuron functions in the same way as the perceptron, but with different input and output. Now the inputs can be any value between 0 and 1. And instead of having output of 0 or 1, the sigmoid has output $\sigma(w*x + b)$, where $b$ is the bias \footnote{include this notation for output further up as well?}. and $\sigma$ is the sigmoid function defines eq. \eqref{p1}. Hence the out of the sigmoid will be 
+This neuron functions in the same way as the perceptron, but with different input and output. Now the inputs can be any value between 0 and 1. And instead of having output of 0 or 1, the sigmoid has output $\sigma(w*x + b)$, where $b$ is the bias and $\sigma$ is the sigmoid function defined by eq. \eqref{p1}. Hence the out of the sigmoid will be \cite{Nielsen} 
 
 \begin{equation}
 output = \frac{1}{1 + e^{-\sum w_ix_i-b}}
 \end{equation}
-\cite{Nielsen}
-Rydd opp litt i denne teoridelen. Den likningen som kommer under burde være med, fordi den setes jo egnetlig inn i sigmoid, som gir/er likningen ovenfor. 
-INCLUDE SOME SORT OF SCECH OG SIMOID?
-
-
-WHAT FOLLOWS should possibly be after the first paragraph in this section:
-\textit{ A simple neuron model can hence be written} 
-
-\begin{equation}
-y = f(\sum\limits_{i=1}^n w_ix_i + b_i) = f(u)
-\label{neu1}
-\end{equation}
-\cite{slides}
-\textit{ In  eq. \eqref{neu1} $x_i$ is the input signals, weighted by $w_i$. y is the output, equal to the value of its activation function. $b_i$ is the bias/threshold. This can in turn be used to separate different type of neural networks. Such variations may be for instance Recurrent Neural Networks or Convolutional Neural Networks\footnote{Further reading on the differnt types of neural network may be found on: URL}. UNTIL HERE.}
 
 \subsubsection{Backpropagation (ANN)}
 \textit{Backpropagation} is an algorithm computing the gradient of the cost function. This quantity tells us what the partial derivatives with respect to both the bias and the weights are, and may be very useful if you want to know how fast the cost is changing when the bias or weights are changing. This actually allows us to get information on how the behaviour of the entire network changes when the bias or weights are changed. Like before, we have    
@@ -198,7 +194,7 @@ y = f(\sum\limits_{i=1}^n w_ix_i + b_i) = f(u)
 a^l = \sigma(w^la^{l-1} + b^l)
 \label{al}
 \end{equation}
-where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $w^la^{l-1}+b^l$, hereafter called $z^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$.(Sigma is the same as f above i think.SJEKK\footnote{sjekk om f og sigma er det samme}). $z^l$ is called the weighted input to the neurons in layer $l$. 
+where a is the activation(referred to as output later), b is the bias, w is the weights, l is the layer number and $\sigma$ is a function to every element in the vector $z^l = w^la^{l-1}+b^l$. This way the activation in one layer is related to the activation in the previous layer. Thus we have $a^l = \sigma(z^l)$.(Sigma is the same as f above i think.SJEKK\footnote{sjekk om f og sigma er det samme}). $z^l$ is called the weighted input to the neurons in layer $l$. 
 \\
 
 Then, for backpropagation to work, it is necessary to assume the the cost function can be written as an average $C = \frac{1}{n}\sum_x C_x$ over cost functions $C_x$ for individual training points, x. Also, the cost function must be able to be written as a function of the outputs from the neural network (SIDE 42 NIELSEN). 
