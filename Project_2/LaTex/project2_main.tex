@@ -23,7 +23,7 @@
 \begin{@twocolumnfalse}
 \maketitle
 \begin{abstract}
-Here you can write your abstract
+Logistic regression and neural network is used to predict the outcome variable of a credit data set. The outcome variable is paying or not paying debt, determined by features as gender, civil status, age and more. My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
 
 \end{abstract}
 
@@ -40,8 +40,7 @@ In this project credit card data with 23 features is used to determine whether t
 \begin{gather*}
 Accuracy = \frac{\sum\limits_{i=1}^n I(y_i = y_i)}{n}
 \end{gather*}
-\\
-
+\
 \section{Theory}
 
 
@@ -141,17 +140,11 @@ where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>
 Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function. 
 
 \textbf{Logistic regresseion er som et neuralt nettverk uten layers.} 
-\footnote{Make sure p (sigmoid) is defined somewhere above}
 \cite{slides}. 
-
-\subsubsection{Standard/Steepest Gradient Descent}
-I have used this as the first gradient descent. Iterate 1000, calculated the gradient, minimizing the cost function. This iteration outputs betas, used to make prediction of y. Thereafter y is used in the sigmoid function to classify the data og default or not. Making a threshold of 0,5, where sigmoid output of less than 0,5 is 0, and above is 1. Then I count how many of the predicted values match with the values of the data y (last column in data set) to get the accuracy score for this gradient descent.  
 
 \subsubsection{Stochastic Gradient Descent}
 
-Write about epocs and minibatches. Why we use them, how we use them and maby how to optimize the number of these? 
-
-Anyhow, I have used stochastic gradient descent with linear regression as well, and found it to be around 1% more accurate on the training data than the stnadard gradient descent. 
+Batches is a hyperparameter that defines the number of samplesto work through before updating the internal model parameters. 
 
 \subsection{Artificial Neural Networks}
 
@@ -388,28 +381,10 @@ Investigate how the neural network performs with different activation functions,
 \section{REMEMBER}
 \begin{itemize}
 \item Contro all references, that they are written correctly 
-\item Just include formulas you actually use in the theory part.
 \item Maybe include illustrative figures on how neural network work.
-\item Write about Softmax somewhere. You are using this in your code if i use this. 
 \item Drop the example of how a NN works if you have aslot of text in theory
-\item Compare my results with the results from the article, and or from vladimirs text.
 \item table for test, and table for train
 \end{itemize}
-
-Example of multilined eq:
-\begin{equation}
-\begin{multlined}
-\frac{dC(\beta)}{d\beta_j}= \frac{d}{d\beta}[\frac{1}{n}\sum\limits_{i=0}^{n-1}(y_i-\beta_0x_{i,0}\\-\beta_1x_{i,1}-...-\beta_{n-1}x_{i,n-1})^2] = 0
-\end{multlined}
-\end{equation}
-
-
-%\begin{figure}[h]
-%\centering
-%\includegraphics[scale=0.75]{name of figure}
-%\caption{intersting caption}
-%\label{figurelabel}
-%\end{figure}
  
 \section{Appendix}
 
@@ -417,8 +392,6 @@ Example of multilined eq:
 [
 \begin{@twocolumnfalse}
 
-
-\section{References}
 
 \medskip
 
