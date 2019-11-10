@@ -4,6 +4,10 @@ Created on Mon Oct 28 16:40:58 2019
 
 @author: Eirik Nordgård
 """
+
+"""
+Loanding data
+"""
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +27,9 @@ df = pd.read_excel(filename, index_col=0,skiprows=[0])
 df.head()
 
 #%%
-
+"""
+Cleanup, removing illegal values
+"""
 print('# of entries before clean up: {}'.format(len(df.index)))
 
 # Remove instances with zeros only for past bill statements and paid amounts
@@ -91,12 +97,12 @@ X = ColumnTransformer(
 
 #%%
 '''
-Splitting data in train and test data
+Splitting data in train and test data. Scaling data. 
 '''
 
 from sklearn.model_selection import train_test_split
 # Train-test split, using trainingshare of 0.8
-trainingShare = 0.8 
+trainingShare = 0.5 
 seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
@@ -109,6 +115,8 @@ XTest[:,-14:] = sc.transform(XTest[:,-14:])
 
 #%%
 """
+Downsampling 
+"""
 #Downsampling, correcting for scewed distribution
 all_=np.where(yTrain==1)
 some_=np.where(yTrain==0)
@@ -117,7 +125,7 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-"""
+
 #%%
 
 """

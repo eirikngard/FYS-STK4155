@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  10 NOV 2019 14:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  10 NOV 2019 17:44
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -637,51 +637,118 @@ Underfull \hbox (badness 1158) in paragraph at lines 322--326
 \OT1/cmr/m/n/10.95 is made loop-ing over a range of learn-ing
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 436--436
+[6]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.349 \begin{center}
+                    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.349 \begin{center}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.367 \end{center}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.367 \end{center}
+                  
+Things are pretty mixed up, but I think the worst is over.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.370 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.370 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Too many }'s.
+\@par ... \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.370 
+      
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 458--458
 [] []\OT1/cmr/m/n/10.95 M. Hjorth-Jensen Lec-ture Notes in FYS-STK4155. \OT1/cm
 r/m/it/10.95 Data Anal-y-sis and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--436
+Underfull \hbox (badness 10000) in paragraph at lines 458--458
 \OT1/cmr/m/it/10.95 Ma-chine Learn-ing: Lo-gis-tic Re-gres-sion and Neu-ral Net
 -works. \OT1/cmr/m/n/10.95 URL:
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 436--436
+Underfull \hbox (badness 4872) in paragraph at lines 458--458
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/LogReg URL:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--436
+Underfull \hbox (badness 10000) in paragraph at lines 458--458
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/NeuralNet
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 439.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 461.
 [8
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 439.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 461.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 439.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 439.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 461.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 461.
 Package rerunfilecheck Info: File `project2_main.out' has not changed.
 (rerunfilecheck)             Checksum: FCFFA401908FE8A71EC9506E64704840;1099.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 439.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 461.
  ) 
 Here is how much of TeX's memory you used:
  7517 strings out of 492895
  110657 string characters out of 3122799
- 218543 words of memory out of 3000000
+ 219543 words of memory out of 3000000
  11274 multiletter control sequences out of 15000+200000
  14364 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -708,9 +775,9 @@ AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
 /Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/symbols/msbm10.pfb>
-Output written on project2_main.pdf (8 pages, 295513 bytes).
+Output written on project2_main.pdf (8 pages, 296491 bytes).
 PDF statistics:
- 270 PDF objects out of 1000 (max. 8388607)
+ 272 PDF objects out of 1000 (max. 8388607)
  63 named destinations out of 1000 (max. 500000)
  150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

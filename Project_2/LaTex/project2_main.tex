@@ -302,7 +302,7 @@ paid in August, 2005;...;X23 = amount paid in April,
 \section{Method}
 
 \subsection{Data Preparation} 
-Without processing, the dataset is roughly $30000\: \times\: 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set:
+Without processing, the dataset is $30000\: \times\: 23$ data points. Within these values are several illegal ones, not mentioned in the data description. Thus, the following data are removed from the set:
 \begin{itemize}
 \item[] $EDUACTION = 0,5,6$
 \item[] $MARRIGE = 0$
@@ -345,13 +345,31 @@ Scikit-learns neural network is utilized. This implements a multi-layered percep
 }
 \end{center}
 
-For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. 
+For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. It is also worth mentioning that these scores are obtained \textit{without} downsampling. With downsampling the scores are:
+\begin{center}
+{\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
+ \begin{tabular}{||c c c||} 
+ \hline
+ \multicolumn{3}{|c|}{Accuracy Score} \\
+ \hline
+ Own model & Scikit model & Score \\ [0.5ex] 
+ \hline\hline
+ LogReg(GD) & - & 72,826 \\ 
+ \hline
+ - & LogReg & 72,873 \\
+ \hline
+ - & LogReg(SGD) & 50,141  \\
+ \hline
+ - & NeuNet & 52,149 \\
+ \hline
+\end{tabular}
+}
+\end{center}
+
+Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score almost 30 $%$ lover than without downsampling, one of several things is probably wrong with the neural network. Firstly, something is possibly wrong with either the data processing or the regression method. It is indeed very strange that the gap between the methods are that great, so something is probably not executed as it should. Secondly, since the downsampling only leaves us with XXX datapoints, it may actually be the case that the models don't have enough samples left to train on. Decreasing the training-share from 0,8 to 0,5 results in around 10 $%$ increased accuracy score for the neural network. This suggest that the downsampled dataset may be too small for his analysis. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the other models are executed or initialized.         
 
 \section{Conclusion}
-
-And we'd like the network to learn weights and biases so that the output from the network correctly classifies the digit.
-
-For example, suppose the network was mistakenly classifying an image as an "8" when it should be a "9". We could figure out how to make a small change in the weights and biases so the network gets a little closer to classifying the image as a "9". And then we'd repeat this, changing the weights and biases over and over to produce better and better output. The network would be learning.
+My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable.  
 
 \section{Future Work}
 Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensure optimal accuracy score by STG and NN. Try with/without downsampling. All over, my accuracy scores is way better if not removing all the 
@@ -359,7 +377,7 @@ Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensur
 
 Look at other parameters to evaluate the network and regression methods.
 
-For future work I would 
+For future work I would finish my neural network code. This would allow me to tune all parameters to find the best accuracy, and then compare this to what was found in the paper of Yeh and Lien and Drugov \cite{vladimir}. It would also be interesting to investigate which features in the data are more important to whether a client will default or not on their debt.   
 
 \section{REMEMBER}
 \begin{itemize}
