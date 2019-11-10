@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  10 NOV 2019 20:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  10 NOV 2019 21:43
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -531,142 +531,159 @@ Non-PDF special ignored!
 <special> header=tree-dvips91.pro
 
 ]
-<Sigmoid.png, id=100, 231.86626pt x 180.675pt>
+<Sigmoid.png, id=96, 231.86626pt x 180.675pt>
 File: Sigmoid.png Graphic file (type png)
 <use Sigmoid.png>
 Package pdftex.def Info: Sigmoid.png  used on input line 64.
 (pdftex.def)             Requested size: 173.89925pt x 135.5059pt.
  [2 <./Sigmoid.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 167--168
+Underfull \hbox (badness 2150) in paragraph at lines 161--162
 []\OT1/cmr/m/n/10.95 This works by tak-ing $\OML/cmm/m/it/10.95 n$ \OT1/cmr/m/n
 /10.95 bi-nary in-puts
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--172
 
  []
 
-
-Underfull \hbox (badness 1082) in paragraph at lines 181--183
+[3]
+Underfull \hbox (badness 1082) in paragraph at lines 175--177
 \OT1/cmr/m/n/10.95 weights is ac-tu-ally re-sult-ing in very large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--183
+Underfull \hbox (badness 10000) in paragraph at lines 175--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--198
+Underfull \hbox (badness 10000) in paragraph at lines 189--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--201
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
  []
 
 [4]
-Underfull \hbox (badness 2142) in paragraph at lines 259--260
+Underfull \hbox (badness 2142) in paragraph at lines 253--254
 []\OT1/cmr/m/n/10.95 Eq.[] has a very use-ful con-se-quence.
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 261--262
+Underfull \hbox (badness 1466) in paragraph at lines 255--256
 []\OT1/cmr/m/n/10.95 The re-sult-ing back-prop-a-ga-tion al-go-rithm
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 277.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 271.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 277.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 271.
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 321--325
+Underfull \hbox (badness 10000) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 Among the func-tions de-fined are \OT1/cmr/m/it/10.95 nor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--325
+Underfull \hbox (badness 10000) in paragraph at lines 315--319
 \OT1/cmr/m/it/10.95 mal[]gradient[]descent \OT1/cmr/m/n/10.95 and \OT1/cmr/m/it
 /10.95 stochas-
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 321--325
+Underfull \hbox (badness 2096) in paragraph at lines 315--319
 \OT1/cmr/m/it/10.95 tic[]gradient[]descent\OT1/cmr/m/n/10.95 . Used in lo-gis-t
 ic re-
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 321--325
+Underfull \hbox (badness 1342) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 lo-gis-tic re-gres-sion us-ing a (nor-mal) gra-di-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--325
+Underfull \hbox (badness 10000) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 the Lo-gisitcRe-gres-sion func-tion-al-ity from
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 321--325
+Underfull \hbox (badness 1038) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 scikit-learn is used to make a ref-er-ence -
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 321--325
+Underfull \hbox (badness 1454) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 pre-dic-tion. Also, my \OT1/cmr/m/it/10.95 pre-dict \OT1/cmr
 /m/n/10.95 func-tion is
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 321--325
+Underfull \hbox (badness 1158) in paragraph at lines 315--319
 \OT1/cmr/m/n/10.95 is made loop-ing over a range of learn-ing
  []
 
-[6] [7] [8
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 443--443
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+[7]
+<Heatmap1.png, id=191, 205.36725pt x 179.77162pt>
+File: Heatmap1.png Graphic file (type png)
+<use Heatmap1.png>
+Package pdftex.def Info: Heatmap1.png  used on input line 394.
+(pdftex.def)             Requested size: 154.02505pt x 134.82837pt.
+<Heatmap2.png, id=192, 205.9695pt x 182.18062pt>
+File: Heatmap2.png Graphic file (type png)
+<use Heatmap2.png>
+Package pdftex.def Info: Heatmap2.png  used on input line 401.
+(pdftex.def)             Requested size: 154.47673pt x 136.63512pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <./Heatmap1.png> <./Heatmap2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
 [] []\OT1/cmr/m/n/10.95 M. Hjorth-Jensen Lec-ture Notes in FYS-STK4155. \OT1/cm
 r/m/it/10.95 Data Anal-y-sis and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--443
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
 \OT1/cmr/m/it/10.95 Ma-chine Learn-ing: Lo-gis-tic Re-gres-sion and Neu-ral Net
 -works. \OT1/cmr/m/n/10.95 URL:
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 443--443
+Underfull \hbox (badness 4872) in paragraph at lines 453--453
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/LogReg URL:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--443
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/NeuralNet
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 446.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 456.
 [9
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 446.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 456.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 446.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 446.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 456.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 456.
 
 
 Package rerunfilecheck Warning: File `project2_main.out' has changed.
@@ -674,23 +691,23 @@ Package rerunfilecheck Warning: File `project2_main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `project2_main.out':
-(rerunfilecheck)             Before: FCFFA401908FE8A71EC9506E64704840;1099
-(rerunfilecheck)             After:  11937F7B2B558AD4307A06CD91BDF3FF;1052.
+(rerunfilecheck)             Before: 11937F7B2B558AD4307A06CD91BDF3FF;1052
+(rerunfilecheck)             After:  54D54CD1F10CA91E7491EBFAC49F75BF;957.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 446.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 456.
  ) 
 Here is how much of TeX's memory you used:
- 7517 strings out of 492895
- 110650 string characters out of 3122799
- 221543 words of memory out of 3000000
- 11274 multiletter control sequences out of 15000+200000
+ 7528 strings out of 492895
+ 110813 string characters out of 3122799
+ 220543 words of memory out of 3000000
+ 11283 multiletter control sequences out of 15000+200000
  14364 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,11n,40p,1105b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{section.9} has been referenced but does not exist
-, replaced by a fixed one
+ 29i,11n,40p,1105b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{subsubsection.2.2.2} has been referenced but does
+ not exist, replaced by a fixed one
 
 <C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
@@ -714,9 +731,9 @@ pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/U
 sers/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on project2_main.pdf (9 pages, 298457 bytes).
+Output written on project2_main.pdf (9 pages, 333996 bytes).
 PDF statistics:
  279 PDF objects out of 1000 (max. 8388607)
  63 named destinations out of 1000 (max. 500000)
- 150 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 152 words of extra memory for PDF output out of 10000 (max. 10000000)
 

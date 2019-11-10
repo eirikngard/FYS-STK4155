@@ -213,7 +213,6 @@ def accuracy(prediction,Y):
     accuracy = np.mean(prediction == Y)
     return accuracy*100
 
-
 #%%
 '''
 Testing GD
@@ -278,28 +277,7 @@ for i,e in enumerate(etas):
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
         #det greit at det ser radom ut
 print("Accuracy SGD: {}".format(np.mean(train_accuracy)))
-#%%
 
-etas = np.logspace(-6,0,7)
-batch_s = np.linspace(1,1000,10)
-epo=np.arange(20)
-train_accuracy = np.zeros((len(etas),len(epo)))
-test_accuracy = np.zeros((len(etas),len(epo)))
-for i,e in enumerate(batch_s):
-    for ep in range(20): 
-        w =  sto_grad_des(XTrain,yTrain,epochs=20,batch_size=100,eta2=1e-3)
-        
-        test_result = predict(XTest,w)
-        train_result = predict(XTrain,w)
-        
-        test_acc = accuracy(test_result,yTest) 
-        train_acc = accuracy(train_result,yTrain)
-        
-        #test_sci_acc = accuracy_score(yTest, test_result)
-        #train_sci_acc = accuracy_score(yTrain, train_result)
-        
-        train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
-        test_accuracy[i,ep] = accuracy_score(yTest,test_result)
 #%%
 """
 SGD by scikit-learn
@@ -319,23 +297,25 @@ import seaborn as sns
 
 plt.figure()
 sns.heatmap(train_accuracy)#, annot=True, ax=ax, cmap="viridis")
-plt.title("Training Accuracy")
-plt.ylabel("$\eta$ logspaced learning parameter")
-plt.xlabel("epoch")
+plt.title("Training Accuracy",size=20)
+plt.ylabel("$\eta$",size=15)
+plt.xlabel("epoch",size=15)
 plt.show()
 
 plt.figure()
 sns.heatmap(test_accuracy)#, annot=True, ax=ax, cmap="viridis")
 #plt.colorbar()
-plt.title("Test Accuracy")
-plt.ylabel("$\eta$ logspaced learning parameter")
-plt.xlabel("epoch")
+plt.title("Test Accuracy",size=20)
+plt.ylabel("$\eta$",size=15)
+plt.xlabel("epoch",size=15)
 plt.show()
 #%%
 #Trying a subplot with the two figures above on same color scale
 fig, (ax, ax2, cax) = plt.subplots(ncols=3,figsize=(8,8),
       gridspec_kw={"width_ratios":[1,1,0.1]})
 plt.suptitle("Heatmap of training and test accuracy with varying epoch and eta")
+plt.ylabel("$\eta$",size=15)
+plt.xlabel("epoch",size=15)
 fig.subplots_adjust(wspace=0.1)
 im=ax.imshow(train_accuracy,vmin=0.2,vmax=0.9)
 im2=ax2.imshow(test_accuracy,vmin=0.2,vmax=0.9)
