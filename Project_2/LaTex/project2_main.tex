@@ -325,6 +325,7 @@ Scikit-learns neural network is utilized. This implements a multi-layered percep
 \textbf{write something on my own NN code here.}    
 
 \section{Results}
+
 \begin{center}
 {\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
  \begin{tabular}{||c c c||} 
@@ -345,15 +346,16 @@ Scikit-learns neural network is utilized. This implements a multi-layered percep
 }
 \end{center}
 
-For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. It is also worth mentioning that these scores are obtained \textit{without} downsampling. With downsampling the scores are:
+For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $\%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. This result could be caused be the absence of fine-tuning. As of now, the neural network is not tuned to provide the best score possible. It is also worth mentioning that these scores are obtained \textit{without} downsampling. With downsampling the scores are:
+
 \begin{center}
 {\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
  \begin{tabular}{||c c c||} 
  \hline
  \multicolumn{3}{|c|}{Accuracy Score} \\
  \hline
- Own model & Scikit model & Score \\ [0.5ex] 
- \hline\hline
+ Own model & Scikit model & Score \\ [0.5ex] \hline
+ \hline
  LogReg(GD) & - & 72,826 \\ 
  \hline
  - & LogReg & 72,873 \\
@@ -366,10 +368,10 @@ For some reason, the SGD aand the NN scores lower than the logistic regression. 
 }
 \end{center}
 
-Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score almost 30 $%$ lover than without downsampling, one of several things is probably wrong with the neural network. Firstly, something is possibly wrong with either the data processing or the regression method. It is indeed very strange that the gap between the methods are that great, so something is probably not executed as it should. Secondly, since the downsampling only leaves us with XXX datapoints, it may actually be the case that the models don't have enough samples left to train on. Decreasing the training-share from 0,8 to 0,5 results in around 10 $%$ increased accuracy score for the neural network. This suggest that the downsampled dataset may be too small for his analysis. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the other models are executed or initialized.         
+Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score almost 30 $\%$ lower than without downsampling, one of several things is probably wrong with the neural network. Firstly, something is possibly wrong with either the data processing or the regression method. It is indeed very strange that the gap between the methods are that great, so something is probably not executed as it should. Secondly, since the downsampling only leaves us with 12977 datapoints, it may actually be the case that the models don't have enough samples left to train on. Decreasing the training-share from 0,8 to 0,5 results in around 10 $\%$ increased accuracy score for the neural network. This suggest that the downsampled dataset may be too small for his analysis. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the other models are executed or initialized.         
 
 \section{Conclusion}
-My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable.  
+My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
 
 \section{Future Work}
 Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensure optimal accuracy score by STG and NN. Try with/without downsampling. All over, my accuracy scores is way better if not removing all the 
@@ -378,6 +380,10 @@ Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensur
 Look at other parameters to evaluate the network and regression methods.
 
 For future work I would finish my neural network code. This would allow me to tune all parameters to find the best accuracy, and then compare this to what was found in the paper of Yeh and Lien and Drugov \cite{vladimir}. It would also be interesting to investigate which features in the data are more important to whether a client will default or not on their debt.   
+
+Tune the neural network by scikit-learn to obtain the best score possible. This hold for all my models, and is essential to really be able to compare the models. 
+
+Investigate how the neural network performs with different activation functions, and with different activation threshold values.  
 
 \section{REMEMBER}
 \begin{itemize}

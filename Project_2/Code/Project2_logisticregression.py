@@ -126,6 +126,15 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
 
+#Test
+all_2=np.where(yTest==1)
+some_2=np.where(yTest==0)
+some_2[0][:len(all_2[0])]
+sample_idx2 = np.concatenate((all_2[0], some_2[0][:len(all_2[0])]))
+
+XTest = XTest[sample_idx2]
+yTest=yTest[sample_idx2]
+
 #%%
 
 """
@@ -209,10 +218,17 @@ def accuracy(prediction,Y):
 '''
 Testing GD
 '''
+#On training data 
 beta=normal_gradient_descent()
 y_predict_new = predict(XTrain,beta) 
 print("Acuracy score logreg by GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
 print(f'MSE is {mse(yTrain,y_predict_new):.3f}')
+#On test data 
+te=normal_gradient_descent()
+y_predict_new_tt = predict(XTest,te) 
+print("Acuracy score logreg by GD: {:.3f}".format(accuracy(y_predict_new_tt,yTest)))
+print(f'MSE is {mse(yTrain,y_predict_new):.3f}')
+
 
 #%%
 '''
@@ -261,6 +277,29 @@ for i,e in enumerate(etas):
         #få epoker, eller at datasettet ikke lar seg løse med logistic regression
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
         #det greit at det ser radom ut
+print("Accuracy SGD: {}".format(np.mean(train_accuracy)))
+#%%
+
+etas = np.logspace(-6,0,7)
+batch_s = np.linspace(1,1000,10)
+epo=np.arange(20)
+train_accuracy = np.zeros((len(etas),len(epo)))
+test_accuracy = np.zeros((len(etas),len(epo)))
+for i,e in enumerate(batch_s):
+    for ep in range(20): 
+        w =  sto_grad_des(XTrain,yTrain,epochs=20,batch_size=100,eta2=1e-3)
+        
+        test_result = predict(XTest,w)
+        train_result = predict(XTrain,w)
+        
+        test_acc = accuracy(test_result,yTest) 
+        train_acc = accuracy(train_result,yTrain)
+        
+        #test_sci_acc = accuracy_score(yTest, test_result)
+        #train_sci_acc = accuracy_score(yTrain, train_result)
+        
+        train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
+        test_accuracy[i,ep] = accuracy_score(yTest,test_result)
 #%%
 """
 SGD by scikit-learn
