@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  9 NOV 2019 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  10 NOV 2019 14:31
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -392,29 +392,67 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (project2_main.aux
+))
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.st
+y"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\col
+or.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/colortbl\colortb
+l.sty"
+Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
+
+("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\array.sty"
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen145
+\ar@mcellbox=\box55
+\extrarowheight=\dimen146
+\NC@list=\toks28
+\extratabsurround=\skip53
+\backup@length=\skip54
+\ar@cellbox=\box56
+)
+\everycr=\toks29
+\minrowclearance=\skip55
+)
+\rownum=\count145
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (project2_main.aux
 
 LaTeX Warning: Label `del2' multiply defined.
 
 )
 \openout1 = `project2_main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-\AtBeginShipoutBox=\box55
-Package hyperref Info: Link coloring OFF on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+\AtBeginShipoutBox=\box57
+Package hyperref Info: Link coloring OFF on input line 15.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref
 .sty"
@@ -424,11 +462,11 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 tlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count145
+\c@section@level=\count146
 )
-LaTeX Info: Redefining \ref on input line 14.
-LaTeX Info: Redefining \pageref on input line 14.
-LaTeX Info: Redefining \nameref on input line 14.
+LaTeX Info: Redefining \ref on input line 15.
+LaTeX Info: Redefining \pageref on input line 15.
+LaTeX Info: Redefining \nameref on input line 15.
  (project2_main.out) (project2_main.out)
 \@outlinefile=\write3
 \openout3 = `project2_main.out'.
@@ -437,17 +475,17 @@ LaTeX Info: Redefining \nameref on input line 14.
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp
 -pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count146
-\scratchdimen=\dimen145
-\scratchbox=\box56
-\nofMPsegments=\count147
-\nofMParguments=\count148
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count149
-\MPscratchDim=\dimen146
-\MPnumerator=\count150
-\makeMPintoPDFobject=\count151
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count147
+\scratchdimen=\dimen147
+\scratchbox=\box58
+\nofMPsegments=\count148
+\nofMParguments=\count149
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count150
+\MPscratchDim=\dimen148
+\MPnumerator=\count151
+\makeMPintoPDFobject=\count152
+\everyMPtoPDFconversion=\toks31
 )
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopd
 f-base.sty"
@@ -464,30 +502,30 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 "
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 4454) in paragraph at lines 33--33
+Underfull \hbox (badness 4454) in paragraph at lines 34--34
 []\OT1/cmr/m/n/10.95 All ma-te-rial for this project may be found on []$\OT1/cm
 tt/m/n/10.95 https : / / github . com / eirikngard /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
 
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 51--52
+Underfull \hbox (badness 1117) in paragraph at lines 52--53
 \OML/cmm/m/it/10.95 K$ \OT1/cmr/m/n/10.95 is classes. The main goal is to pre-
  []
 
@@ -498,172 +536,156 @@ Non-PDF special ignored!
 <special> header=tree-dvips91.pro
 
 ]
-<Sigmoid.png, id=88, 231.86626pt x 180.675pt>
+<Sigmoid.png, id=96, 231.86626pt x 180.675pt>
 File: Sigmoid.png Graphic file (type png)
 <use Sigmoid.png>
-Package pdftex.def Info: Sigmoid.png  used on input line 64.
+Package pdftex.def Info: Sigmoid.png  used on input line 65.
 (pdftex.def)             Requested size: 173.89925pt x 135.5059pt.
  [2 <./Sigmoid.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
 
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 167--168
+Underfull \hbox (badness 2150) in paragraph at lines 168--169
 []\OT1/cmr/m/n/10.95 This works by tak-ing $\OML/cmm/m/it/10.95 n$ \OT1/cmr/m/n
 /10.95 bi-nary in-puts
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
+Underfull \hbox (badness 10000) in paragraph at lines 177--179
 
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 181--183
+Underfull \hbox (badness 1082) in paragraph at lines 182--184
 \OT1/cmr/m/n/10.95 weights is ac-tu-ally re-sult-ing in very large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--183
+Underfull \hbox (badness 10000) in paragraph at lines 182--184
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--198
+Underfull \hbox (badness 10000) in paragraph at lines 196--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--201
+Underfull \hbox (badness 10000) in paragraph at lines 200--202
 
  []
 
 [4]
-Underfull \hbox (badness 2142) in paragraph at lines 259--260
+Underfull \hbox (badness 2142) in paragraph at lines 260--261
 []\OT1/cmr/m/n/10.95 Eq.[] has a very use-ful con-se-quence.
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 261--262
+Underfull \hbox (badness 1466) in paragraph at lines 262--263
 []\OT1/cmr/m/n/10.95 The re-sult-ing back-prop-a-ga-tion al-go-rithm
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 277.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 278.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 277.
-[5] [6] [7
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 278.
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 Among the func-tions de-fined are \OT1/cmr/m/it/10.95 nor-
+ []
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 400--400
+
+Underfull \hbox (badness 10000) in paragraph at lines 322--326
+\OT1/cmr/m/it/10.95 mal[]gradient[]descent \OT1/cmr/m/n/10.95 and \OT1/cmr/m/it
+/10.95 stochas-
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 322--326
+\OT1/cmr/m/it/10.95 tic[]gradient[]descent\OT1/cmr/m/n/10.95 . Used in lo-gis-t
+ic re-
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 lo-gis-tic re-gres-sion us-ing a (nor-mal) gra-di-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 the Lo-gisitcRe-gres-sion func-tion-al-ity from
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 scikit-learn is used to make a ref-er-ence -
+ []
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 pre-dic-tion. Also, my \OT1/cmr/m/it/10.95 pre-dict \OT1/cmr
+/m/n/10.95 func-tion is
+ []
+
+
+Underfull \hbox (badness 1158) in paragraph at lines 322--326
+\OT1/cmr/m/n/10.95 is made loop-ing over a range of learn-ing
+ []
+
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
 [] []\OT1/cmr/m/n/10.95 M. Hjorth-Jensen Lec-ture Notes in FYS-STK4155. \OT1/cm
 r/m/it/10.95 Data Anal-y-sis and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--400
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
 \OT1/cmr/m/it/10.95 Ma-chine Learn-ing: Lo-gis-tic Re-gres-sion and Neu-ral Net
 -works. \OT1/cmr/m/n/10.95 URL:
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 400--400
+Underfull \hbox (badness 4872) in paragraph at lines 436--436
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/LogReg URL:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--400
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
 \OT1/cmr/m/n/10.95 https://github.com/CompPhysics/MachineLearning/tree/master/d
 oc/pub/NeuralNet
  []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.400 ]
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.400 ]
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.400 ]
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \hbox (badness 2990) in paragraph at lines 400--400
-[] []\OT1/cmr/m/n/10.95 The com-par-isons of data in-ing tech-niques for the pr
-e-dic-tive ac-cu-racy of prob-
- []
-
-
-Underfull \hbox (badness 6526) in paragraph at lines 400--400
-\OT1/cmr/m/n/10.95 a-bil-ity of de-fault of credit card clients. I-Cheng Y. and
- Che-hui L. URL:
- []
-
-
-Underfull \hbox (badness 1418) in paragraph at lines 400--400
-\OT1/cmr/m/n/10.95 https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi$[
-]5[]\OML/cmm/m/it/10.95 lassification[]atabases=\OT1/cmr/m/n/10.95 2\OML/cmm/m/
-it/10.95 :\OT1/cmr/m/n/10.95 1 \OMS/cmsy/m/n/10.95  
- []
-
-! Extra }, or forgotten \endgroup.
-\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
-                                                  \fi 
-l.400 ]
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 439.
 [8
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 439.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 403.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 439.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 439.
 Package rerunfilecheck Info: File `project2_main.out' has not changed.
-(rerunfilecheck)             Checksum: 8D0F14AF07B3B93A38B1DF48F4FF4581;980.
+(rerunfilecheck)             Checksum: FCFFA401908FE8A71EC9506E64704840;1099.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 403.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 439.
  ) 
 Here is how much of TeX's memory you used:
- 6971 strings out of 492895
- 104076 string characters out of 3122799
- 205979 words of memory out of 3000000
- 10742 multiletter control sequences out of 15000+200000
+ 7517 strings out of 492895
+ 110657 string characters out of 3122799
+ 218543 words of memory out of 3000000
+ 11274 multiletter control sequences out of 15000+200000
  14364 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,11n,31p,1105b,379s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,11n,40p,1105b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX
@@ -686,9 +708,9 @@ AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
 /Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/symbols/msbm10.pfb>
-Output written on project2_main.pdf (8 pages, 291762 bytes).
+Output written on project2_main.pdf (8 pages, 295513 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 500000)
- 134 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 270 PDF objects out of 1000 (max. 8388607)
+ 63 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

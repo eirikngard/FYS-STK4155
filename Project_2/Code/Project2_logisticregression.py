@@ -108,6 +108,7 @@ XTrain[:,-14:] = sc.fit_transform(XTrain[:,-14:])
 XTest[:,-14:] = sc.transform(XTest[:,-14:])
 
 #%%
+"""
 #Downsampling, correcting for scewed distribution
 all_=np.where(yTrain==1)
 some_=np.where(yTrain==0)
@@ -116,7 +117,7 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-
+"""
 #%%
 
 """
@@ -155,9 +156,10 @@ def normal_gradient_descent(eta=1e-5,Niterations=1000):
     return beta
 
 #Stochastic Gradient Descent (SGD)
+    
 def sto_grad_des(X,Y,epochs=40,batch_size=200,eta2=1e-4):
     #theta2 = np.random.randn(75)*np.sqrt(1/75)
-    theta2 = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
+    beta2 = np.random.randn(X.shape[1])*np.sqrt(1/X.shape[1])
    
     n_samples, n_cols = X.shape
     idx = np.arange(n_samples)
@@ -170,19 +172,19 @@ def sto_grad_des(X,Y,epochs=40,batch_size=200,eta2=1e-4):
         np.random.shuffle(X) 
         for b_idx in batches:
             #b_idx = np.random.randint(m)
-            xi2 = X[b_idx]
-            yi2 = Y[b_idx]
+            xi = X[b_idx]
+            yi = Y[b_idx]
             #print(yi2)
-            p12=np.exp(xi2.dot(theta2))/(1+np.exp(xi2.dot(theta2)))#sigmoid
+            p2=np.exp(xi.dot(beta2))/(1+np.exp(xi.dot(beta2)))#sigmoid
             #print(p12)
-            gradient2 = xi2.T.dot(p12-yi2)/batch_size
+            gradient2 = xi.T.dot(p2-yi)/batch_size
             #print(gradient2)
-            theta2 = theta2 - eta2*gradient2
+            beta2 = beta2 - eta2*gradient2
             
-    return theta2
+    return beta2
 
-def predict(X,theta):
-    pred = X @ theta
+def predict(X,beta):
+    pred = X @ beta
     
     y_pred = np.exp(pred)/(1+np.exp(pred))#prediksjon, y gjennom sigmoid
     y_pred[y_pred >= 0.5] = 1
@@ -201,7 +203,7 @@ Testing GD
 '''
 beta=normal_gradient_descent()
 y_predict_new = predict(XTrain,beta) 
-print("Acuracy score GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
+print("Acuracy score logreg by GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
 print(f'MSE is {mse(yTrain,y_predict_new):.3f}')
 
 #%%
@@ -223,44 +225,8 @@ print("Accuracy bu scikit for logistic legression by scikit: {:.3f} \n"\
 
 #%%
 '''
-Finding Beta through Stocastic (random) Gradient Descent (SGD)
-'''
-"""
-theta = np.random.randn(75)*np.sqrt(1/75)
-eta = 1e-5
+Finding Beta through Stocastic (random) Gradient Descent (SGD) 
 
-n_epochs = 50
-t0, t1 = 5, 50
-m=len(XTrain)
-def learning_schedule(t):
-    return t0/(t+t1)
-
-for epoch in range(n_epochs):
-    for i in range(m):
-        random_index = np.random.randint(m)
-        xi = XTrain[random_index:random_index+1]#b_idx
-        yi = yTrain[random_index:random_index+1]
-        p1=np.exp(xi.dot(theta))/(1+np.exp(xi.dot(theta)))#sigoid
-        #gradient = xi.T @ ((xi @ theta)-yi)
-        gradient = xi.T.dot(p1-yi)
-        eta = learning_schedule(epoch*m+i)
-        theta = theta - eta*gradient
-
-#PROBLEM: gives a littlebit different accuracy each run of this section
-#PROBLEM: need to find the what epocs and batches that ptovides best accuracy
-
-pred_sgd = XTrain @ theta
-
-y_pred_sgd=np.exp(pred_sgd)/(1+np.exp(pred_sgd))#prediksjon, y gjennom sigmoid
-y_pred_sgd[y_pred_sgd >= 0.5] = 1
-y_pred_sgd[y_pred_sgd <= 0.5] = 0
-
-Acc_sgd=np.mean(y_pred_sgd == yTrain)
-"""
-#%%
-'''
-Finding Beta through Stocastic (random) Gradient Descent (SGD) VERSION 2
-Med denne trenger du ikke mini_batch_update i NN
 '''
 from sklearn.linear_model import SGDClassifier
 etas = np.logspace(-6,0,7)
@@ -282,7 +248,7 @@ for i,e in enumerate(etas):
         
         train_accuracy[i,ep] = accuracy_score(yTrain,train_result)
         test_accuracy[i,ep] = accuracy_score(yTest,test_result)
-        
+             
         #sjekk om prediskjon i sklearn matcher med min. Kan være at jeg har for
         #få epoker, eller at datasettet ikke lar seg løse med logistic regression
         #Stemmer heatmap fra scikit med mitt. Hvis det gjør det, så er 
@@ -359,13 +325,6 @@ pred[pred < 0.5] = 0
 real_accuracy_nn = accuracy(pred,yTest)
 print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
 
-#Kan skrive i rapport at for videre arbeid, prøv med/uten downsampling. 
-
-#All over, my accuracy scores is way better if not removing all the 
-#0s in PAY data, but if i keep them, my SGD fails, returning only nan.
-
-# For future work: look at other parameters to evaluate the network
-# and regression methods.
 #%%
 
 #%%
@@ -386,14 +345,13 @@ net.SGD(train,30,10,0.01,test_data=None)
 #%%
 
 print() 
-print("Classification accuracy for LOGISTIC REGRESSION ")
+print("Classification accuracy")
 print("--------------------------------")
-print("Acuracy score GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
+print("Acuracy score logreg by GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
 print("Accuracy for logistic legression by scikit: {:.3f}".format(accuracy_logreg_sci))
-print("Accuracy bu scikit for logistic legression by scikit: {:.3f} \n"\
+print("Accuracy by scikit for logistic legression by scikit: {:.3f} \n"\
       .format(acc_by_sci_logreg))
-print("Acc by me on SGD by scikit: {:.3f}".format(train_accuracy_own))
-print("Acc by scikit on SGD by scikit: {:.3f}".format(train_accuracy_sci))
+print("Accuracy by scikit on SGD by scikit: {:.3f}".format(train_accuracy_sci))
 print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
 
 

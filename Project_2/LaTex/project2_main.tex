@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage[table]{xcolor}
 \graphicspath{ {./Latex/} }
 
 %\pagestyle{headings} Writes the heading on top of the page.
@@ -316,6 +317,36 @@ A one-hot-encoder from scikit-learn is used to encode categorical integer values
 \\ 
 Containing a lot more not default $(0)$ than default $(1)$, the data is very skewed. This may result in models gaining better performance in predicting zeros than ones. To correct this skewed distribution the data is down-sampled so that the model can be trained on equally many zeros and ones. This leaves $12977\: \times\: 81$ data points. 
 
+\subsection{Execution of Python Code}
+
+Among the functions defined are \textit{normal\_gradient\_descent} and \textit{stochastic\_gradient\_descent}. Used in logistic regression, the (normal) gradient descent takes the arguments learning rate and number of iterations. Then it loops over all iterations, calculating the gradient in \eqref{GD1}, which is used to obtain the betas. Using the functions \textit{predict} and \textit{accuracy} the accuracy score for logistic regression using a (normal) gradient descent is calculated. For comparison, the LogisitcRegression functionality from scikit-learn is used to make a reference - prediction. Also, my \textit{predict} function is compared to scikit-learns functionality \textit{accuracy\_score}. 
+Logistic regression is also done using the \textit{stochastic\_gradient\_descent}-method with input arguments $x$, $y$, batch size, number of epochs and learning rate. A prediction is made looping over a range of learning rates and epochs. The accuracy scores are then visualized in a heatmap.
+Scikit-learns neural network is utilized. This implements a multi-layered perceptron algorithm that trains using backpropagation. 
+\textbf{write something on my own NN code here.}    
+
+\section{Results}
+\begin{center}
+{\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
+ \begin{tabular}{||c c c||} 
+ \hline
+ \multicolumn{3}{|c|}{Accuracy Score} \\
+ \hline
+ Own model & Scikit model & Score \\ [0.5ex] 
+ \hline\hline
+ LogReg(GD) & - & 81,708 \\ 
+ \hline
+ - & LogReg & 81,814 \\
+ \hline
+ - & LogReg(SGD) & 75,423  \\
+ \hline
+ - & NeuNet & 77,644 \\
+ \hline
+\end{tabular}
+}
+\end{center}
+
+For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. 
+
 \section{Conclusion}
 
 And we'd like the network to learn weights and biases so that the output from the network correctly classifies the digit.
@@ -323,7 +354,12 @@ And we'd like the network to learn weights and biases so that the output from th
 For example, suppose the network was mistakenly classifying an image as an "8" when it should be a "9". We could figure out how to make a small change in the weights and biases so the network gets a little closer to classifying the image as a "9". And then we'd repeat this, changing the weights and biases over and over to produce better and better output. The network would be learning.
 
 \section{Future Work}
-Possibly use area under curve and F1 score. Finish NN. 
+Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensure optimal accuracy score by STG and NN. Try with/without downsampling. All over, my accuracy scores is way better if not removing all the 
+0s in PAY data
+
+Look at other parameters to evaluate the network and regression methods.
+
+For future work I would 
 
 \section{REMEMBER}
 \begin{itemize}
@@ -332,6 +368,8 @@ Possibly use area under curve and F1 score. Finish NN.
 \item Maybe include illustrative figures on how neural network work.
 \item Write about Softmax somewhere. You are using this in your code if i use this. 
 \item Drop the example of how a NN works if you have aslot of text in theory
+\item Compare my results with the results from the article, and or from vladimirs text.
+\item table for test, and table for train
 \end{itemize}
 
 Example of multilined eq:
@@ -384,13 +422,15 @@ http://neuralnetworksanddeeplearning.com
 Downloaded 13.10.19
  
 \bibitem{data}
-The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. 
-I-Cheng Y. and Che-hui L.
+\textit{The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients}. 
+I. Yeh and C. Lien
 URL:
 %https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf
 Could not add link 
 
 \bibitem{vladimir}
+\textit{Default Payments of Credit Card Clients in Taiwan from 2005}.
+Drugov, Vladimir G.
 URL:
 %https://rstudio-pubs-static.s3.amazonaws.com/%281390_8a4ea1f1d23043479814ec4a38dbbfd9.html#repayment-status-%pay_x
 \end{thebibliography} 
