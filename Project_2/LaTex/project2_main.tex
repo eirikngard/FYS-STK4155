@@ -125,7 +125,6 @@ It is worth mentioning that far from all cost functions are convex. Many cost fu
 where $\hat{y}$ is a vector with n elements $y_i$, the $n x p$ matrix $\hat{X}$ containing the $x_i$ values and the vector $\hat{p}$ is the fitted probabilities $p(y_i\mid x_i,\hat{\beta})$.
 %and 
 %$\hat{W}$ being a diagonal matrix with elements $p(y_i\mid xi,%\hat{\beta})(1-p(y_i\mid xi,\hat{\beta})$. These derivatives %are used to create the Hessian matrix, later used to solve the %minimization problem. Unlike in linear regression, solving %these for $\hat{\beta}$ now requires a gradient descent method
-\footnote{here is a paragraph on Hessian. check if i use this later}
 \cite{slides}. 
 
 \subsection{Gradient Descent Method}
@@ -137,14 +136,9 @@ x_{v+1}=x_v-\gamma_v\nabla F(x_v)
 \end{equation}
 where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>0$. The gradient used in eq. \eqref{GD1} is obtained by eq. \eqref{compcost1}. For small enough $\gamma_v$ we will then have $F(x_{v+1}\geq F(x_v)$, meaning we are always moving towards smaller values and eventually a minimum of F \cite{slides}.
 \\ 
-Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function. 
+Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function \cite{slides}. 
 
-\textbf{Logistic regresseion er som et neuralt nettverk uten layers.} 
-\cite{slides}. 
-
-\subsubsection{Stochastic Gradient Descent}
-
-Batches is a hyperparameter that defines the number of samplesto work through before updating the internal model parameters. 
+One form of gradient descent is \textit{stochastic gradient descent}. This algorithm is iterative, meaning the search process for the minima of the cost function occurs over multiple steps. These steps are done using so-called batches and epochs, and the intention is to improve the model parameters for each step. Batch is a hyperparameter that defines the number of data samples to work through before updating the internal model parameters. Epoch is a hyperparameter that defines the number of times the learning algorithm will work through the entire training data set. Iterating over the batches and epochs, you are very likely to find the minima of the cost function without updating the model parameters for each data sample.
 
 \subsection{Artificial Neural Networks}
 
@@ -167,7 +161,7 @@ output = 1 \ if \sum_i w_ix_i \ \geq \ threshold
 \end{aligned}
 \end{equation*}
 
-This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. It is apparent that logistic regression in a way is a single layered neural network. \textbf{For understanding, the next paragraph states an simple example (paragraph in raw file.}
+This is the equivalent to whether the neuron is activated or not. Described in another way, the perceptron makes a decision (0 or 1) by weighing up arguments pro or con the decision. The network may also have several layers of neurons, each taking the output of the "previous" layers as input. These layers are called \textit{hidden layers}, and allows for very complicated decision making networks. It is apparent that logistic regression in a way is a single layered neural network.
 \\ 
 
 %Imagine you want to visit the cabin. Two inputs may be if the weather is nice or not, and if you get to see yo grandmother or not. The output is simply to go or not to go to the cabin. Then the question is what weighs most, the weather or you being able to visit your grandmother. Say the threshold is 3. The weight for nice weather is 2 and the weight for visiting the grandmother is 2. Then you actually require both nice weather and that you get to see you grandmother to go to the cabin. If the weather is nice, but you cant see your grandmother, we have $1*2 + 0*2 = 2 < 3$ and the threshold is not reached. Similarly if the weather is bad, but you can see your grandmother we have $0*2 + 1*2 = 2 < 3$. But as both requirements are fulfilled we have $1*2 + 1*2 = 4 > 3$ and the threshold is reached, giving the binary output of 1, which in this case means you are going to the cabin. IF the threshold were lowered to 1, you would go to the cabin even though only one of the inputs were fulfilled. Thus, changing the weights and the threshold yields different decision making. 
@@ -255,7 +249,7 @@ Eq.\eqref{part1} has a very useful consequence. When the activation a is small, 
 The resulting backpropagation algorithm then looks something like this:
 \begin{enumerate}
 \item \textbf{Input} x: Find corresponding activation $a^l$ for the input layer.
-\item \textbf{Feedforward:} For $l = 2,3,...,L$ compute $z^l$ (EQ HASENT NUMBER YET) and $a^l$ (eq.\eqref{al}).
+\item \textbf{Feedforward:} For $l = 2,3,...,L$ compute $z^l$ and $a^l$ (eq.\eqref{al}).
 \item \textbf{Output error $\delta^L$:} Compute vector $\delta^L = \nabla_aC \odot\sigma(z^L)$ 
 \item \textbf{Backpropagate the error:} Compute $\delta^l = ((w^{l+1})^T\delta^{l+1})\odot \sigma(z^l)$ for each l.
 \item \textbf{Output:} Gradient of the cost function: $\frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1}\delta_j^l$ and    $\frac{\partial C}{\partial b_j^l} = \delta_j^l$
@@ -367,26 +361,9 @@ Now all of the accuracy scores are lowered by quite a bit. Also, the difference 
 My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
 
 \section{Future Work}
-Possibly use area under curve and F1 score. Finish NN. Tweak parameters to ensure optimal accuracy score by STG and NN. Try with/without downsampling. All over, my accuracy scores is way better if not removing all the 
-0s in PAY data
 
-Look at other parameters to evaluate the network and regression methods.
-
-For future work I would finish my neural network code. This would allow me to tune all parameters to find the best accuracy, and then compare this to what was found in the paper of Yeh and Lien and Drugov \cite{vladimir}. It would also be interesting to investigate which features in the data are more important to whether a client will default or not on their debt.   
-
-Tune the neural network by scikit-learn to obtain the best score possible. This hold for all my models, and is essential to really be able to compare the models. 
-
-Investigate how the neural network performs with different activation functions, and with different activation threshold values.  
-
-\section{REMEMBER}
-\begin{itemize}
-\item Contro all references, that they are written correctly 
-\item Maybe include illustrative figures on how neural network work.
-\item Drop the example of how a NN works if you have aslot of text in theory
-\item table for test, and table for train
-\item Write README with desription of files in repository!
-\item do a quick cleaning of files in project 2
-\end{itemize}
+For future work I would finish my neural network code. This would allow me to tune all parameters to find the best accuracy, and then compare this to what was found in the paper of Yeh and Lien and Drugov \cite{vladimir}. It would also be interesting to investigate which features in the data are more important to whether a client will default or not on their debt. I would also like to spend more time on tuning the parameters of the neural network provided by scikit-learn.   
+Investigate how the neural network performs with different activation functions, and with different activation threshold values. Additionally  I would like to test my algorithm on other data sets, such as the Franke data stated in the project description.    
  
 \section{Appendix}
 
@@ -416,37 +393,32 @@ Investigate how the neural network performs with different activation functions,
 \bibitem{Hastie}
 Hastie, Trevor. Tibshirani, Robert. Friedman, Jerome.
 \textit{The Elements of Statistical Learning}.
-\textit{Data Mining, Interference, and Prediction}.
-Second Edition.
-Springer, 2009.
+\textit{Data Mining, Interference, and Prediction}.\\
+Second Edition.\\
+Springer, 2009.\\
 Chapter 4, Chapter 11
 
 \bibitem{slides}
 M. Hjorth-Jensen
-Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Logistic Regression and Neural Networks.}
-URL:
-https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/LogReg
-URL: https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/NeuralNet  
+Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Logistic Regression and Neural Networks.}\\
+URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/LogReg}\\
+URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/NeuralNet}\\
 Unpublished, 2019. 
 
 \bibitem{Nielsen}
-Nielsen, Michael 
-URL:
-http://neuralnetworksanddeeplearning.com
+Nielsen, Michael\\
+URL: \url{http://neuralnetworksanddeeplearning.com}\\
 Downloaded 13.10.19
  
 \bibitem{data}
-\textit{The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients}. 
-I. Yeh and C. Lien
-URL:
-%https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf
-Could not add link 
+\textit{The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients}.\\ 
+I. Yeh and C. Lien\\
+URL: \url{https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf}
 
 \bibitem{vladimir}
-\textit{Default Payments of Credit Card Clients in Taiwan from 2005}.
-Drugov, Vladimir G.
-URL:
-%https://rstudio-pubs-static.s3.amazonaws.com/%281390_8a4ea1f1d23043479814ec4a38dbbfd9.html#repayment-status-%pay_x
+\textit{Default Payments of Credit Card Clients in Taiwan from 2005}.\\
+Drugov, Vladimir G.\\
+URL: \url{https://rstudio-pubs-static.s3.amazonaws.com/281390_8a4ea1f1d23043479814ec4a38dbbfd9.html}\\
 \end{thebibliography} 
 
 

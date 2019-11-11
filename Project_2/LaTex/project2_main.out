@@ -2,15 +2,13 @@
 \BOOKMARK [1][-]{section.2}{Theory}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Logistic regression}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Gradient Descent Method}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Stochastic Gradient Descent}{subsection.2.2}% 5
-\BOOKMARK [2][-]{subsection.2.3}{Artificial Neural Networks}{section.2}% 6
-\BOOKMARK [3][-]{subsubsection.2.3.1}{Backpropagation \(ANN\)}{subsection.2.3}% 7
-\BOOKMARK [2][-]{subsection.2.4}{Data description}{section.2}% 8
-\BOOKMARK [1][-]{section.3}{Method}{}% 9
-\BOOKMARK [2][-]{subsection.3.1}{Data Preparation}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.2}{Execution of Python Code}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{Results}{}% 12
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 13
-\BOOKMARK [1][-]{section.6}{Future Work}{}% 14
-\BOOKMARK [1][-]{section.7}{REMEMBER}{}% 15
-\BOOKMARK [1][-]{section.8}{Appendix}{}% 16
+\BOOKMARK [2][-]{subsection.2.3}{Artificial Neural Networks}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Backpropagation \(ANN\)}{subsection.2.3}% 6
+\BOOKMARK [2][-]{subsection.2.4}{Data description}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Method}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Data Preparation}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Execution of Python Code}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Results}{}% 11
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 12
+\BOOKMARK [1][-]{section.6}{Future Work}{}% 13
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 14
