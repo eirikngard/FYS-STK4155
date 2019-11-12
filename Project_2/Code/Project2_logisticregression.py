@@ -101,8 +101,8 @@ Splitting data in train and test data. Scaling data.
 '''
 
 from sklearn.model_selection import train_test_split
-# Train-test split, using trainingshare of 0.8
-trainingShare = 0.5 
+# Train-test split
+trainingShare = 0.8 
 seed  = 1
 XTrain, XTest, yTrain, yTest = train_test_split(X, y, train_size=trainingShare, \
                                               test_size = 1-trainingShare,
@@ -117,6 +117,7 @@ XTest[:,-14:] = sc.transform(XTest[:,-14:])
 """
 Downsampling 
 """
+
 #Downsampling, correcting for scewed distribution
 all_=np.where(yTrain==1)
 some_=np.where(yTrain==0)
@@ -125,15 +126,6 @@ sample_idx = np.concatenate((all_[0], some_[0][:len(all_[0])]))
 
 XTrain = XTrain[sample_idx]
 yTrain=yTrain[sample_idx]
-
-#Test
-all_2=np.where(yTest==1)
-some_2=np.where(yTest==0)
-some_2[0][:len(all_2[0])]
-sample_idx2 = np.concatenate((all_2[0], some_2[0][:len(all_2[0])]))
-
-XTest = XTest[sample_idx2]
-yTest=yTest[sample_idx2]
 
 #%%
 
@@ -356,12 +348,12 @@ print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
 
 #%%
 """
-from NeuralNet_Nielsen import NeuralNetwork
+from NeuralNet import *
 lag = [1,2,3]
 net = NeuralNetwork(lag)
 train = np.vstack((XTrain.T, yTrain))
 #test = np.vstack((XTest, yTest))
-#SGD(self , training_data , epochs , mini_batch_size , eta, test_data=None):
+#SGD(training_data , epochs , mini_batch_size , eta, test_data=None):
 #net.SGD(training_data , 30, 10, 3.0, test_data=test_data)
 k=(2,2)
 dat=(XTrain,yTrain)
@@ -372,17 +364,13 @@ net.SGD(train,30,10,0.01,test_data=None)
 #%%
 
 print() 
-print("Classification accuracy")
+print("Accuracy scores")
 print("--------------------------------")
-print("Acuracy score logreg by GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
-print("Accuracy for logistic legression by scikit: {:.3f}".format(accuracy_logreg_sci))
-print("Accuracy by scikit for logistic legression by scikit: {:.3f} \n"\
-      .format(acc_by_sci_logreg))
+print("Acuracy logreg using GD: {:.3f}".format(accuracy(y_predict_new,yTrain)))
+print("Accuracy logreg by scikit: {:.3f}".format(accuracy_logreg_sci))
 print("Accuracy by scikit on SGD by scikit: {:.3f}".format(train_accuracy_sci))
+print("Accuracy SGD: {:.3f}".format(np.mean(train_accuracy)*100))
 print("Accuracy NN by scikit: {:.3f}".format(real_accuracy_nn))
 
 
-#print(f'MEAN: {(Acc_sgd+Acc1+Acc2+Acc3)/4:.2f}') 
-print()
-print("Article result:", 1-0.2)
 

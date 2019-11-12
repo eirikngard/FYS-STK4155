@@ -14,8 +14,8 @@
 %\pagestyle{headings} Writes the heading on top of the page.
 \begin{document}
 
-\title{Logistic regression and neural networks}
-\date{2019\\ October}
+\title{Logistic Regression and Neural Networks}
+\date{2019\\ November}
 \author{Eirik Nordgård\\ Geophysical Institute,\ University of Oslo}
 
 
@@ -23,7 +23,7 @@
 \begin{@twocolumnfalse}
 \maketitle
 \begin{abstract}
-Logistic regression and neural network is used to predict the outcome variable of a credit data set. The outcome variable is paying or not paying debt, determined by features as gender, civil status, age and more. My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
+Logistic regression and neural network is used to predict the outcome variable of a credit data set. The outcome variable is paying or not paying debt, determined by features as gender, civil status, age and more. My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. 
 
 \end{abstract}
 
@@ -48,9 +48,9 @@ Accuracy = \frac{\sum\limits_{i=1}^n I(y_i = y_i)}{n}
 
 Logistic regression is used to solve classification problems. These are problems concerning outcomes, $y_i$, in form of discrete variables. Commonly the classification problems in question has two possible outcomes, true or false. Using the credit card data as an example, the two outcomes would be if a client would pay his/hers debt or not. This type of outcome is often calleed binary outcome, and can easily be programmed as 1 or 0.
 
-The dependent variables (outcomes) $y_i$ are discrete, ranging from $k=0,...,K-1$ where $K$ is classes. The main goal is to predict the output classes from a designmatrix $\hat{X} \in \mathbb{R}^{nXp}$ made of \textit{n} samples carrying \textit{p} features/predictors. The simplest output is perhaps a binary output, only having values 0 or 1 meaning yes/no, true/false, pay/dont pay etc. From there it is desired to identify the classes to which new unseen samples belong. 
+The dependent variables (outcomes) $y_i$ are discrete, ranging from $k=0,...,K-1$ where $K$ is classes. The main goal is to predict the output classes from a designmatrix $\hat{X} \in \mathbb{R}^{nXp}$ made of \textit{n} samples carrying \textit{p} features/predictors. 
 
-A descrete output can be obtained in several ways, but the simplest may be to have a sign function, which maps the output of a linear regressor to values ${0,1}, f(a)=sign(a) = 1$ if $a$ $\geq$ 0 and 0 if otherwise.  Although this model is very simple, in many cases it might be convenient to know the probability of an output belonging a given caegory rather than a single value. This is done using the \textit{logistic function}, and is often called a "soft classifier".  The classifier outputs the probability of $x_i$ belonging to a category $y_i=\{0,1\}$. In this case the classifier is given by a \textit{Sigmoid} function, often reffered to as a likelihood function. The Sigmoid function $p(y)$ is given by\cite{slides}
+A descrete output can be obtained in several ways, but the simplest may be to have a sign function, which maps the output of a linear regressor to values ${0,1}, f(a)=sign(a) = 1$ if $a$ $\geq$ 0 and 0 if otherwise.  Although this model is very simple, in many cases it might be convenient to know the probability of an output belonging to a given category rather than a single value. This is done using the \textit{logistic function}, and is often called a "soft classifier".  The classifier outputs the probability of $x_i$ belonging to a category $y_i=\{0,1\}$. In this case the classifier is given by a \textit{Sigmoid} function, often reffered to as a likelihood function. The Sigmoid function $p(y)$ is given by\cite{slides}
 
 \begin{equation}
 p(y) = \frac{1}{1+e^{-y}}  = \frac{e^y}{1+e^y}
@@ -122,19 +122,19 @@ It is worth mentioning that far from all cost functions are convex. Many cost fu
 %\label{compcost2}
 %\end{equation}
 
-where $\hat{y}$ is a vector with n elements $y_i$, the $n x p$ matrix $\hat{X}$ containing the $x_i$ values and the vector $\hat{p}$ is the fitted probabilities $p(y_i\mid x_i,\hat{\beta})$.
+Here $\hat{y}$ is a vector with n elements $y_i$, the $n \times p$ matrix $\hat{X}$ containing the $x_i$ values and the vector $\hat{p}$ is the fitted probabilities $p(y_i\mid x_i,\hat{\beta})$.
 %and 
 %$\hat{W}$ being a diagonal matrix with elements $p(y_i\mid xi,%\hat{\beta})(1-p(y_i\mid xi,\hat{\beta})$. These derivatives %are used to create the Hessian matrix, later used to solve the %minimization problem. Unlike in linear regression, solving %these for $\hat{\beta}$ now requires a gradient descent method
 \cite{slides}. 
 
 \subsection{Gradient Descent Method}
 
-The idea of a gradient descent (GD) method is that a function $F(x)$, with $x=x_1,...,x_n$, decreases fastest if one goes from $x$ in the direction of the negative gradient $-\nabla F(x)$. If 
+The idea of a gradient descent (GD) method is that a function $F(x)$, with $x=x_1,...,x_n$, decreases fastest if one goes from $x$ in the direction of the negative gradient $-\nabla F(x)$. Thus 
 \begin{equation}
 x_{v+1}=x_v-\gamma_v\nabla F(x_v)
 \label{GD1}
 \end{equation}
-where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>0$. The gradient used in eq. \eqref{GD1} is obtained by eq. \eqref{compcost1}. For small enough $\gamma_v$ we will then have $F(x_{v+1}\geq F(x_v)$, meaning we are always moving towards smaller values and eventually a minimum of F \cite{slides}.
+where $\gamma_v$ is called learning rate or step length, in this case $\gamma_v>0$. The gradient used in eq. \eqref{GD1} is obtained by eq. \eqref{compcost1}. For small enough $\gamma_v$ we will then have $F(x_{v+1})\geq F(x_v)$, meaning we are always moving towards smaller values and eventually a minimum of F \cite{slides}.
 \\ 
 Choosing appropriate learning rate is important. If chosen too small the method will converge very slowly, and chosen too large may result in unpredictable behaviour. The first step doing the GD is to make a guess $x_0$ for a minimum of F. Note that the minima is a global minima only if the function is a convex function \cite{slides}. 
 
@@ -309,9 +309,10 @@ Containing a lot more not default $(0)$ than default $(1)$, the data is very ske
 Among the functions defined are \textit{normal\_gradient\_descent} and \textit{stochastic\_gradient\_descent}. Used in logistic regression, the (normal) gradient descent takes the arguments learning rate and number of iterations. Then it loops over all iterations, calculating the gradient in \eqref{GD1}, which is used to obtain the betas. Using the functions \textit{predict} and \textit{accuracy} the accuracy score for logistic regression using a (normal) gradient descent is calculated. For comparison, the LogisitcRegression functionality from scikit-learn is used to make a reference - prediction. Also, my \textit{predict} function is compared to scikit-learns functionality \textit{accuracy\_score}. 
 Logistic regression is also done using the \textit{stochastic\_gradient\_descent}-method with input arguments $x$, $y$, batch size, number of epochs and learning rate. A prediction is made looping over a range of learning rates and epochs. The accuracy scores are then visualized in a heatmap.
 Scikit-learns neural network is utilized. This implements a multi-layered perceptron algorithm that trains using backpropagation. 
-\textbf{write something on my own NN code here.}    
 
 \section{Results}
+
+Running my models typically gives results like this: 
 
 \begin{center}
 {\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
@@ -325,6 +326,8 @@ Scikit-learns neural network is utilized. This implements a multi-layered percep
  \hline
  - & LogReg & 81,814 \\
  \hline
+ LogReg(SGD) & - & 76,267 \\
+ \hline
  - & LogReg(SGD) & 75,423  \\
  \hline
  - & NeuNet & 77,644 \\
@@ -333,7 +336,7 @@ Scikit-learns neural network is utilized. This implements a multi-layered percep
 }
 \end{center}
 
-For some reason, the SGD aand the NN scores lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $\%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. This result could be caused be the absence of fine-tuning. As of now, the neural network is not tuned to provide the best score possible. It is also worth mentioning that these scores are obtained \textit{without} downsampling. With downsampling the scores are:
+For some reason, the SGD and the NN scores is lower than the logistic regression. I find this very strange, as the paper from I. YeH and C. Lien \cite{data} find neural network to be 1 $\%$ more accurate than logistic regression. Also, the gap between the accuracy score of logistic regression and neural network is larger in my analysis than in Yeh and Liens. This result could be caused be the lack of fine-tuning. As of now, the neural network is \textit{not} tuned to provide the best score possible. It is also worth mentioning that these scores are obtained \textit{without} downsampling. With downsampling the scores are:
 
 \begin{center}
 {\rowcolors{3}{lightgray!80!yellow!50}{pink!70!yellow!40} 
@@ -347,15 +350,17 @@ For some reason, the SGD aand the NN scores lower than the logistic regression. 
  \hline
  - & LogReg & 72,873 \\
  \hline
+ LogReg(SGD) & - & 50,015 \\
+ \hline
  - & LogReg(SGD) & 50,141  \\
  \hline
  - & NeuNet & 52,149 \\
  \hline
 \end{tabular}
 }
-\end{center}
+\end{center} 
 
-Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score almost 30 $\%$ lower than without downsampling, one of several things is probably wrong with the neural network. Firstly, something is possibly wrong with either the data processing or the regression method. It is indeed very strange that the gap between the methods are that great, so something is probably not executed as it should. Secondly, since the downsampling only leaves us with 12977 datapoints, it may actually be the case that the models don't have enough samples left to train on. Decreasing the training-share from 0,8 to 0,5 results in around 10 $\%$ increased accuracy score for the neural network. This suggest that the downsampled dataset may be too small for his analysis. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the other models are executed or initialized.         
+Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score around 25 $\%$ lower than without downsampling, something is probably wrong with the neural network. Since the downsampling only leaves us with 12977 datapoints, it may actually be the case that the models don't have enough samples left to train on. The downsampled dataset may be too small to properly train the neural network. This is indicated through the fact that the accuracy score of the neural network is reduced when the training-share is reduced. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the data is passed to net network. The other models are barley affected by the change of training-share.         
 
 \section{Conclusion}
 My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
