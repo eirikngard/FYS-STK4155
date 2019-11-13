@@ -23,7 +23,7 @@
 \begin{@twocolumnfalse}
 \maketitle
 \begin{abstract}
-Logistic regression and neural network is used to predict the outcome variable of a credit data set. The outcome variable is paying or not paying debt, determined by features as gender, civil status, age and more. My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. 
+Logistic regression and neural network is used to predict the outcome variable of a credit data set. The outcome variable is paying or not paying debt, determined by features as gender, civil status, age and more. Retaining a so-called accuracy score gives a simple and intuitive measure of how well the respective models perform. My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts whether the clients will default or not on their debt. This result is conflicting with results from other studies.  
 
 \end{abstract}
 
@@ -32,7 +32,6 @@ All material for this project may be found on
 
 \end{@twocolumnfalse}
 ]
-\
 
 \section{Introduction}
 
@@ -57,7 +56,7 @@ p(y) = \frac{1}{1+e^{-y}}  = \frac{e^y}{1+e^y}
 \label{p1}
 \end{equation}
 
-and looks like this 
+and is visualized in Fig. \ref{Sigmoid}.  
 
 \begin{figure}[h]
 \centering
@@ -363,7 +362,7 @@ For some reason, the SGD and the NN scores is lower than the logistic regression
 Now all of the accuracy scores are lowered by quite a bit. Also, the difference between the logistic regression and  and the neural network is larger. Now having a score around 25 $\%$ lower than without downsampling, something is probably wrong with the neural network. Since the downsampling only leaves us with 12977 datapoints, it may actually be the case that the models don't have enough samples left to train on. The downsampled dataset may be too small to properly train the neural network. This is indicated through the fact that the accuracy score of the neural network is reduced when the training-share is reduced. Since the other score barely changes when reducing the training-share, it may indicate some kind error in the way the data is passed to net network. The other models are barley affected by the change of training-share.         
 
 \section{Conclusion}
-My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}.    
+My analysis of the credit card data suggest that logistic regression provided by scikit-learn is the model which best predicts the outcome variable. This is inconsistent with both Yeh and Lien \cite{data} and Drugov \cite{vladimir}. Further investigating of the data and finishing of my the neural network would mots likely provide different results. It would allow me to compare the network by scikit-learn with another result, possibly determine why the accuracy score is dropping that much after performing a downsampling of the data.     
 
 \section{Future Work}
 

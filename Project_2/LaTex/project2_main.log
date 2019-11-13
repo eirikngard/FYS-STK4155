@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  11 NOV 2019 14:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  13 NOV 2019 10:57
 entering extended mode
 **./project2_main.tex
 (project2_main.tex
@@ -520,196 +520,202 @@ tt/m/n/10.95 https : / / github . com / eirikngard /
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 51--52
+Underfull \hbox (badness 1117) in paragraph at lines 50--51
 \OML/cmm/m/it/10.95 K$ \OT1/cmr/m/n/10.95 is classes. The main goal is to pre-
  []
 
-[1{C:/Users/Eirik N/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+Underfull \vbox (badness 1067) has occurred while \output is active []
+
+ [1{C:/Users/Eirik N/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 Non-PDF special ignored!
 <special> header=tree-dvips91.pro
 
 ]
-<Sigmoid.png, id=80, 231.86626pt x 180.675pt>
+<Sigmoid.png, id=81, 231.86626pt x 180.675pt>
 File: Sigmoid.png Graphic file (type png)
 <use Sigmoid.png>
-Package pdftex.def Info: Sigmoid.png  used on input line 64.
+Package pdftex.def Info: Sigmoid.png  used on input line 63.
 (pdftex.def)             Requested size: 173.89925pt x 135.5059pt.
  [2 <./Sigmoid.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
+Underfull \hbox (badness 10000) in paragraph at lines 144--146
 
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 155--156
+Underfull \hbox (badness 2150) in paragraph at lines 154--155
 []\OT1/cmr/m/n/10.95 This works by tak-ing $\OML/cmm/m/it/10.95 n$ \OT1/cmr/m/n
 /10.95 bi-nary in-puts
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 164--166
+Underfull \hbox (badness 1122) in paragraph at lines 163--165
 \OT1/cmr/m/n/10.95 1) by weigh-ing up ar-gu-ments pro or con
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 164--166
+Underfull \hbox (badness 1394) in paragraph at lines 163--165
 \OT1/cmr/m/n/10.95 out-put of the "pre-vi-ous" lay-ers as in-put.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--166
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
 [3]
-Underfull \hbox (badness 1082) in paragraph at lines 169--171
+Underfull \hbox (badness 1082) in paragraph at lines 168--170
 \OT1/cmr/m/n/10.95 weights is ac-tu-ally re-sult-ing in very large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
+Underfull \hbox (badness 10000) in paragraph at lines 168--170
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--186
+Underfull \hbox (badness 10000) in paragraph at lines 182--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
+Underfull \hbox (badness 10000) in paragraph at lines 186--188
 
  []
 
 [4]
-Underfull \hbox (badness 2142) in paragraph at lines 247--248
+Underfull \hbox (badness 2142) in paragraph at lines 246--247
 []\OT1/cmr/m/n/10.95 Eq.[] has a very use-ful con-se-quence.
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 249--250
+Underfull \hbox (badness 1466) in paragraph at lines 248--249
 []\OT1/cmr/m/n/10.95 The re-sult-ing back-prop-a-ga-tion al-go-rithm
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 265.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 264.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 265.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 264.
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 Among the func-tions de-fined are \OT1/cmr/m/it/10.95 nor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 308--311
 \OT1/cmr/m/it/10.95 mal[]gradient[]descent \OT1/cmr/m/n/10.95 and \OT1/cmr/m/it
 /10.95 stochas-
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 309--312
+Underfull \hbox (badness 2096) in paragraph at lines 308--311
 \OT1/cmr/m/it/10.95 tic[]gradient[]descent\OT1/cmr/m/n/10.95 . Used in lo-gis-t
 ic re-
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 309--312
+Underfull \hbox (badness 1342) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 lo-gis-tic re-gres-sion us-ing a (nor-mal) gra-di-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 the Lo-gisitcRe-gres-sion func-tion-al-ity from
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 309--312
+Underfull \hbox (badness 1038) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 scikit-learn is used to make a ref-er-ence -
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 309--312
+Underfull \hbox (badness 1454) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 pre-dic-tion. Also, my \OT1/cmr/m/it/10.95 pre-dict \OT1/cmr
 /m/n/10.95 func-tion is
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 309--312
+Underfull \hbox (badness 1158) in paragraph at lines 308--311
 \OT1/cmr/m/n/10.95 is made loop-ing over a range of learn-ing
  []
 
 [6]
-<Heatmap1.png, id=169, 205.36725pt x 179.77162pt>
+<Heatmap1.png, id=170, 205.36725pt x 179.77162pt>
 File: Heatmap1.png Graphic file (type png)
 <use Heatmap1.png>
-Package pdftex.def Info: Heatmap1.png  used on input line 377.
+Package pdftex.def Info: Heatmap1.png  used on input line 376.
 (pdftex.def)             Requested size: 154.02505pt x 134.82837pt.
-<Heatmap2.png, id=170, 205.9695pt x 182.18062pt>
-File: Heatmap2.png Graphic file (type png)
-<use Heatmap2.png>
-Package pdftex.def Info: Heatmap2.png  used on input line 384.
-(pdftex.def)             Requested size: 154.47673pt x 136.63512pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7 <./Heatmap1.png>] [8
+<Heatmap2.png, id=171, 205.9695pt x 182.18062pt>
+File: Heatmap2.png Graphic file (type png)
+<use Heatmap2.png>
+Package pdftex.def Info: Heatmap2.png  used on input line 383.
+(pdftex.def)             Requested size: 154.47673pt x 136.63512pt.
 
- <./Heatmap2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7] [8
+
+ <./Heatmap1.png> <./Heatmap2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / bradzzz . gitbooks .
  io / ga-[]seattle-[]dsi / content / dsi /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \OT1/cmtt/m/n/10.95 dsi _ 05 _ classification _ databases / 2 . 1-[]lesson / as
 sets / datasets /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / rstudio-[]pubs-[]sta
 tic . s3 . amazonaws . com / 281390 _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 434.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 433.
 [9
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 434.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 433.
  (project2_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 434.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 434.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 433.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 433.
 Package rerunfilecheck Info: File `project2_main.out' has not changed.
 (rerunfilecheck)             Checksum: C2BADE8FCCD85C65ECF2B46C1887AEB9;824.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 434.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 433.
  ) 
 Here is how much of TeX's memory you used:
  7506 strings out of 492895
@@ -740,9 +746,9 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Eirik N/AppData/Local
 N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb>
-Output written on project2_main.pdf (9 pages, 322591 bytes).
+Output written on project2_main.pdf (9 pages, 323315 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
+ 269 PDF objects out of 1000 (max. 8388607)
  59 named destinations out of 1000 (max. 500000)
  128 words of extra memory for PDF output out of 10000 (max. 10000000)
 
