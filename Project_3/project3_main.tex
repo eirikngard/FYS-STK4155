@@ -1,0 +1,298 @@
+\documentclass[a4paper,11pt,twocolumn]{article}
+\usepackage{lingmacros}
+\usepackage{blindtext}
+\usepackage{tree-dvips}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\graphicspath{ {./Latex/} }
+
+%\pagestyle{headings} Writes the heading on top of the page.
+\begin{document}
+
+\title{Solving PDEs using Neural Networks}
+\date{2019\\ Descember}
+\author{Eirik Nordgård\\ Geophysical Institute,\ University of Oslo}
+
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\maketitle
+\begin{abstract}
+
+
+\end{abstract}
+
+All material for this project may be found on 
+\url{https://github.com/eirikngard/FYS-STK4155/tree/master/Project_2}
+
+\end{@twocolumnfalse}
+]
+
+\section{Introduction}
+
+Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. 
+
+Two main methods will be used to solve the PDE, namely an explicit numerical scheme and a neural network.  
+
+thesre are many ways to discretize an equation. On eof the is the Euler. Say something on why this is used, its advantages and disadvantages. 
+
+In the second part, we will look at how we can compute the eigenvalues and eigenvectors of a real, symmetric $6\times 6$ matrix $A$. In particular, we will see how methods used to solve the diffusion equation (a PDE) can be applied to this problem. 
+\
+\section{Theory and implementation}
+
+\subsection{The general problem}
+
+The problem to be solved is the simple diffusion equation
+\begin{equation}
+\frac{\partial u(x,t)}{\partial t}=\frac{\partial{^2}u(x,t)}{\partial x^2} \quad t>0 \quad x\in [0,L].
+	\label{eq:diff}
+\end{equation}
+Another way to write this problem is $u_{xx} = u_t$. Initial conditions is necessary. Using $L=1$, the initial condition at $t=0$ is given by
+\begin{equation}
+    u(x,0) = \sin(\pi x)
+    \label{eq:incond}.
+\end{equation}
+Furthermore, Dirichlet boundary conditions are also used, given by
+\begin{equation*}
+    u(0,t) = u(L,t) = 0 \quad t \geq 0.
+\end{equation*}
+
+As an example, this differential equation and its initial and boundary conditions could represent the temperature of a heated rod. As time progress the heat is transported through the rod while the temperature decreases along the way.
+
+
+\subsection{Exact solution of the diffusion equation}
+To investigate how the solutions to the partial differential equation performs it is necessary to compare them with some benchmark solution. The exact solution serves this purpose, and it will be calculated in this section. 
+Through separation of variables, the (WHAT EQ) equation can be expressed as
+\begin{equation}
+u(x,t) = X(x)T(t)
+\label{eq:separated}
+\end{equation}
+Differentiating this according to \eqref{eq:diff} and moving some terms, we get
+\begin{equation}
+\frac{X''(x)}{X(x)} = \frac{T'(t)}{T(t)}
+\label{eq:part}
+\end{equation}
+As the to sides of \eqref{eq:part} are not dependant on the same variables, they must both be equal to a constant. For convenience the constant is chosen to be $-\omega ^2$. This gives the two equations.
+\begin{equation}
+\begin{split}
+X''(x) &= -\omega ^2 X(x) \\
+T'(t) &= -\omega^2 T(t)
+\end{split}
+\label{eq:xt}
+\end{equation}
+Now the solution $X$ can appear in three possible ways given by the characteristic equation. In order to satisfy the initial condition \eqref{eq:incond}, $X(x)$ must be on the form
+\begin{equation*}
+X(x) = B\sin(\omega x) + C\cos(\omega x)
+\end{equation*}
+The initial condition then rules $C=0, \omega = \pi$. For $T(t)$ in \eqref{eq:xt} the solution is on the form
+\begin{equation*}
+T(t) = Ae^{-\omega^2t}
+\end{equation*}
+As we know $\omega =\pi$, the solution is then:
+\begin{equation*}
+u(x,t) = X(x)T(t) = Ae^{-\pi^2 t}B\sin(\pi x)
+\end{equation*}
+Finally, from the initial condition, we know that $A\cdot B = 1$, hence the exact solution denoted \textit{exact} must be
+\begin{equation}
+u_{exact}(x,t) = e^{-\pi^2 t}\sin(\pi x)
+\label{eq:exact}
+\end{equation}
+
+\subsection{Solution using explicit Euler scheme}
+
+Now it is desired to solve the equation with a Euler scheme. To make this possible, eq. \eqref{eq:diff} must be discretized in both time and space. As time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ (SOURCE). This scheme is given as
+\begin{equation}
+  {u(x,t)}{t} \approx \frac{u(x,t+\Delta t) - u(x,t)}{\Delta t}
+    \label{eq:foreward}
+\end{equation}
+For the spatial discretization a centred difference is used, which has an error proportional to $\Delta x^2$ (SOURCE), given by
+\begin{equation}
+ {u(x,t)}{x} = \frac{u(x+\Delta x,t) - 2u(x,t) + u(x-\Delta x,t)}{\Delta x^2}
+    \label{eq:centerd}
+\end{equation}
+on a discrete time and space grid, $u(x,t) = u(x_i,t_n)$, $t+\Delta t_n = t_{n+1}$ and so on.
+Simplifying this notation yields $u_i^n = u(x_i,t_n)$. On a discrete form eq. \eqref{eq:diff} is then 
+\begin{equation}
+\begin{split}
+    u_{xx} &= u_t \\
+    [u_{xx}]_i^n &= [u_t]_i^n \\
+    \frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{\Delta x^2} &= \frac{u_i^{n+1}-u_i^n}{\Delta t}
+\end{split}
+\end{equation}
+Solving this for $u_i^{n+1}$ provides the solution $u$ to \eqref{eq:diff} for each spatial point $i$:
+\begin{equation}
+    u_i^{n+1} = \frac{\Delta t}{\Delta x^2}(u_{i+1}^n - 2u_i^n + u_{i-1}^n)  + u_i^n
+    \label{eq:euler}
+\end{equation}
+\eqref{eq:euler} is stable (SOMETHING MORE ON WHY THIS IS THE FACT) for the following grid resolutions:
+\begin{equation*}
+    \frac{\Delta t}{\Delta x^2} \leq \frac{1}{2}
+\end{equation*}
+
+\subsubsection{Implementation}
+Maybe include here some implementation of the method. 
+Posibly include how it performs here compared to the exact? 
+\subsection{Solution using a Neural Network}
+Solving the PDE can also be done using a neural network. BRIEF INTRODUCTION TO WHAT A NN IS. For more information on neural networks and how they work, see (LINK TO PLACE WITH INFO/PROJECT2). In this project the neural network functionality within TensorFlow is used.  
+
+In order to solve PDEs with a neural network, we approximate the true function $u$ with a trial function $\Theta (x,t)$. Thus the aim is to calculate $\Theta$ as close to the true function $u$ as possible \cite{lagaris1998artificial} (SOURCE). When aiming to solve Eq. \eqref{eq:diff}, the corresponding equation for the trial function is
+\begin{equation*}
+   {\Theta(x,t)}{x} = {\Theta(x,t)}{t} \quad t>0 \quad x\in [0,L]
+\end{equation*}
+The residual of this approximation is then
+\begin{equation}
+    E = {\Theta(x,t)}{x} - {\Theta(x,t)}{t}
+    \label{eq:error}
+\end{equation}
+The cost function to be minimized by the Neural Network is the sum of $E$, evaluated at each point in the space and time grid. This equivalent to minimizing the mean squared error.(CORRECT?) The neural network iterates a given number of times. For each iteration the trial function is updated based on the networks previous calculated trial function. Choosing the correct "form" of the trial function is important to restrain the residual, and this "form" is based on the order of the PDE and its initial condition. To satisfy both the initial condition and the Dirichlet condition of Eq. (\ref{eq:diff}), the following form is chosen:
+\begin{equation}
+    \Theta (x,t) = (1-t)I(x) + x(1-x)tN(x,t,p),
+    \label{eq:trial}
+\end{equation}
+where $I(x)$ is the initial condition, $N(x,t,p)$ is the output from the neural network and $p$ is the weights and biases of the network. 
+
+Ideally the process should work accordingly: For each iteration in the network, the partial derivatives of $\Theta$ is calculated according to the new state of the network $N(x, t, p)$, updating the cost along the way. As the cost is minimized, the error term $E$ gets closer to zero, and the trial function $\Theta (x,t)$ approaches the true solution of the PDE. In theory the cost can practically reach zero if the number of iterations is big enough, but since it is of small interest to run infinite iteration a \textit{minimum cost value} is chosen to $10^{-3}$ CHECK WHAT VALUE TO ACTUALLY USE. Learning rate, the structure of the neural network in terms of the number of hidden layers and the number of nodes in each layer is also important in minimizing the cost. 
+
+\subsection{Computing eigenpairs with Neural Networks}
+
+Why it is important/desired to find the eigenvalues and eigenvectors, and what the largest and smallest mean/represent. 
+\\
+\\
+eigenvector $\Lambda_{max}$ corresponding to the largest eigenvalue $\lambda_{max}$ of the $n\times n$ matrix $A$ 
+
+In Yi et. al. \cite{yi} a neat way to compute $\Lambda_{max}$ and $\lambda_{max}$ is provided. This computation is done by solving the ordinary differential equation
+\begin{equation}
+	\frac{d\Lambda(t)}{dt} = -\Lambda(t) + f(\Lambda(t)), \quad t\geq 0
+	\label{eq:eigen2}
+\end{equation}
+ where $\Lambda = [\Lambda,\Lambda,\ldots,\Lambda_n]^T$ and $f(\Lambda)$ is given as
+ %\begin{equation}
+ %f(\Lambda) = \left v^Tv A + \left(1-\v^T Av\right)I\right]v
+ %	\label{eq:f}
+%\end{equation}
+Here it is an equation for f from YI.
+Here, $I$ is the $n\times n$ identity matrix. 
+
+According to \cite{yi}, when $t\rightarrow \infty$, any random non-zero initial $\Lambda$, will approach $\Lambda_{max}$ if it is not orthogonal to $\Lambda_{max}$. The corresponding eigenvalue $\lambda_{max}$, is computed by the equation 
+
+\begin{equation}
+	\lambda = \frac{v^TAv}{v^Tv}
+	\label{eq:eigenvalue}
+\end{equation}
+In \eqref{eq:eigenvalue} A is a symmetric matrix given by
+
+\begin{equation}
+	A = \frac{Q^T+Q }{2}
+	\label{eq:symmetric}
+\end{equation}
+where $Q$ is a random, real matrix. 
+
+After finding the largest eigenvalue $\lambda_{max}$, the smallest eigenvalue $\lambda_{min}$ corresponding to the eigenvector $\Lambda_{min}$ is easily found by substituting $A$ with $-A$ in Eq. (\ref{eq:symmetric})\cite{yi}.
+\\
+UNTIL HERE 
+\\
+
+As described earlier, a trial function is needed to solve Eq. (\ref{eq:eigenDE}) with a Neural Network. Since $v \in \mathbb{R}^n$, we choose a trial function $\Psi(x,t)$ dependent both on position $x$ and time $t$, so that for each time step, the approximated eigenvector is given as $[v(1,t), v(2,t), \ldots, v(n,t)]^T$. Eq. (\ref{eq:eigenDE}) can then be rewritten as
+\begin{equation}\label{eq:trial_eigen}
+	\frac{\partial \Psi(x,t)}{\partial t} = -\Psi(x,t) + f(\Psi(x,t))
+\end{equation}
+with $t \geq 0$ and $x=1,2,\ldots,n$. We defined the trial function as 
+\begin{equation*}
+	 \Psi(x,t) = v_0 + tN(x,t,p)
+\end{equation*}
+where $v_0$ is the initial $v$, chosen at random.   
+The error is then the difference between the two hand sides of Eq. (\ref{eq:trial_eigen}). For this project, the mean squared error (MSE) was used as cost function. 
+
+\subsection{Implementing the Neural Network}
+There are many ways of implementing the Neural Network method for solving differential equations. In this project, we have chosen to use \textit{TensorFlow} for python3, as it is fast, stable and relatively simple to use. For implementation, see the git repository of \href{https://github.com/janadr/FYS-STK4155/tree/master/project3/code}{janadr}.
+% Eksempel for store matriser
+% \[A =
+% \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\$$
+% a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
+% 0 & a_2 & b_3 & c_3 & \hdots & 0 \\
+% \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
+% 0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
+% 0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
+% \]
+\subsection{PDE}
+
+
+
+\subsection{Trial Solution}
+
+
+\subsection{Artificial Neural Networks}
+
+\subsection{Metrics used to evaluated solutions}
+Write about mse, r2 score and so on if you use any of these. 
+
+\subsubsection{Backpropagation (ANN)}
+
+
+\subsection{Data description - the function}
+
+\section{Method}
+
+\subsection{Execution of Python Code}
+
+
+\section{Results}
+      
+
+\section{Conclusion}
+
+
+\section{Future Work}
+
+\section{Appendix}
+
+\twocolumn
+[
+\begin{@twocolumnfalse}
+
+
+\medskip
+
+\begin{thebibliography}{9}
+\bibitem{Hastie}
+Hastie, Trevor. Tibshirani, Robert. Friedman, Jerome.
+\textit{The Elements of Statistical Learning}.
+\textit{Data Mining, Interference, and Prediction}.\\
+Second Edition.\\
+Springer, 2009.\\
+Chapter 4, Chapter 11
+
+\bibitem{slides}
+M. Hjorth-Jensen
+Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Logistic Regression and Neural Networks.}\\
+URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/LogReg}\\
+URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/NeuralNet}\\
+Unpublished, 2019. 
+
+\bibitem{Nielsen}
+Nielsen, Michael\\
+URL: \url{http://neuralnetworksanddeeplearning.com}\\
+Downloaded 13.10.19
+ 
+\bibitem{data}
+\textit{The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients}.\\ 
+I. Yeh and C. Lien\\
+URL: \url{https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf}
+
+\bibitem{vladimir}
+\textit{Default Payments of Credit Card Clients in Taiwan from 2005}.\\
+Drugov, Vladimir G.\\
+URL: \url{https://rstudio-pubs-static.s3.amazonaws.com/281390_8a4ea1f1d23043479814ec4a38dbbfd9.html}\\
+\end{thebibliography} 
+
+
+\end{@twocolumnfalse}
+]
+%\end{multicols}
+
+\end{document}
