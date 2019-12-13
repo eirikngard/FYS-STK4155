@@ -149,3 +149,4 @@ plt.show()
     print(f"dx = 0.1  | MSE = {np.mean((u1_2[-1, :]-exact(x1,0.3))**2)}")
     print(f"dx = 0.01 | MSE = {np.mean((u2_2[-1, :]-exact(x2,0.3))**2)}")   
 """
+#Insert change here 
