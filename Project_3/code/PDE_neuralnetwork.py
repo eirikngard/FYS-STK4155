@@ -109,7 +109,7 @@ def neural_network(num_iter=100):
     U_nn = u_nn.reshape((Nt,Nx)).T #de første og den siste er 0. Hva betyr det?
     U_e = u_e.reshape((Nt,Nx)).T
 
-    return U_nn, U_e, t, x, T, X,num_hidden_neurons,u_e,u_nn
+    return U_nn, U_e, x
 #%%
     
 U_nn,U_e,t,x,T,X,num_hidden_neurons,u_e,u_nn = neural_network(100000)
@@ -126,7 +126,7 @@ ax.set_title('Solution from the deep neural network w/ %d layer'%len(num_hidden_
 s = ax.plot_surface(T,X,U_nn,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig('figures\dnn.png')
+#fig.savefig('figures\dnn.png')
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
@@ -134,7 +134,7 @@ ax.set_title('Analytical solution',fontsize=35)
 s = ax.plot_surface(T,X,U_e,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig('figures\exact.png')
+#fig.savefig('figures\exact.png')
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
@@ -142,9 +142,10 @@ ax.set_title('Difference',fontsize=35)
 s = ax.plot_surface(T,X,diff_mat,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig('figures\diff_dnn_exact.png')
+#fig.savefig('figures\diff_dnn_exact.png')
 
 #%%
+"""
 #2D plot of the solutions
 plt.figure(figsize=(10,10))
 plt.title("Solutions, analytical by NN and exact ",fontsize=35)
@@ -156,11 +157,12 @@ plt.plot(x,U_e[:,0],linewidth=6)
 plt.legend(["dnn, t = %g"%t[2],"dnn, t = %g"%t[4],"dnn, t = %g"%t[6],\
             'analytical'],fontsize=25)
 plt.tick_params(axis='both', which='major', labelsize=30)
-plt.savefig('figures/nn2d.png')
+#plt.savefig('figures/nn2d.png')
 
 plt.show()
-
+"""
 #%%
+
 #Some simple metrics 
 from sklearn.metrics import mean_squared_error, r2_score
 mse_nn = mean_squared_error(u_e,u_nn)
@@ -179,22 +181,36 @@ plt.plot(total_mse,linewidth=6)
 plt.title("MSE until t=0",fontsize=35)
 plt.ylabel('MSE',fontsize=35)
 plt.xlabel('Time',fontsize=35);
-plt.savefig('figures/nn_mse.png')
+#plt.savefig('figures/nn_mse.png')
 plt.show()
-
 #%%
-"""
-#Loope over differnt number of iterations
-#It does not make sense that the MSE rises in the beginning 
-MSE = []
-space = np.logspace(0,4,5)
-space=[10**i for i in range(0,4)]
-for i in space:
-    U_nn,U_e,t,x,T,X,num_hidden_neurons,u_e,u_nn = neural_network(i)
-    MSE.append(mean_squared_error(U_e[i],U_nn[i]))
-#%%
+sns.set()
+sns.set_style("whitegrid")
+sns.set_palette("Set2")
+plt.rc("text", usetex=True)
+plt.rc("font", family="serif")
 
-plt.figure()
-plt.plot(MSE)
+figdir = "../figures/"
+
+
+u, x, t = solve(initial, T=0.3, Nt=30)
+
+
+print("==== For t = 0.3 ====")
+print(f"MSE = {np.mean((u[-1, :]-exact(x, t[-1]))**2)}")
+print("==== For t = 0.02 ====")
+print(f"MSE = {np.mean((u[2, :]-exact(x, t[2]))**2)}")
+
+fig, ax = plt.subplots(1, 1)
+
+ax.plot(x, u[-1, :], color="k", ls="dashed", label="Computed")
+ax.plot(x, exact(x, t[-1]), color="k", ls="dotted", lw=4, label="Exact")
+ax.plot(x, u[2, :], color="k", ls="dashed")
+ax.plot(x, exact(x, t[2]), color="k", ls="dotted", lw=4)
+
+ax.set_xlabel("x", fontsize=20)
+ax.set_ylabel("u(x, t)", fontsize=20)
+
+fig.legend(ncol=2, frameon=False, loc="upper center", fontsize=20)
+plt.savefig(figdir + "NN_solved.pdf")
 plt.show()
-"""
