@@ -14,8 +14,8 @@
 %\pagestyle{headings} Writes the heading on top of the page.
 \begin{document}
 
-\title{Solving PDEs using Neural Networks}
-\date{2019\\ Descember}
+\title{Solving differential equations using neural networks}
+\date{2019\\ December}
 \author{Eirik Nordgård\\ Geophysical Institute,\ University of Oslo}
 
 
@@ -32,18 +32,16 @@ All material for this project may be found on
 
 \end{@twocolumnfalse}
 ]
-
+\
 \section{Introduction}
 
-Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. 
-
-Two main methods will be used to solve the PDE, namely an explicit numerical scheme and a neural network.  
-
-thesre are many ways to discretize an equation. On eof the is the Euler. Say something on why this is used, its advantages and disadvantages. 
-
-In the second part, we will look at how we can compute the eigenvalues and eigenvectors of a real, symmetric $6\times 6$ matrix $A$. In particular, we will see how methods used to solve the diffusion equation (a PDE) can be applied to this problem. 
+Solving differential equations (DE's) is an important and central problem in physics, meteorology and many other fields. Doing so efficiently and accurately is therefore of great interest, and various algorithms have been used to sole this problem. Complex DE's typically require high order algorithms while simple DE's can be solved using first or second order algorithms such as Forward Euler Scheme. Time and computer power consumption is the main problem solving DE's. A coupled model computing several equations for thousands or millions of grid-boxes may suffer badly from a poor DE solving algorithm, both in terms of accuracy and time consumption.  
+Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. The paper by \cite{lagaris} et. al. (1998) is one of many that suggests solving DE's can be done with high precision using Neural Networks (NN's). However, the computational cost may be quite large. 
+The question of interest regarding the use of NN's is whether they have the ability to outperform traditional algorithms in speed and efficiency. In this project this will be investigated comparing the Forward Euler approach with the Neural Network approach. Furthermore, following the approach in the paper by \cite{yi} et. al. (year), the NN will be used to compute extrema eigenvectors and corresponding eigenvalues. In this project the Diffusion Equation will be solved. Physically this equation can for example represent the temperature gradient through a rod, describing how the temperature decays along the rod with time.  
 \
-\section{Theory and implementation}
+Very short and specific on what can be found in the differnt sections. 
+\
+\section{Theory}
 
 \subsection{The general problem}
 
@@ -138,7 +136,7 @@ Solving this for $u_i^{n+1}$ provides the solution $u$ to \eqref{eq:diff} for ea
 Maybe include here some implementation of the method. 
 Posibly include how it performs here compared to the exact? 
 \subsection{Solution using a Neural Network}
-Solving the PDE can also be done using a neural network. BRIEF INTRODUCTION TO WHAT A NN IS. For more information on neural networks and how they work, see (LINK TO PLACE WITH INFO/PROJECT2). In this project the neural network functionality within TensorFlow is used.  
+Solving the PDE can also be done using a neural network. BRIEF INTRODUCTION TO WHAT A NN IS. For more information on neural networks and how they work, see (LINK TO PLACE WITH INFO/PROJECT2). In this project the neural network functionality within \textit{TensorFlow} for python3 is used, as this is stable, fast and simple to use compared to building a neural network from scratch. 
 
 In order to solve PDEs with a neural network, we approximate the true function $u$ with a trial function $\Theta (x,t)$. Thus the aim is to calculate $\Theta$ as close to the true function $u$ as possible \cite{lagaris1998artificial} (SOURCE). When aiming to solve Eq. \eqref{eq:diff}, the corresponding equation for the trial function is
 \begin{equation*}
@@ -206,34 +204,18 @@ with $t \geq 0$ and $x=1,2,\ldots,n$. We defined the trial function as
 	 \Psi(x,t) = v_0 + tN(x,t,p)
 \end{equation*}
 where $v_0$ is the initial $v$, chosen at random.   
-The error is then the difference between the two hand sides of Eq. (\ref{eq:trial_eigen}). For this project, the mean squared error (MSE) was used as cost function. 
-
-\subsection{Implementing the Neural Network}
-There are many ways of implementing the Neural Network method for solving differential equations. In this project, we have chosen to use \textit{TensorFlow} for python3, as it is fast, stable and relatively simple to use. For implementation, see the git repository of \href{https://github.com/janadr/FYS-STK4155/tree/master/project3/code}{janadr}.
-% Eksempel for store matriser
-% \[A =
-% \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\$$
-% a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
-% 0 & a_2 & b_3 & c_3 & \hdots & 0 \\
-% \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
-% 0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
-% 0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
-% \]
-\subsection{PDE}
-
-
-
-\subsection{Trial Solution}
-
-
-\subsection{Artificial Neural Networks}
+The error is then the difference between the two hand sides of Eq. (\ref{eq:trial_eigen}). 
 
 \subsection{Metrics used to evaluated solutions}
-Write about mse, r2 score and so on if you use any of these. 
 
-\subsubsection{Backpropagation (ANN)}
+The main metric used to evaluate the performance of the neural network compared to the analytic scheme is the Mean Squared Error(MSE). As the name suggests, this metric quantifies the mean of the squares of the error between the prediction $\hat{x}_i$ and the observed value $x_i$. Thus, 
 
+\begin{equation*}
+MSE = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2
+\end{equation*}
 
+where $n$ is the number of samples.
+ 
 \subsection{Data description - the function}
 
 \section{Method}
