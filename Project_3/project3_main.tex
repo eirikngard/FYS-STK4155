@@ -38,7 +38,8 @@ All material for this project may be found on
 Solving differential equations (DE's) is an important and central problem in physics, meteorology and many other fields. Doing so efficiently and accurately is therefore of great interest, and various algorithms have been used to sole this problem. Complex DE's typically require high order algorithms while simple DE's can be solved using first or second order algorithms such as Forward Euler Scheme. Time and computer power consumption is the main problem solving DE's. A coupled model computing several equations for thousands or millions of grid-boxes may suffer badly from a poor DE solving algorithm, both in terms of accuracy and time consumption.  
 Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. The paper by \cite{lagaris} et. al. (1998) is one of many that suggests solving DE's can be done with high precision using Neural Networks (NN's). However, the computational cost may be quite large. 
 The question of interest regarding the use of NN's is whether they have the ability to outperform traditional algorithms in speed and efficiency. In this project this will be investigated comparing the Forward Euler approach with the Neural Network approach. Furthermore, following the approach in the paper by \cite{yi} et. al. (year), the NN will be used to compute extrema eigenvectors and corresponding eigenvalues. In this project the Diffusion Equation will be solved. Physically this equation can for example represent the temperature gradient through a rod, describing how the temperature decays along the rod with time.  
-\
+\\
+\\
 Very short and specific on what can be found in the differnt sections. 
 \
 \section{Theory}
@@ -214,7 +215,7 @@ The main metric used to evaluate the performance of the neural network compared 
 MSE = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2
 \end{equation*}
 
-where $n$ is the number of samples.
+where $n$ is the number of samples. MSE value of 0 would prediction of the observed value, thus the closer to zero the better prediction.  
  
 \subsection{Data description - the function}
 
