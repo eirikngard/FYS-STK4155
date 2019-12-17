@@ -246,6 +246,25 @@ A 3D visualization of the diffusion equation solved by the neural network can be
 	\label{3dnn}
 \end{figure}
 
+Running the Euler Scheme we get the following MSE scores:
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/euler_mse}
+	\caption{MSE from the Euler solution at $t = 0.2s$ and $t = 0.02s$ with different spacial steps.}
+	\label{eulermse}
+\end{figure}
+
+Running the Neural Network we get the following MSE scores:
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/nnn_mse}
+	\caption{MSE from the neural network solution at $t = 0.2s$ and $t = 0.02s$ with different spacial steps.}
+	\label{nnmse}
+\end{figure}
+
+The neural network is very slow in solving the differential equation compared to the analytical solution. 
 
 \section{Conclusion}
 

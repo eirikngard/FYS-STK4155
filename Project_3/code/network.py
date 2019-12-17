@@ -170,6 +170,17 @@ fig.legend(ncol=3, loc="upper center", frameon=False, fontsize=15)
 plt.savefig(figdir + "NN.png")
 plt.show()
 #%%
+# compute MSE of the error for the different cases:
+print("")
+print("---------For t = 0.02:---------")
+print(f"dx = 0.01 | MSE = {np.mean((u1[-1, :]-exact(x1,0.02))**2)}")
+print("---------For t = 0.2-----------")
+print(f"dx = 0.01 | MSE = {np.mean((u2[-1, :]-exact(x2,0.2))**2)}")
+print("---------For t = 0.02:---------")
+print(f"dx = 0.1 | MSE = {np.mean((u3[-1, :]-exact(x3,0.02))**2)}")
+print("---------For t = 0.2-----------")
+print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
+#%%
 learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]
 print(learning_rates)
 

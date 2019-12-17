@@ -2,7 +2,7 @@
 """
 Created on Mon Dec 16 14:35:40 2019
 
-@author: Eirik N
+@author: Eirik Nordgård
 """
 
 import numpy as np
@@ -83,6 +83,7 @@ print("---------For t = 0.02:---------")
 print(f"dx = 0.1 | MSE = {np.mean((u3[-1, :]-exact(x3,0.02))**2)}")
 print("---------For t = 0.2-----------")
 print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
+
 #%%
 #Some simple metrics 
 from sklearn.metrics import mean_squared_error, r2_score
@@ -106,22 +107,4 @@ plt.ylabel('MSE',fontsize=35)
 plt.xlabel('Time',fontsize=35);
 #plt.savefig('figures/nn_mse.png')
 plt.show()
-#%%
-from matplotlib import cm
-Nx = 445; Nt = 103
-x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
-t = np.linspace(0,1,Nt)
 
-
-#diff_mat = np.abs(U_e - U_nn)
-
-# Surface plot of the solutions
-X,T = np.meshgrid(t, x)
-
-fig = plt.figure(figsize=(10,10))
-ax = fig.gca(projection='3d')
-ax.set_title('Solution from the deep neural network w/ %d layer',fontsize=35)
-s = ax.plot_surface(T,X,u1,linewidth=0,antialiased=False,cmap=cm.viridis)
-ax.set_xlabel('Time $t$',fontsize=35)
-ax.set_ylabel('Position $x$',fontsize=35);
-#fig.savefig('figures\dnn.png')

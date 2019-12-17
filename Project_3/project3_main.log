@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  17 DEC 2019 12:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  17 DEC 2019 13:26
 entering extended mode
 **./project3_main.tex
 (project3_main.tex
@@ -651,11 +651,8 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 235--236
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Reference `3dnn' on page 4 undefined on input line 240.
-
 [4]
-<figures/dnn.png, id=124, 722.7pt x 722.7pt>
+<figures/dnn.png, id=125, 722.7pt x 722.7pt>
 File: figures/dnn.png Graphic file (type png)
 <use figures/dnn.png>
 Package pdftex.def Info: figures/dnn.png  used on input line 244.
@@ -668,50 +665,78 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 244--245
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5 <./figures/euler.pdf> <./figures/NN.png> <./figures/dnn.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+<figures/euler_mse.png, id=126, 217.11113pt x 98.769pt>
+File: figures/euler_mse.png Graphic file (type png)
+<use figures/euler_mse.png>
+Package pdftex.def Info: figures/euler_mse.png  used on input line 253.
+(pdftex.def)             Requested size: 226.0pt x 102.81226pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 253--254
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/nnn_mse.png, id=127, 212.29312pt x 96.36pt>
+File: figures/nnn_mse.png Graphic file (type png)
+<use figures/nnn_mse.png>
+Package pdftex.def Info: figures/nnn_mse.png  used on input line 262.
+(pdftex.def)             Requested size: 226.0pt x 102.5866pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 262--263
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./figures/euler.pdf> <./figures/NN.png> <./figures/dnn.png>] [6
+
+ <./figures/euler_mse.png> <./figures/nnn_mse.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / bradzzz . gitbooks .
  io / ga-[]seattle-[]dsi / content / dsi /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 \OT1/cmtt/m/n/10.95 dsi _ 05 _ classification _ databases / 2 . 1-[]lesson / as
 sets / datasets /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / rstudio-[]pubs-[]sta
 tic . s3 . amazonaws . com / 281390 _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
-[6
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 319.
+[7
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 319.
  (project3_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 301.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 319.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 319.
 Package rerunfilecheck Info: File `project3_main.out' has not changed.
 (rerunfilecheck)             Checksum: BFE51F3700E2CF7F69644956468FBA3F;850.
 
@@ -721,13 +746,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 319.
  ) 
 Here is how much of TeX's memory you used:
- 7472 strings out of 492895
- 110115 string characters out of 3122799
- 219150 words of memory out of 3000000
- 11253 multiletter control sequences out of 15000+200000
+ 7487 strings out of 492895
+ 110376 string characters out of 3122799
+ 219495 words of memory out of 3000000
+ 11263 multiletter control sequences out of 15000+200000
  12174 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,16n,35p,811b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -749,9 +774,9 @@ s/cm/cmsy8.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Eirik N/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on project3_main.pdf (6 pages, 387208 bytes).
+Output written on project3_main.pdf (7 pages, 413935 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
- 120 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 
