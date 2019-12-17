@@ -116,7 +116,7 @@ def solve(init_func, T=0.08, Nx=100, Nt=10, L=1, learning_rate=1e-3, num_iter=1e
 
     # reshape arrays
     U_nn = u_nn.reshape((Nt, Nx))
-    return U_nn, x, t
+    return U_nn, x
 #%%
 """
 sns.set()
@@ -137,37 +137,37 @@ print(f"MSE = {np.mean((u[2, :]-exact(x, t[2]))**2)}")
 
 fig, ax = plt.subplots(1, 1)
 
-ax.plot(x, u[-1, :], color="k", ls="dashed", label="Computed")
-ax.plot(x, exact(x, t[-1]), color="k", ls="dotted", lw=4, label="Exact")
-ax.plot(x, u[2, :], color="k", ls="dashed")
-ax.plot(x, exact(x, t[2]), color="k", ls="dotted", lw=4)
+ax.plot(x, u[-1, :], color="b", ls="dashed", label="Computed")
+ax.plot(x, exact(x, t[-1]), color="b", ls="dotted", lw=4, label="Exact")
+ax.plot(x, u[2, :], color="r", ls="dashed")
+ax.plot(x, exact(x, t[2]), color="r", ls="dotted", lw=4)
 
 ax.set_xlabel("x", fontsize=20)
 ax.set_ylabel("u(x, t)", fontsize=20)
 fig.legend(ncol=2, frameon=False, loc="upper center", fontsize=20)
-plt.savefig(figdir + "NN_solved1.png")
+plt.savefig(figdir + "nn.png")
 plt.show()
 """
 #%%
 figdir = "../figures/"
-u1, x1, t1 = solve(initial, 0.02, Nt=10) #dx = 1/100
-u2, x2, t2 = solve(initial, 0.2, Nt=10) #dx = 1/100
-u3, x3, t3 = solve(initial, 0.02, Nt=10) #dx = 1/10
-u4, x4, t4 = solve(initial, 0.2, Nt=10) #dx = 1/10
+u1, x1 = solve(initial, 0.01, Nt=10) #dx = 1/100
+u2, x2 = solve(initial, 0.3, Nt=10) #dx = 1/100
+u3, x3 = solve(initial, 0.01, Nt=10) #dx = 1/10
+u4, x4 = solve(initial, 0.3, Nt=10) #dx = 1/10
 
 fig, ax = plt.subplots(1, 1)
 
 ax.plot(x1, u1[-1, :], color="b", ls="dashed", label="dx=0.01")
 ax.plot(x3, u3[-1, :], color="b", ls=":", label="dx=0.1")
-ax.plot(x1, exact(x1, 0.02), color="b", ls="dotted", lw=4, label="Exact")
-ax.plot(x2, u2[-1, :], color="b", linestyle="dashed")
-ax.plot(x4, u4[-1, :], color="b", ls=":")
-ax.plot(x2, exact(x2, 0.2), color="b", linestyle="dotted", lw=4)
+ax.plot(x1, exact(x1, 0.01), color="b", ls="dotted", lw=4, label="Exact")
+ax.plot(x2, u2[-1, :], color="r", linestyle="dashed")
+ax.plot(x4, u4[-1, :], color="r", ls=":")
+ax.plot(x2, exact(x2, 0.3), color="r", linestyle="dotted", lw=4)
 
 ax.set_xlabel("x", fontsize=20)
 ax.set_ylabel("u(x, t)", fontsize=20)
 fig.legend(ncol=3, loc="upper center", frameon=False, fontsize=15)
-plt.savefig(figdir + "NN_solved.png")
+plt.savefig(figdir + "NN.png")
 plt.show()
 #%%
 learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]

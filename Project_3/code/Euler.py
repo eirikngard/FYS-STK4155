@@ -42,12 +42,14 @@ def solve(initial_func, T, Nt=100, L=1):
 # define exact solution
 def exact(x, t):
     return np.exp(-np.pi**2*t)*np.sin(np.pi*x)
-
+#%%
 sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("Blues")
 plt.rc("text", usetex=True)
 plt.rc("font", family="serif")
+
+figdir = "../figures/"
 
 # plot exact solution vs computed for some time t
 # Using Nt = 2*T/(0.9 dx^2) + 1 to get desired dx
@@ -61,18 +63,65 @@ fig, ax = plt.subplots(1, 1)
 ax.plot(x1, u1[-1, :], color="b", ls="dashed", label="dx=0.01")
 ax.plot(x3, u3[-1, :], color="b", ls=":", label="dx=0.1")
 ax.plot(x1, exact(x1, 0.02), color="b", ls="dotted", lw=4, label="Exact")
-ax.plot(x2, u2[-1, :], color="b", linestyle="dashed")
-ax.plot(x4, u4[-1, :], color="b", ls=":")
-ax.plot(x2, exact(x2, 0.2), color="b", linestyle="dotted", lw=4)
+ax.plot(x2, u2[-1, :], color="r", linestyle="dashed")
+ax.plot(x4, u4[-1, :], color="r", ls=":")
+ax.plot(x2, exact(x2, 0.2), color="r", linestyle="dotted", lw=4)
 
 ax.set_xlabel("x", fontsize=20)
 ax.set_ylabel("u(x, t)", fontsize=20)
 fig.legend(ncol=3, loc="upper center", frameon=False, fontsize=15)
-#plt.savefig("figures/euler.png")
+plt.savefig(figdir + "euler.pdf")
 plt.show()
 
 # compute MSE of the error for the different cases:
+print("")
 print("---------For t = 0.02:---------")
 print(f"dx = 0.01 | MSE = {np.mean((u1[-1, :]-exact(x1,0.02))**2)}")
 print("---------For t = 0.2-----------")
 print(f"dx = 0.01 | MSE = {np.mean((u2[-1, :]-exact(x2,0.2))**2)}")
+print("---------For t = 0.02:---------")
+print(f"dx = 0.1 | MSE = {np.mean((u3[-1, :]-exact(x3,0.02))**2)}")
+print("---------For t = 0.2-----------")
+print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
+#%%
+#Some simple metrics 
+from sklearn.metrics import mean_squared_error, r2_score
+ue = exact(x1,0.02)
+u_eu = u1[1,:]
+mse_nn = mean_squared_error(ue,u_eu)
+#r2_nn = r2_score(u_e,u_nn)
+print(f'MSE NN is {mse_nn:.5f}')
+#print(f'R2 NN is {r2_nn:.5f}')
+
+#mse_Unn = mean_squared_error(U_e,U_nn)
+#print(f'MSE NN is {mse_Unn:.5f}') #Same as before reshaping, good
+
+total_mse=[]
+for i in range(len(ue)):
+    total_mse.append(mean_squared_error(ue,u_eu))
+plt.figure()
+plt.plot(total_mse,linewidth=6)
+plt.title("MSE until t=0",fontsize=35)
+plt.ylabel('MSE',fontsize=35)
+plt.xlabel('Time',fontsize=35);
+#plt.savefig('figures/nn_mse.png')
+plt.show()
+#%%
+from matplotlib import cm
+Nx = 445; Nt = 103
+x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
+t = np.linspace(0,1,Nt)
+
+
+#diff_mat = np.abs(U_e - U_nn)
+
+# Surface plot of the solutions
+X,T = np.meshgrid(t, x)
+
+fig = plt.figure(figsize=(10,10))
+ax = fig.gca(projection='3d')
+ax.set_title('Solution from the deep neural network w/ %d layer',fontsize=35)
+s = ax.plot_surface(T,X,u1,linewidth=0,antialiased=False,cmap=cm.viridis)
+ax.set_xlabel('Time $t$',fontsize=35)
+ax.set_ylabel('Position $x$',fontsize=35);
+#fig.savefig('figures\dnn.png')

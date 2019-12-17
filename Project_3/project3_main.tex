@@ -11,7 +11,6 @@
 \usepackage[table]{xcolor}
 \graphicspath{ {./Latex/} }
 
-%\pagestyle{headings} Writes the heading on top of the page.
 \begin{document}
 
 \title{Solving differential equations using neural networks}
@@ -28,7 +27,7 @@
 \end{abstract}
 
 All material for this project may be found on 
-\url{https://github.com/eirikngard/FYS-STK4155/tree/master/Project_2}
+\url{https://github.com/eirikngard/FYS-STK4155/tree/master/Project_3}
 
 \end{@twocolumnfalse}
 ]
@@ -217,15 +216,36 @@ MSE = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2
 
 where $n$ is the number of samples. MSE value of 0 would prediction of the observed value, thus the closer to zero the better prediction.  
  
-\subsection{Data description - the function}
-
-\section{Method}
-
-\subsection{Execution of Python Code}
 
 
 \section{Results}
-      
+
+In Figure \ref{euler} the solution of the diffusion equation by the Forward Euler Scheme is displayed. Blue lines are solution after 0.02 seconds, while red lines are solutions after 0.2 seconds. Inspecting Figure \ref{euler} immediately reveals that the analytic solution of the equation is very good, and that smaller spacial steps provides a solution closest to the exact solution. Also, we observe that the solution for the spatial step $\delta x = 0.1$ is closer to the exact solution at $t = 0.2$ than at $t = 0.02$. For both moments in time the solution for spatial step $\delta x = 0.01$ is very hard to distinguish from the exact solution, meaning it is a very good approximation. 
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/euler}
+	\caption{Solution of the diffusion equation using Forward Euler Scheme. Solutions for $\delta x = 0.1$ and $\delta x = 0.1$ are displayed with the exact solution. Blue lines are solutions after 0.02 seconds. Red lines are solution after 0.2 seconds.}
+	\label{euler}
+\end{figure}
+
+In Fig.\ref{fig:nn} the diffusion equation is solved using a neural network with Nt = 10, Nx = 100 and two hidden layers with 20 neurons each. The learning rate was set to $10^{-3}$ and the number of iterations was set to $10^3$. COMMENT ON HOW THIS LOOKS. NOT SUPPOSED TO LOOK LIKE THIS.
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/NN}
+	\caption{Solution of the diffusion equation using a Neural Network. Solutions for $\delta x = 0.1$ and $\delta x = 0.1$ are displayed with the exact solution. Blue lines are solutions after 0.02 seconds. Red lines are solution after 0.2 seconds.}
+	\label{nn}
+\end{figure}
+
+A 3D visualization of the diffusion equation solved by the neural network can be found in Figure \ref{3dnn}.
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/dnn}
+	\caption{Solution of the diffusion equation using a Neural Network. Nt = 10, Nx = 100 and $10^3$ iterations was done. }
+	\label{3dnn}
+\end{figure}
+
 
 \section{Conclusion}
 

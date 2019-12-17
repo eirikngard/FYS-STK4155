@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  16 DEC 2019 11:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  17 DEC 2019 12:00
 entering extended mode
 **./project3_main.tex
 (project3_main.tex
@@ -433,22 +433,22 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (project3_main.aux)
 \openout1 = `project3_main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 15.
+Package hyperref Info: Link coloring OFF on input line 14.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref
 .sty"
@@ -460,9 +460,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count146
 )
-LaTeX Info: Redefining \ref on input line 15.
-LaTeX Info: Redefining \pageref on input line 15.
-LaTeX Info: Redefining \nameref on input line 15.
+LaTeX Info: Redefining \ref on input line 14.
+LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \nameref on input line 14.
  (project3_main.out) (project3_main.out)
 \@outlinefile=\write3
 \openout3 = `project3_main.out'.
@@ -498,56 +498,56 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+LaTeX Font Info:    Try loading font information for U+msa on input line 33.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 "
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 33.
 
 ("C:\Users\Eirik N\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 4454) in paragraph at lines 34--34
+Underfull \hbox (badness 4454) in paragraph at lines 33--33
 []\OT1/cmr/m/n/10.95 All ma-te-rial for this project may be found on []$\OT1/cm
 tt/m/n/10.95 https : / / github . com / eirikngard /
  []
 
 
-LaTeX Warning: Citation `lagaris' on page 1 undefined on input line 39.
+LaTeX Warning: Citation `lagaris' on page 1 undefined on input line 38.
 
 
-LaTeX Warning: Citation `yi' on page 1 undefined on input line 40.
+LaTeX Warning: Citation `yi' on page 1 undefined on input line 39.
 
 
-Underfull \hbox (badness 1152) in paragraph at lines 38--45
+Underfull \hbox (badness 1152) in paragraph at lines 37--44
 \OT1/cmr/m/n/10.95 Solving dif-fer-en-tial equa-tions (DE's) is an
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 38--45
+Underfull \hbox (badness 1681) in paragraph at lines 37--44
 \OT1/cmr/m/n/10.95 con-sump-tion is the main prob-lem solv-ing
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 38--45
+Underfull \hbox (badness 1424) in paragraph at lines 37--44
 \OT1/cmr/m/n/10.95 boxes may suf-fer badly from a poor DE
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 38--45
+Underfull \hbox (badness 1803) in paragraph at lines 37--44
 \OT1/cmr/m/n/10.95 in-ves-ti-gated com-par-ing the For-ward Eu-ler
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 37--44
 
  []
 
 
-Underfull \hbox (badness 1838) in paragraph at lines 38--45
+Underfull \hbox (badness 1838) in paragraph at lines 37--44
 \OT1/cmr/m/n/10.95 Very short and spe-cific on what can be
  []
 
@@ -558,116 +558,162 @@ Non-PDF special ignored!
 <special> header=tree-dvips91.pro
 
 ]
-Underfull \hbox (badness 3503) in paragraph at lines 105--105
+Underfull \hbox (badness 3503) in paragraph at lines 104--104
 []\OT1/cmr/bx/n/12 Solution us-ing ex-plicit Eu-ler
  []
 
 
-Overfull \hbox (11.48924pt too wide) detected at line 116
+Overfull \hbox (11.48924pt too wide) detected at line 115
 [][][]\OML/cmm/m/it/10.95 x \OT1/cmr/m/n/10.95 = []
  []
 
 [2]
-Underfull \hbox (badness 1783) in paragraph at lines 130--132
+Underfull \hbox (badness 1783) in paragraph at lines 129--131
 [] \OT1/cmr/m/n/10.95 is sta-ble (SOME-THING MORE ON
  []
 
 
 LaTeX Warning: Citation `lagaris1998artificial' on page 3 undefined on input li
-ne 142.
+ne 141.
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 162--166
+Underfull \hbox (badness 2334) in paragraph at lines 161--165
 \OT1/cmr/m/n/10.95 Why it is im-por-tant/desired to find the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--166
+Underfull \hbox (badness 10000) in paragraph at lines 161--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--166
+Underfull \hbox (badness 10000) in paragraph at lines 161--165
 \OT1/cmr/m/n/10.95 eigenvector $[]$ cor-re-spond-ing to the
  []
 
 
-LaTeX Warning: Citation `yi' on page 3 undefined on input line 167.
+LaTeX Warning: Citation `yi' on page 3 undefined on input line 166.
 
 [3]
 
-LaTeX Warning: Citation `yi' on page 4 undefined on input line 180.
+LaTeX Warning: Citation `yi' on page 4 undefined on input line 179.
 
 
-LaTeX Warning: Citation `yi' on page 4 undefined on input line 194.
+LaTeX Warning: Citation `yi' on page 4 undefined on input line 193.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--198
+Underfull \hbox (badness 10000) in paragraph at lines 193--197
 
  []
 
 
-LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 199.
+LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 198.
 
 
-LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 199.
+LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 198.
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 199--200
+Underfull \hbox (badness 1142) in paragraph at lines 198--199
 []\OT1/cmr/m/n/10.95 As de-scribed ear-lier, a trial func-tion is
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 199--200
+Underfull \hbox (badness 1694) in paragraph at lines 198--199
 \OT1/cmr/m/n/10.95 needed to solve Eq. ([]) with a Neu-
  []
 
+<figures/euler.pdf, id=110, 462.52798pt x 346.89601pt>
+File: figures/euler.pdf Graphic file (type pdf)
+<use figures/euler.pdf>
+Package pdftex.def Info: figures/euler.pdf  used on input line 226.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 226--227
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `fig:nn' on page 4 undefined on input line 231.
+
+<figures/NN.png, id=111, 462.528pt x 346.896pt>
+File: figures/NN.png Graphic file (type png)
+<use figures/NN.png>
+Package pdftex.def Info: figures/NN.png  used on input line 235.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 235--236
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `3dnn' on page 4 undefined on input line 240.
+
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+<figures/dnn.png, id=124, 722.7pt x 722.7pt>
+File: figures/dnn.png Graphic file (type png)
+<use figures/dnn.png>
+Package pdftex.def Info: figures/dnn.png  used on input line 244.
+(pdftex.def)             Requested size: 226.0pt x 225.99757pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 244--245
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./figures/euler.pdf> <./figures/NN.png> <./figures/dnn.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / github . com / CompP
 hysics / MachineLearning / tree / master / doc / pub /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / bradzzz . gitbooks .
  io / ga-[]seattle-[]dsi / content / dsi /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 \OT1/cmtt/m/n/10.95 dsi _ 05 _ classification _ databases / 2 . 1-[]lesson / as
 sets / datasets /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 \OT1/cmr/m/n/10.95 URL: []$\OT1/cmtt/m/n/10.95 https : / / rstudio-[]pubs-[]sta
 tic . s3 . amazonaws . com / 281390 _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
-[5
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
+[6
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
  (project3_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 281.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 301.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 301.
 Package rerunfilecheck Info: File `project3_main.out' has not changed.
-(rerunfilecheck)             Checksum: A256E52CBEAFC0FB0D0CCEEA35B93162;1050.
+(rerunfilecheck)             Checksum: BFE51F3700E2CF7F69644956468FBA3F;850.
 
 
 LaTeX Warning: There were undefined references.
@@ -675,13 +721,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
  ) 
 Here is how much of TeX's memory you used:
- 7451 strings out of 492895
- 109814 string characters out of 3122799
- 218660 words of memory out of 3000000
- 11239 multiletter control sequences out of 15000+200000
+ 7472 strings out of 492895
+ 110115 string characters out of 3122799
+ 219150 words of memory out of 3000000
+ 11253 multiletter control sequences out of 15000+200000
  12174 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,16n,35p,811b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -703,9 +749,9 @@ s/cm/cmsy8.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Eirik N/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on project3_main.pdf (5 pages, 217410 bytes).
+Output written on project3_main.pdf (6 pages, 387208 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 230 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 120 words of extra memory for PDF output out of 10000 (max. 10000000)
 

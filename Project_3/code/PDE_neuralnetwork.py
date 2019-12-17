@@ -15,7 +15,7 @@ from mpl_toolkits.mplot3d import axes3d
 import tensorflow.compat.v1 as tf
 
 
-def neural_network(num_iter=100):
+def neural_network(num_iter=1000):
     tf.disable_v2_behavior()
 
     # Reset the graph 
@@ -40,7 +40,7 @@ def neural_network(num_iter=100):
     
     #num_iter = 100000 #was 100000 initially, adjust this later
     
-    num_hidden_neurons = [10]#was 30
+    num_hidden_neurons = [20,20]#was 30
     num_hidden_layers = np.size(num_hidden_neurons)
     
     with tf.variable_scope('nn'): #DeepNeuralNetwork
@@ -111,30 +111,35 @@ def neural_network(num_iter=100):
 
     return U_nn, U_e, x
 #%%
-    
-U_nn,U_e,t,x,T,X,num_hidden_neurons,u_e,u_nn = neural_network(100000)
+#num_hidden_neurons = [20,20]#was 30
+#num_hidden_layers = np.size(num_hidden_neurons)
+Nx = 100; Nt = 10
+x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
+t = np.linspace(0,1,Nt)
+
+U_nn,U_e,x = neural_network(1000)
 diff_mat = np.abs(U_e - U_nn)
 
+figdir = "../figures/"
 # Surface plot of the solutions
-
 
 T,X = np.meshgrid(t, x)
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
-ax.set_title('Solution from the deep neural network w/ %d layer'%len(num_hidden_neurons),fontsize=35)
+ax.set_title("Neural Network solution",fontsize=35)
 s = ax.plot_surface(T,X,U_nn,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-#fig.savefig('figures\dnn.png')
+fig.savefig(figdir + "dnn.png")
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
-ax.set_title('Analytical solution',fontsize=35)
+ax.set_title('Exact solution',fontsize=35)
 s = ax.plot_surface(T,X,U_e,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-#fig.savefig('figures\exact.png')
+fig.savefig(figdir + "exact.png")
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
@@ -142,7 +147,7 @@ ax.set_title('Difference',fontsize=35)
 s = ax.plot_surface(T,X,diff_mat,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-#fig.savefig('figures\diff_dnn_exact.png')
+fig.savefig(figdir + "diff.png")
 
 #%%
 """
@@ -165,8 +170,8 @@ plt.show()
 
 #Some simple metrics 
 from sklearn.metrics import mean_squared_error, r2_score
-mse_nn = mean_squared_error(u_e,u_nn)
-r2_nn = r2_score(u_e,u_nn)
+mse_nn = mean_squared_error(U_e,U_nn)
+r2_nn = r2_score(U_e,U_nn)
 print(f'MSE NN is {mse_nn:.5f}')
 print(f'R2 NN is {r2_nn:.5f}')
 
@@ -174,8 +179,8 @@ mse_Unn = mean_squared_error(U_e,U_nn)
 print(f'MSE NN is {mse_Unn:.5f}') #Same as before reshaping, good
 
 total_mse=[]
-for i in range(len(u_e)):
-    total_mse.append(mean_squared_error(u_e[i],u_nn[i]))
+for i in range(len(U_e)):
+    total_mse.append(mean_squared_error(U_e[i],U_nn[i]))
 plt.figure()
 plt.plot(total_mse,linewidth=6)
 plt.title("MSE until t=0",fontsize=35)
