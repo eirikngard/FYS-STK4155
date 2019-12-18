@@ -38,7 +38,7 @@ All material for this project may be found on
 \section{Introduction}
 
 Solving differential equations (DE's) is an important and central problem in physics, meteorology and many other fields. Doing so efficiently and accurately is therefore of great interest, and various algorithms have been used to sole this problem. Complex DE's typically require high order algorithms while simple DE's can be solved using first or second order algorithms such as Forward Euler Scheme. Time and computer power consumption is the main problem solving DE's. A coupled model computing several equations for thousands or millions of grid-boxes may suffer badly from a poor DE solving algorithm, both in terms of accuracy and time consumption.  
-Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. The paper by \cite{lagaris} et. al. (1998) is one of many that suggests solving DE's can be done with high precision using Neural Networks (NN's). However, the computational cost may be quite large. 
+Intro on the field of differential equations and solving them. How to use a NN for solving a problem like this. The paper by Lagaris et. al. (1998)\cite{lagaris} is one of many that suggests solving DE's can be done with high precision using Neural Networks (NN's). However, the computational cost may be quite large. 
 The question of interest regarding the use of NN's is whether they have the ability to outperform traditional algorithms in speed and efficiency. In this project this will be investigated comparing the Forward Euler approach with the Neural Network approach. Furthermore, following the approach in the paper by \cite{yi} et. al. (year), the NN will be used to compute extrema eigenvectors and corresponding eigenvalues. In this project the Diffusion Equation will be solved. Physically this equation can for example represent the temperature gradient through a rod, describing how the temperature decays along the rod with time.  
 \\
 \\
@@ -68,7 +68,7 @@ As an example, this differential equation and its initial and boundary condition
 
 \subsection{Exact solution of the diffusion equation}
 To investigate how the solutions to the partial differential equation performs it is necessary to compare them with some benchmark solution. The exact solution serves this purpose, and it will be calculated in this section. 
-Through separation of variables, the (WHAT EQ) equation can be expressed as
+Through separation of variables, the exact solution can be expressed as
 \begin{equation}
 u(x,t) = X(x)T(t)
 \label{eq:separated}
@@ -106,12 +106,12 @@ u_{exact}(x,t) = e^{-\pi^2 t}\sin(\pi x)
 
 \subsection{Solution using explicit Euler scheme}
 
-Now it is desired to solve the equation with a Euler scheme. To make this possible, eq. \eqref{eq:diff} must be discretized in both time and space. As time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ (SOURCE). This scheme is given as
+Now it is desired to solve the equation with a Euler scheme. To make this possible, eq. \eqref{eq:diff} must be discretized in both time and space. As time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ \cite{boyces}. This scheme is given as
 \begin{equation}
   {u(x,t)}{t} \approx \frac{u(x,t+\Delta t) - u(x,t)}{\Delta t}
     \label{eq:foreward}
 \end{equation}
-For the spatial discretization a centred difference is used, which has an error proportional to $\Delta x^2$ (SOURCE), given by
+For the spatial discretization a centred difference is used, which has an error proportional to $\Delta x^2$ \cite{boyces}, given by
 \begin{equation}
  {u(x,t)}{x} = \frac{u(x+\Delta x,t) - 2u(x,t) + u(x-\Delta x,t)}{\Delta x^2}
     \label{eq:centerd}
@@ -130,18 +130,16 @@ Solving this for $u_i^{n+1}$ provides the solution $u$ to \eqref{eq:diff} for ea
     u_i^{n+1} = \frac{\Delta t}{\Delta x^2}(u_{i+1}^n - 2u_i^n + u_{i-1}^n)  + u_i^n
     \label{eq:euler}
 \end{equation}
-\eqref{eq:euler} is stable (SOMETHING MORE ON WHY THIS IS THE FACT) for the following grid resolutions:
+\eqref{eq:euler} is stable for the following grid resolutions:
 \begin{equation*}
     \frac{\Delta t}{\Delta x^2} \leq \frac{1}{2}
 \end{equation*}
 
-\subsubsection{Implementation}
-Maybe include here some implementation of the method. 
-Posibly include how it performs here compared to the exact? 
-\subsection{Solution using a Neural Network}
-Solving the PDE can also be done using a neural network. BRIEF INTRODUCTION TO WHAT A NN IS. For more information on neural networks and how they work, see (LINK TO PLACE WITH INFO/PROJECT2). In this project the neural network functionality within \textit{TensorFlow} for python3 is used, as this is stable, fast and simple to use compared to building a neural network from scratch. 
 
-In order to solve PDEs with a neural network, we approximate the true function $u$ with a trial function $\Theta (x,t)$. Thus the aim is to calculate $\Theta$ as close to the true function $u$ as possible \cite{lagaris1998artificial} (SOURCE). When aiming to solve Eq. \eqref{eq:diff}, the corresponding equation for the trial function is
+\subsection{Solution using a Neural Network}
+Solving the PDE can also be done using a neural network. For more in depth information on neural networks and how they work, see git repository Project2 \cite{gitrepo}. In this project the neural network functionality within \textit{TensorFlow} for python3 is used, as this is stable, fast and simple to use compared to building a neural network from scratch. 
+
+In order to solve PDEs with a neural network, we approximate the true function $u$ with a trial function $\Theta (x,t)$. Thus the aim is to calculate $\Theta$ as close to the true function $u$ as possible \cite{lagaris}. When aiming to solve Eq. \eqref{eq:diff}, the corresponding equation for the trial function is
 \begin{equation*}
    {\Theta(x,t)}{x} = {\Theta(x,t)}{t} \quad t>0 \quad x\in [0,L]
 \end{equation*}
@@ -150,23 +148,20 @@ The residual of this approximation is then
     E = {\Theta(x,t)}{x} - {\Theta(x,t)}{t}
     \label{eq:error}
 \end{equation}
-The cost function to be minimized by the Neural Network is the sum of $E$, evaluated at each point in the space and time grid. This equivalent to minimizing the mean squared error.(CORRECT?) The neural network iterates a given number of times. For each iteration the trial function is updated based on the networks previous calculated trial function. Choosing the correct "form" of the trial function is important to restrain the residual, and this "form" is based on the order of the PDE and its initial condition. To satisfy both the initial condition and the Dirichlet condition of Eq. (\ref{eq:diff}), the following form is chosen:
+The cost function to be minimized by the Neural Network is the sum of $E$, evaluated at each point in the space and time grid. This equivalent to minimizing the mean squared error. The neural network iterates a given number of times. For each iteration the trial function is updated based on the networks previous calculated trial function. Choosing the correct "form" of the trial function is important to restrain the residual, and this "form" is based on the order of the PDE and its initial condition. To satisfy both the initial condition and the Dirichlet condition of Eq. (\ref{eq:diff}), the following form is chosen:
 \begin{equation}
     \Theta (x,t) = (1-t)I(x) + x(1-x)tN(x,t,p),
     \label{eq:trial}
 \end{equation}
 where $I(x)$ is the initial condition, $N(x,t,p)$ is the output from the neural network and $p$ is the weights and biases of the network. 
 
-Ideally the process should work accordingly: For each iteration in the network, the partial derivatives of $\Theta$ is calculated according to the new state of the network $N(x, t, p)$, updating the cost along the way. As the cost is minimized, the error term $E$ gets closer to zero, and the trial function $\Theta (x,t)$ approaches the true solution of the PDE. In theory the cost can practically reach zero if the number of iterations is big enough, but since it is of small interest to run infinite iteration a \textit{minimum cost value} is chosen to $10^{-3}$ CHECK WHAT VALUE TO ACTUALLY USE. Learning rate, the structure of the neural network in terms of the number of hidden layers and the number of nodes in each layer is also important in minimizing the cost. 
+Ideally the process should work accordingly: For each iteration in the network, the partial derivatives of $\Theta$ is calculated according to the new state of the network $N(x, t, p)$, updating the cost along the way. As the cost is minimized, the error term $E$ gets closer to zero, and the trial function $\Theta (x,t)$ approaches the true solution of the PDE. In theory the cost can practically reach zero if the number of iterations is big enough, but since it is of small interest to run infinite iteration a \textit{minimum cost value} is chosen to $10^{-3}$. Learning rate, the structure of the neural network in terms of the number of hidden layers and the number of nodes in each layer is also important in minimizing the cost. 
 
 \subsection{Computing eigenpairs with Neural Networks}
 
-Why it is important/desired to find the eigenvalues and eigenvectors, and what the largest and smallest mean/represent. 
-\\
-\\
-eigenvector $\Lambda_{max}$ corresponding to the largest eigenvalue $\lambda_{max}$ of the $n\times n$ matrix $A$ 
+It is also desired to solve another problem using the neural network, namely computing the eigenvectors $\Lambda$ and corresponding eigenvalues $\lambda$ of a symmetric matrix $A$.
 
-In Yi et. al. \cite{yi} a neat way to compute $\Lambda_{max}$ and $\lambda_{max}$ is provided. This computation is done by solving the ordinary differential equation
+Yi et. al. (2004) \cite{yi} provides a neat way to compute $\Lambda_{max}$ and $\lambda_{max}$ is provided. This computation is done by solving the ordinary differential equation
 \begin{equation}
 	\frac{d\Lambda(t)}{dt} = -\Lambda(t) + f(\Lambda(t)), \quad t\geq 0
 	\label{eq:eigen2}
@@ -195,10 +190,8 @@ where $Q$ is a random, real matrix.
 
 After finding the largest eigenvalue $\lambda_{max}$, the smallest eigenvalue $\lambda_{min}$ corresponding to the eigenvector $\Lambda_{min}$ is easily found by substituting $A$ with $-A$ in Eq. (\ref{eq:symmetric})\cite{yi}.
 \\
-UNTIL HERE 
-\\
 
-As described earlier, a trial function is needed to solve Eq. (\ref{eq:eigenDE}) with a Neural Network. Since $v \in \mathbb{R}^n$, we choose a trial function $\Psi(x,t)$ dependent both on position $x$ and time $t$, so that for each time step, the approximated eigenvector is given as $[v(1,t), v(2,t), \ldots, v(n,t)]^T$. Eq. (\ref{eq:eigenDE}) can then be rewritten as
+To solve eq. (\eqref{eq:eigen2}) with a neural network a trial solution is proposed. Since $v \in \mathbb{R}^n$, we choose a trial function $\Psi(x,t)$ dependent both on position $x$ and time $t$, so that for each time step, the approximated eigenvector is given as $[v(1,t), v(2,t), \ldots, v(n,t)]^T$. Eq. \ref{eq:eigen2} can then be rewritten as
 \begin{equation}\label{eq:trial_eigen}
 	\frac{\partial \Psi(x,t)}{\partial t} = -\Psi(x,t) + f(\Psi(x,t))
 \end{equation}
@@ -211,7 +204,7 @@ The error is then the difference between the two hand sides of Eq. (\ref{eq:tria
 
 \subsection{Metrics used to evaluated solutions}
 
-The main metric used to evaluate the performance of the neural network compared to the analytic scheme is the Mean Squared Error(MSE). As the name suggests, this metric quantifies the mean of the squares of the error between the prediction $\hat{x}_i$ and the observed value $x_i$. Thus, 
+The main metric used to evaluate the performance of the neural network compared to the analytic scheme is the Mean Squared Error (MSE). As the name suggests, this metric quantifies the mean of the squares of the error between the prediction $\hat{x}_i$ and the observed value $x_i$. Thus, 
 
 \begin{equation*}
 MSE = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2
@@ -239,13 +232,13 @@ In Figure \ref{euler} the solution of the diffusion equation by the Forward Eule
 	\label{euler}
 \end{figure}
 
-In Fig.\ref{fig:nn} the diffusion equation is solved using a neural network with Nt = 10, Nx = 100 and two hidden layers with 20 neurons each. The learning rate was set to $10^{-3}$ and the number of iterations was set to $10^3$. COMMENT ON HOW THIS LOOKS. NOT SUPPOSED TO LOOK LIKE THIS.
+In Fig.\ref{fig:nn} the diffusion equation is solved using a neural network with Nt = 10, Nx = 100 and two hidden layers with 20 neurons each. The learning rate was set to $10^{-3}$ and the number of iterations was set to $10^3$. 
 
 \begin{figure}[h]
 	\centering 
 	\includegraphics[width=0.5\textwidth]{figures/NN}
 	\caption{Solution of the diffusion equation using a Neural Network. Solutions for $\delta x = 0.1$ and $\delta x = 0.1$ are displayed with the exact solution. Blue lines are solutions after 0.02 seconds. Red lines are solution after 0.2 seconds.}
-	\label{nn}
+	\label{fig:nn}
 \end{figure}
 
 A 3D visualization of the diffusion equation solved by the neural network can be found in Figure \ref{3dnn}.
@@ -278,13 +271,27 @@ Running the Neural Network we get the following MSE scores:
 The neural network is very slow in solving the differential equation compared to the analytical solution.
 \subsection{Eigenvectors and eigenvalues}
 
+Using the approach provided by Yi et. al (2004) \cite{yi}, the neural network produced eigenvalues displayed in Figure (\ref{fig:eigenval1} and Figure (\ref{fig:eigenval2}).
 
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/eigenvalues1}
+	\caption{Time evolution of $v_{max}$.}
+	\label{fig:eigenval1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.5\textwidth]{figures/eigenvalues2}
+	\caption{Time evolution of $v_{min}$.}
+	\label{fig:eigenval2}
+\end{figure}
+
+The target cost value was set to $10^{-3}$ because the algorithm was very slow for any lower values. As displayed in Figure (\ref{fig:eigenval2}), the required number of iteraations to calculate the $v_{min}$ eigenvalue was 56845. It is also evident from Figure (\ref{fig:eigenval1}) and Figure (\ref{fig:eigenval2}) that the network can in fact calculate the eigenvalues, as almost all of the seem to converge at some value with time. 
 \section{Discussion}
-Letting the finite difference approach serve as a benchmark, the MSE is on the order of $10^3$ for $\delta x = 0.01$ and $10^1$ for $\delta x = 0.1$ lower than for the neural network. Depending on what model the neural network could have been used in, the MSE of the neural network is still quite low. However, in a complex model the Euler solution would be preferred over the neural network. Keeping the calculation error as small as possible is often crucial for obtaining good result over time. Also, since the network algorithm is considerably slower compared to the Euler algorithm it would most likely cause serious problems for complex models or models iterating over large periods of time or space. 
+Letting the finite difference approach serve as a benchmark, the MSE is on the order of $10^3$ for $\delta x = 0.01$ and $10^1$ for $\delta x = 0.1$ lower than for the neural network. This is partly because the target MSE value for the neural network was chosen to $10^{-3}$ due to an issue with time consumption. Allowing the network to iterate to lower MSE values was possible, but required lots of time to complete, making the code close to useless. Depending on what model the neural network could have been used in, the MSE of the neural network is still quite good. However, in a complex model the Euler solution would be preferred over the neural network. Keeping the calculation error as small as possible is often crucial for obtaining good result over time. Chiarmonte et. al (2003) \cite{kie} solved the Laplace equation using a neural network, obtaining MSE values of order $10^{-4}$. This clearly show that a neural network could perform better than showcased in this paper with a better algorithm. Also, since the network algorithm is considerably slower compared to the Euler algorithm it would most likely cause serious problems for complex models or models iterating over large periods of time or space. Despite relatively good agreement wit the exact solution in Figure \ref{fig:nn}, something appear to be wrong with the algorithm as the solution is negative in some parts of the domain. The figure is still left for illustrational purposes.  
 \
 This neural network is not tuned in any particular way. Since it is already providing relatively low MSE, tuning it would definitely improve the performance. Running the network with varying iterations and learning rate would most likely reveal a lower MSE. Additionally, optimizing the temporal and spacial steps to the specific problem of interest would most likely improve the time consumption, possibly making it comparable to the Euler approach.      
-\textbf{COMPARE WITH LITTERATURE}
-SOMETHING ON THAT I EPECT THE MSE TO FEIALRY SIMILAR TI EULER. 
 
 \section{Conclusion and Future Work}
 
@@ -293,8 +300,6 @@ A neural network has been used to solve the diffusion equation. Performance has 
 Future work would include investigating how the neural network performs for different learning rates and number of iterations. It is obvious that the performs is dependent on both of these, so investigating this could result in a better performance and time consumption trade-off. How to make the neural network algorithm faster would in it self be an interesting topic for continuing research, as neural networks already have a broad range of applications who all could benefit from a fastest possible algorithm. 
 
  
-
-\section{Appendix}
 
 \twocolumn
 [
@@ -305,10 +310,22 @@ Future work would include investigating how the neural network performs for diff
 
 \begin{thebibliography}{9}
 
+\bibitem{boyces}
+\textit{Elementary differential equations and boundary value problems.}\\
+Boyce, William E and Diprima, Richard C and Meade, Douglas B\\
+\textit{WILEY.} GLobal Edition. 355-365, 2017.\\
+ISBN: 978-1-119-38287-4
+
 \bibitem{lagaris}
 \textit{Artificial neural networks for solving ordinary and partial differential equations.}\\
 Lagaris, Isaac E and Likas, Aristidis and Fotiadis, Dimitrios I\\
 IEEE \textit{transations on neural networks}, 9(5):987-1000, 1998.
+
+\bibitem{gitrepo}
+\textit{Logistic regression and neural networks}\\
+Nordgård, Eirik\\
+\textit{Unpublished}. Section 2.3, 2019. 
+\url{https://github.com/eirikngard/FYS-STK4155/blob/master/Project_2/LaTex/project2_main.pdf}
 
 \bibitem{yi}
 \textit{Neural networks based approach for computing eigenvectors and eigenvalues of symmetric matrix.}\\ 

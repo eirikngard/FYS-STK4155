@@ -4,8 +4,10 @@ Created on Tue Dec 10 09:45:18 2019
 
 @author: Eirik Nordgård
 """
-## Brukt koden https://github.com/krisbhei/DEnet/blob/master/DNN_Diffeq/example_pde_diffusion.ipynb
-## som utgangspunkt
+"""
+I left this code in git because is produces 3D plots of the neuralnet solution,
+which does not work in the script "Network" as it should. 
+"""
 
 import numpy as np 
 from matplotlib import cm
@@ -19,7 +21,7 @@ def neural_network(num_iter=1000):
     tf.disable_v2_behavior()
 
     # Reset the graph 
-    tf.reset_default_graph()#running the ocde didnt work, this fixed it 
+    tf.reset_default_graph()
 
     # Setting a seed  
     tf.set_random_seed(4155)
@@ -38,9 +40,9 @@ def neural_network(num_iter=1000):
     
     points = tf.concat([x_tf,t_tf],1)#concatenates to one dimention
     
-    #num_iter = 100000 #was 100000 initially, adjust this later
+
     
-    num_hidden_neurons = [20,20]#was 30
+    num_hidden_neurons = [20,20]
     num_hidden_layers = np.size(num_hidden_neurons)
     
     with tf.variable_scope('nn'): #DeepNeuralNetwork
@@ -111,8 +113,7 @@ def neural_network(num_iter=1000):
 
     return U_nn, U_e, x
 #%%
-#num_hidden_neurons = [20,20]#was 30
-#num_hidden_layers = np.size(num_hidden_neurons)
+
 Nx = 100; Nt = 10
 x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
 t = np.linspace(0,1,Nt)
@@ -131,7 +132,7 @@ ax.set_title("Neural Network solution",fontsize=35)
 s = ax.plot_surface(T,X,U_nn,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig(figdir + "dnn.png")
+#fig.savefig(figdir + "dnn.png")
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
@@ -139,7 +140,7 @@ ax.set_title('Exact solution',fontsize=35)
 s = ax.plot_surface(T,X,U_e,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig(figdir + "exact.png")
+#fig.savefig(figdir + "exact.png")
 
 fig = plt.figure(figsize=(10,10))
 ax = fig.gca(projection='3d')
@@ -147,75 +148,7 @@ ax.set_title('Difference',fontsize=35)
 s = ax.plot_surface(T,X,diff_mat,linewidth=0,antialiased=False,cmap=cm.viridis)
 ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig(figdir + "diff.png")
+#fig.savefig(figdir + "diff.png")
 
 #%%
-"""
-#2D plot of the solutions
-plt.figure(figsize=(10,10))
-plt.title("Solutions, analytical by NN and exact ",fontsize=35)
-#for i in range(len(U_nn)-1):
-plt.plot(x, U_nn[:,2],linewidth=6)
-plt.plot(x, U_nn[:,4],linewidth=6)
-plt.plot(x, U_nn[:,6],linewidth=6)
-plt.plot(x,U_e[:,0],linewidth=6)
-plt.legend(["dnn, t = %g"%t[2],"dnn, t = %g"%t[4],"dnn, t = %g"%t[6],\
-            'analytical'],fontsize=25)
-plt.tick_params(axis='both', which='major', labelsize=30)
-#plt.savefig('figures/nn2d.png')
 
-plt.show()
-"""
-#%%
-
-#Some simple metrics 
-from sklearn.metrics import mean_squared_error, r2_score
-mse_nn = mean_squared_error(U_e,U_nn)
-r2_nn = r2_score(U_e,U_nn)
-print(f'MSE NN is {mse_nn:.5f}')
-print(f'R2 NN is {r2_nn:.5f}')
-
-mse_Unn = mean_squared_error(U_e,U_nn)
-print(f'MSE NN is {mse_Unn:.5f}') #Same as before reshaping, good
-
-total_mse=[]
-for i in range(len(U_e)):
-    total_mse.append(mean_squared_error(U_e[i],U_nn[i]))
-plt.figure()
-plt.plot(total_mse,linewidth=6)
-plt.title("MSE until t=0",fontsize=35)
-plt.ylabel('MSE',fontsize=35)
-plt.xlabel('Time',fontsize=35);
-#plt.savefig('figures/nn_mse.png')
-plt.show()
-#%%
-sns.set()
-sns.set_style("whitegrid")
-sns.set_palette("Set2")
-plt.rc("text", usetex=True)
-plt.rc("font", family="serif")
-
-figdir = "../figures/"
-
-
-u, x, t = solve(initial, T=0.3, Nt=30)
-
-
-print("==== For t = 0.3 ====")
-print(f"MSE = {np.mean((u[-1, :]-exact(x, t[-1]))**2)}")
-print("==== For t = 0.02 ====")
-print(f"MSE = {np.mean((u[2, :]-exact(x, t[2]))**2)}")
-
-fig, ax = plt.subplots(1, 1)
-
-ax.plot(x, u[-1, :], color="k", ls="dashed", label="Computed")
-ax.plot(x, exact(x, t[-1]), color="k", ls="dotted", lw=4, label="Exact")
-ax.plot(x, u[2, :], color="k", ls="dashed")
-ax.plot(x, exact(x, t[2]), color="k", ls="dotted", lw=4)
-
-ax.set_xlabel("x", fontsize=20)
-ax.set_ylabel("u(x, t)", fontsize=20)
-
-fig.legend(ncol=2, frameon=False, loc="upper center", fontsize=20)
-plt.savefig(figdir + "NN_solved.pdf")
-plt.show()

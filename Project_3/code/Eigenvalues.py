@@ -2,7 +2,7 @@
 """
 Created on Tue Dec 17 15:07:00 2019
 
-@author: Eirik N
+@author: Eirik Nordgård
 """
 
 import numpy as np
@@ -142,11 +142,9 @@ def neural_network(A_tf, v0, t_max, dt, n, prec, learning_rate):
 
         return v_dnn, t, i
 
-#if __name__ == '__main__':
-
 
 #set to 1 for max eigenvalue, -1 for min eigenvalue
-k = +1
+k = -1
 
 #code for generating random, symmetric nxn matrix
 n = 6
@@ -170,7 +168,7 @@ v_min_np = v_np[:,0]
 v_max_np = v_np[:,-1]
 
 #setting up the NN
-prec = 0.0001
+prec = 0.001
 t_max = 3
 dt = 0.1
 learning_rate = 0.001
@@ -182,15 +180,13 @@ v_dnn, t, i = neural_network(A_tf, v0, t_max, dt, n, prec, learning_rate)
 toc = time.process_time()
 time_nn = toc-tic
 
-#np.save('../data/eigenvectors/max_vec_dt{:.0E}t_max{:.0f}prec{:.0E}lr{:.0E}'.format(dt,t_max,prec,learning_rate),v_dnn)
-
 print('Time nn: ', time_nn)
 
 #plotting
 fig, ax = plt.subplots()
-ax.plot(t, v_dnn, color='black')
+ax.plot(t, v_dnn, color='blue')
 ax.set_xlabel(r'Time $t$', fontsize=20)
-ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
+ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
 #ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
 ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec,i) , \
         horizontalalignment='left', verticalalignment='top',\
@@ -198,8 +194,7 @@ ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec
 ax.tick_params(axis='both', labelsize=14)
 plt.tight_layout()
 figdir = "../figures/"
-plt.savefig(figdir + "eigenvalues1.png")
-#plt.savefig('../figures/eigenvector_min.pdf')
+plt.savefig(figdir + "eigenvalues2.png")
 
 v_last_dnn = v_dnn[-1]
 w_last_dnn = compute_eigval(v_last_dnn, A)

@@ -84,27 +84,4 @@ print(f"dx = 0.1 | MSE = {np.mean((u3[-1, :]-exact(x3,0.02))**2)}")
 print("---------For t = 0.2-----------")
 print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
 
-#%%
-#Some simple metrics 
-from sklearn.metrics import mean_squared_error, r2_score
-ue = exact(x1,0.02)
-u_eu = u1[1,:]
-mse_nn = mean_squared_error(ue,u_eu)
-#r2_nn = r2_score(u_e,u_nn)
-print(f'MSE NN is {mse_nn:.5f}')
-#print(f'R2 NN is {r2_nn:.5f}')
-
-#mse_Unn = mean_squared_error(U_e,U_nn)
-#print(f'MSE NN is {mse_Unn:.5f}') #Same as before reshaping, good
-
-total_mse=[]
-for i in range(len(ue)):
-    total_mse.append(mean_squared_error(ue,u_eu))
-plt.figure()
-plt.plot(total_mse,linewidth=6)
-plt.title("MSE until t=0",fontsize=35)
-plt.ylabel('MSE',fontsize=35)
-plt.xlabel('Time',fontsize=35);
-#plt.savefig('figures/nn_mse.png')
-plt.show()
 

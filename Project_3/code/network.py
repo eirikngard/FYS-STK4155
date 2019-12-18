@@ -8,11 +8,6 @@ Created on Mon Dec 16 15:37:27 2019
 """
 Using Neural Network to solve equation
 u_xx = u_t
-for a given inital condition u(x,0) = I(x) and
-boundries u(0,t) = u(L,t) = 0
-using trial funcition:
-g_trial(x,t) = (1-t)I(x) + x(1-x)t*N(x,t,P)
-N is output from neural network for input x and weights P
 """
 import numpy as np
 from matplotlib import cm
@@ -22,7 +17,6 @@ from mpl_toolkits.mplot3d import axes3d
 
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
-
 
 # define initial condition
 def initial(x):
@@ -35,9 +29,9 @@ def solve(init_func, T=0.08, Nx=100, Nt=10, L=1, learning_rate=1e-3, num_iter=1e
     tf.set_random_seed(4155)
     # resetting neural network
     tf.reset_default_graph()
+    
     # Defining grid interval
     dx = L/(Nx - 1)
-
     dt = T/(Nt - 1)
 
     x = np.linspace(0, L, Nx)
@@ -54,7 +48,7 @@ def solve(init_func, T=0.08, Nx=100, Nt=10, L=1, learning_rate=1e-3, num_iter=1e
 
     points = tf.concat([x_tf, t_tf], 1)
 
-    # SET UP NEURAL NETWORK
+    # setup of neural network
 
     num_hidden_neurons = [20,20]
     num_hidden_layers = np.size(num_hidden_neurons)
@@ -73,13 +67,13 @@ def solve(init_func, T=0.08, Nx=100, Nt=10, L=1, learning_rate=1e-3, num_iter=1e
         # output layer
         nn_output = tf.layers.dense(previous_layer, 1)
 
-    # set up cost function (error^2)
+    # set up cost function 
 
     with tf.name_scope('cost'):
         # define trial funcition
         trial = (1-t_tf)*initial(x_tf) + x_tf*(1-x_tf)*t_tf*nn_output
 
-        # calculate the gradients
+        # calculate gradients
         trial_dt = tf.gradients(trial, t_tf)
         trial_d2x = tf.gradients(tf.gradients(trial, x_tf), x_tf)
 
@@ -95,24 +89,18 @@ def solve(init_func, T=0.08, Nx=100, Nt=10, L=1, learning_rate=1e-3, num_iter=1e
     # definie itialization of all nodes
     init = tf.global_variables_initializer()
 
-    # define a storage value for the solution
+    # storage value for the solution
     u_nn = None
 
-    # CALCULATE AND SOLVE THE PDE
+    # solve pde
     with tf.Session() as session:
         # Initialize the computational graph
         init.run()
-
         #print('Initial cost: %g'%cost.eval())
-
         for i in range(int(num_iter)):
             session.run(training_op)
-
         #print('Final cost: %g'%cost.eval())
-
         u_nn = trial.eval()
-
-    # define exact solution
 
     # reshape arrays
     U_nn = u_nn.reshape((Nt, Nx))
@@ -127,10 +115,9 @@ plt.rc("font", family="serif")
 
 figdir = "../figures/"
 
+u, x = solve(initial, T=0.2, Nt=30)
 
-u, x, t = solve(initial, T=0.3, Nt=30)
-
-print("==== For t = 0.3 ====")
+print("==== For t = 0.2 ====")
 print(f"MSE = {np.mean((u[-1, :]-exact(x, t[-1]))**2)}")
 print("==== For t = 0.02 ====")
 print(f"MSE = {np.mean((u[2, :]-exact(x, t[2]))**2)}")
@@ -145,10 +132,12 @@ ax.plot(x, exact(x, t[2]), color="r", ls="dotted", lw=4)
 ax.set_xlabel("x", fontsize=20)
 ax.set_ylabel("u(x, t)", fontsize=20)
 fig.legend(ncol=2, frameon=False, loc="upper center", fontsize=20)
-plt.savefig(figdir + "nn.png")
+#plt.savefig(figdir + "nn.png")
 plt.show()
 """
 #%%
+#plot solutions 
+
 figdir = "../figures/"
 u1, x1 = solve(initial, 0.01, Nt=10) #dx = 1/100
 u2, x2 = solve(initial, 0.3, Nt=10) #dx = 1/100
@@ -167,8 +156,11 @@ ax.plot(x2, exact(x2, 0.3), color="r", linestyle="dotted", lw=4)
 ax.set_xlabel("x", fontsize=20)
 ax.set_ylabel("u(x, t)", fontsize=20)
 fig.legend(ncol=3, loc="upper center", frameon=False, fontsize=15)
-plt.savefig(figdir + "NN.png")
+#plt.savefig(figdir + "NN.png")
 plt.show()
+
+#OBS!! This plot gives negative solution in some parts of the domain. STRANGE.
+#dont know what causes this.
 #%%
 # compute MSE of the error for the different cases:
 print("")
@@ -182,16 +174,16 @@ print("---------For t = 0.2-----------")
 print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
 
 #%%
-#num_hidden_neurons = [20,20]#was 30
-#num_hidden_layers = np.size(num_hidden_neurons)
+#plot 3D solutions 
+
 Nx = 100; Nt = 10
-x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
+x = np.linspace(0, 1, Nx) 
 t = np.linspace(0,1,Nt)
 
 U_nn,x = solve(initial,T=0.1)
-#diff_mat = np.abs(U_e - U_nn)
 
 figdir = "../figures/"
+
 # Surface plot of the solutions
 
 X,T = np.meshgrid(t, x)
@@ -212,35 +204,4 @@ ax.set_xlabel('Time $t$',fontsize=35)
 ax.set_ylabel('Position $x$',fontsize=35);
 #fig.savefig(figdir + "exact.png")
 
-#fig = plt.figure(figsize=(10,10))
-#ax = fig.gca(projection='3d')
-#ax.set_title('Difference',fontsize=35)
-#s = ax.plot_surface(T,X,diff_mat,linewidth=0,antialiased=False,cmap=cm.viridis)
-#ax.set_xlabel('Time $t$',fontsize=35)
-#ax.set_ylabel('Position $x$',fontsize=35);
-#fig.savefig(figdir + "diff.png")
-
 fig.show()
-#%%
-from sklearn.metrics import mean_squared_error
-learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]
-num_iter = [10e0, 10e1, 10e2, 10e3]
-MSE = []
-for i in learning_rates:
-    for j in num_iter:
-        u,x,t = solve(initial,T=0.02,learning_rate=i, num_iter=j)
-        ue = exact(x,0.02)
-        mse = mean_squared_error(ue,u[1])
-        MSE.append(mse)
-#plt.figure()
-#plt.plot(mse)
-
-#plt.show()
-
-fig = plt.figure(figsize=(10,10))
-ax = fig.gca(projection='3d')
-ax.set_title("Noe",fontsize=35)
-s = ax.plot_surface(num_iter,learning_rates,mse,linewidth=0,antialiased=False,cmap=cm.viridis)
-ax.set_xlabel('Time $t$',fontsize=35)
-ax.set_ylabel('Position $x$',fontsize=35);
-fig.savefig(figdir + "MSE_learning")

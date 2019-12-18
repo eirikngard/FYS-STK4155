@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  18 DEC 2019 12:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.11)  18 DEC 2019 15:07
 entering extended mode
 **./project3_main.tex
 (project3_main.tex
@@ -526,11 +526,6 @@ Underfull \hbox (badness 1681) in paragraph at lines 40--47
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 40--47
-\OT1/cmr/m/n/10.95 boxes may suf-fer badly from a poor DE
- []
-
-
 Underfull \hbox (badness 1803) in paragraph at lines 40--47
 \OT1/cmr/m/n/10.95 in-ves-ti-gated com-par-ing the For-ward Eu-ler
  []
@@ -574,159 +569,139 @@ Overfull \hbox (11.48924pt too wide) detected at line 118
 [][][]\OML/cmm/m/it/10.95 x \OT1/cmr/m/n/10.95 = []
  []
 
-
-Underfull \hbox (badness 1783) in paragraph at lines 132--134
-[] \OT1/cmr/m/n/10.95 is sta-ble (SOME-THING MORE ON
- []
-
-
-LaTeX Warning: Citation `lagaris1998artificial' on page 3 undefined on input li
-ne 144.
-
 [3]
-Underfull \hbox (badness 2334) in paragraph at lines 164--168
-\OT1/cmr/m/n/10.95 Why it is im-por-tant/desired to find the
- []
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--168
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--168
-\OT1/cmr/m/n/10.95 eigenvector $[]$ cor-re-spond-ing to the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--200
-
- []
-
-
-LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 201.
-
-
-LaTeX Warning: Reference `eq:eigenDE' on page 4 undefined on input line 201.
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 201--202
-[]\OT1/cmr/m/n/10.95 As de-scribed ear-lier, a trial func-tion is
- []
-
-
-Underfull \hbox (badness 1694) in paragraph at lines 201--202
-\OT1/cmr/m/n/10.95 needed to solve Eq. ([]) with a Neu-
  []
 
 [4]
 <figures/euler.pdf, id=138, 462.52798pt x 346.89601pt>
 File: figures/euler.pdf Graphic file (type pdf)
 <use figures/euler.pdf>
-Package pdftex.def Info: figures/euler.pdf  used on input line 237.
+Package pdftex.def Info: figures/euler.pdf  used on input line 230.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 237--238
+Overfull \hbox (5.0pt too wide) in paragraph at lines 230--231
  [][] 
  []
 
 
-LaTeX Warning: Reference `fig:nn' on page 5 undefined on input line 242.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/NN.png, id=139, 462.528pt x 346.896pt>
+<figures/NN.png, id=140, 462.528pt x 346.896pt>
 File: figures/NN.png Graphic file (type png)
 <use figures/NN.png>
-Package pdftex.def Info: figures/NN.png  used on input line 246.
+Package pdftex.def Info: figures/NN.png  used on input line 239.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 246--247
+Overfull \hbox (5.0pt too wide) in paragraph at lines 239--240
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/dnn.png, id=142, 722.7pt x 722.7pt>
+<figures/dnn.png, id=143, 722.7pt x 722.7pt>
 File: figures/dnn.png Graphic file (type png)
 <use figures/dnn.png>
-Package pdftex.def Info: figures/dnn.png  used on input line 255.
+Package pdftex.def Info: figures/dnn.png  used on input line 248.
 (pdftex.def)             Requested size: 226.0pt x 225.99757pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 255--256
+Overfull \hbox (5.0pt too wide) in paragraph at lines 248--249
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/euler_mse.png, id=143, 217.11113pt x 98.769pt>
+<figures/euler_mse.png, id=144, 217.11113pt x 98.769pt>
 File: figures/euler_mse.png Graphic file (type png)
 <use figures/euler_mse.png>
-Package pdftex.def Info: figures/euler_mse.png  used on input line 264.
+Package pdftex.def Info: figures/euler_mse.png  used on input line 257.
 (pdftex.def)             Requested size: 226.0pt x 102.81226pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 264--265
+Overfull \hbox (5.0pt too wide) in paragraph at lines 257--258
  [][] 
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/nnn_mse.png, id=145, 212.29312pt x 96.36pt>
+File: figures/nnn_mse.png Graphic file (type png)
+<use figures/nnn_mse.png>
+Package pdftex.def Info: figures/nnn_mse.png  used on input line 266.
+(pdftex.def)             Requested size: 226.0pt x 102.5866pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 266--267
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/eigenvalues1.png, id=149, 462.528pt x 346.896pt>
+File: figures/eigenvalues1.png Graphic file (type png)
+<use figures/eigenvalues1.png>
+Package pdftex.def Info: figures/eigenvalues1.png  used on input line 278.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 278--279
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/eigenvalues2.png, id=150, 462.528pt x 346.896pt>
+File: figures/eigenvalues2.png Graphic file (type png)
+<use figures/eigenvalues2.png>
+Package pdftex.def Info: figures/eigenvalues2.png  used on input line 285.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 285--286
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5 <./figures/euler.pdf>]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Citation `kie' on page 6 undefined on input line 292.
 
-<figures/nnn_mse.png, id=172, 212.29312pt x 96.36pt>
-File: figures/nnn_mse.png Graphic file (type png)
-<use figures/nnn_mse.png>
-Package pdftex.def Info: figures/nnn_mse.png  used on input line 273.
-(pdftex.def)             Requested size: 226.0pt x 102.5866pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 273--274
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
+[6 <./figures/NN.png> <./figures/dnn.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 296--296
 []\OT1/cmr/bx/n/14.4 Conclusion and Fu-ture
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6 <./figures/NN.png> <./figures/dnn.png>] [7 <./figures/euler_mse.png> <./fig
-ures/nnn_mse.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 324.
+[7 <./figures/euler_mse.png> <./figures/nnn_mse.png> <./figures/eigenvalues1.pn
+g> <./figures/eigenvalues2.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 341.
  [8
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 324.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 341.
  (project3_main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 324.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 324.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 341.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 341.
+Package rerunfilecheck Info: File `project3_main.out' has not changed.
+(rerunfilecheck)             Checksum: CFD8FFCBEB29877DFD0C4103E1CB4DAC;898.
 
-
-Package rerunfilecheck Warning: File `project3_main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `project3_main.out':
-(rerunfilecheck)             Before: D4C3903408A9E08BA1F31AF4260136CD;1003
-(rerunfilecheck)             After:  3E22FDB43290E3FD2E29B7DCAEF2C4BB;1018.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 324.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 341.
  ) 
 Here is how much of TeX's memory you used:
- 7496 strings out of 492895
- 110473 string characters out of 3122799
- 219420 words of memory out of 3000000
- 11270 multiletter control sequences out of 15000+200000
+ 7508 strings out of 492895
+ 110745 string characters out of 3122799
+ 219571 words of memory out of 3000000
+ 11278 multiletter control sequences out of 15000+200000
  13873 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,16n,35p,811b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,16n,35p,1501b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eirik N/AppData/Local/Programs/MiKTeX
@@ -748,9 +723,9 @@ ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Eirik N/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Use
 rs/Eirik N/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on project3_main.pdf (8 pages, 430653 bytes).
+Output written on project3_main.pdf (8 pages, 496384 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 48 named destinations out of 1000 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 50 named destinations out of 1000 (max. 500000)
+ 140 words of extra memory for PDF output out of 10000 (max. 10000000)
 
