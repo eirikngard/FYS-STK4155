@@ -67,7 +67,7 @@ def compute_eigval(v):
 
 #%%
 #setting up the NN
-prec = 0.001 #Threshold
+prec = 0.01 #Threshold
 t_max = 8
 dt = 0.1
 Nt = int(t_max/dt)
@@ -91,7 +91,7 @@ v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 points = tf.concat([x_tf, t_tf], 1)
 
 #num_iter = 20000
-num_hidden_neurons = [10,10,10]
+num_hidden_neurons = [20,20]
 num_hidden_layers = np.size(num_hidden_neurons)
 
 with tf.name_scope('dnn'):
@@ -111,7 +111,7 @@ with tf.name_scope('dnn'):
     dnn_output = tf.layers.dense(previous_layer, 1, name='output')
 
 #define loss function
-#DETTE MAA ORDNES
+
 #trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
     trial = dnn_output*t_tf + v0_tf*k
@@ -147,7 +147,7 @@ with tf.Session() as sess:
     init.run()
 
     # Evaluate the initial cost:
-    print('Initial cost: %g'%cost.eval())
+    #print('Initial cost: %g'%cost.eval())
 
     # The training of the network:
     i = 0
@@ -159,7 +159,7 @@ with tf.Session() as sess:
         if i % 1000 == 0:
             print(i,'iter: %g'%cost.eval())
     # Training is done, and we have an approximate solution to the ODE
-    print('Final cost: %g'%cost.eval())
+    #print('Final cost: %g'%cost.eval())
 
     # Store the result
     v_dnn = tf.reshape(trial,(Nt,Nx))
@@ -175,7 +175,8 @@ ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec
         transform=ax.transAxes, fontsize = 20)
 ax.tick_params(axis='both', labelsize=14)
 #plt.savefig('../figures/eigenvector_max_.pdf')
-plt.savefig('../figures/eigenvector_min_.pdf')
+figdir = "../figures/"
+plt.savefig(figdir + "eigenvector.png")
 
 v_last_dnn = v_dnn[-1]
 w_last_dnn = compute_eigval(v_last_dnn)

@@ -2,7 +2,7 @@
 """
 Created on Mon Dec 16 15:37:27 2019
 
-@author: Eirik N
+@author: Eirik Nordgård
 """
 
 """
@@ -180,29 +180,47 @@ print("---------For t = 0.02:---------")
 print(f"dx = 0.1 | MSE = {np.mean((u3[-1, :]-exact(x3,0.02))**2)}")
 print("---------For t = 0.2-----------")
 print(f"dx = 0.1 | MSE = {np.mean((u4[-1, :]-exact(x4,0.2))**2)}")
+
 #%%
-learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]
-print(learning_rates)
+#num_hidden_neurons = [20,20]#was 30
+#num_hidden_layers = np.size(num_hidden_neurons)
+Nx = 100; Nt = 10
+x = np.linspace(0, 1, Nx) #from 0 to 1 (sin function)
+t = np.linspace(0,1,Nt)
 
-MSEs = [nn1.MSE, nn2.MSE, nn3.MSE, nn4.MSE, nn5.MSE, nn6.MSE, nn7.MSE, nn8.MSE, nn9.MSE, nn10.MSE]
-v = np.logspace(-11, -2, 10)
+U_nn,x = solve(initial,T=0.1)
+#diff_mat = np.abs(U_e - U_nn)
 
-ax.set_xscale("log")
-ax.set_yscale("log")
-c = ax.contourf(nn1.index, learning_rates, MSEs, v,
-                locator=ticker.LogLocator(),
-                cmap=cm.Greys_r
-                )
-ax.set_xlabel("Iterations", fontsize=20)
-ax.set_ylabel("Learning rate", fontsize=20)
-ax.set_ylim(1e-3, 1e-2)
-cbar = fig.colorbar(c)
+figdir = "../figures/"
+# Surface plot of the solutions
 
-cbar.ax.get_yaxis().labelpad = 15
-cbar.ax.set_ylabel("MSE", fontsize=20, rotation=270)
+X,T = np.meshgrid(t, x)
 
-fig.tight_layout()
-plt.savefig(figdir + "MSE_T2E-02_varying_gamma.pdf")
+fig = plt.figure(figsize=(10,10))
+ax = fig.gca(projection='3d')
+ax.set_title("Neural Network solution",fontsize=35)
+s = ax.plot_surface(T,X,U_nn,linewidth=0,antialiased=False,cmap=cm.viridis)
+ax.set_xlabel('Time $t$',fontsize=35)
+ax.set_ylabel('Position $x$',fontsize=35);
+#fig.savefig(figdir + "dnn.png")
+
+fig = plt.figure(figsize=(10,10))
+ax = fig.gca(projection='3d')
+ax.set_title('Exact solution',fontsize=35)
+s = ax.plot_surface(T,X,U_e,linewidth=0,antialiased=False,cmap=cm.viridis)
+ax.set_xlabel('Time $t$',fontsize=35)
+ax.set_ylabel('Position $x$',fontsize=35);
+#fig.savefig(figdir + "exact.png")
+
+#fig = plt.figure(figsize=(10,10))
+#ax = fig.gca(projection='3d')
+#ax.set_title('Difference',fontsize=35)
+#s = ax.plot_surface(T,X,diff_mat,linewidth=0,antialiased=False,cmap=cm.viridis)
+#ax.set_xlabel('Time $t$',fontsize=35)
+#ax.set_ylabel('Position $x$',fontsize=35);
+#fig.savefig(figdir + "diff.png")
+
+fig.show()
 #%%
 from sklearn.metrics import mean_squared_error
 learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]

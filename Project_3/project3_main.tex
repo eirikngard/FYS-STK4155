@@ -10,6 +10,7 @@
 \usepackage{amssymb}
 \usepackage[table]{xcolor}
 \graphicspath{ {./Latex/} }
+%\usepackage{wrapfig}
 
 \begin{document}
 
@@ -221,6 +222,8 @@ where $n$ is the number of samples. MSE value of 0 would prediction of the obser
 \section{Results}
 
 In Figure \ref{euler} the solution of the diffusion equation by the Forward Euler Scheme is displayed. Blue lines are solution after 0.02 seconds, while red lines are solutions after 0.2 seconds. Inspecting Figure \ref{euler} immediately reveals that the analytic solution of the equation is very good, and that smaller spacial steps provides a solution closest to the exact solution. Also, we observe that the solution for the spatial step $\delta x = 0.1$ is closer to the exact solution at $t = 0.2$ than at $t = 0.02$. For both moments in time the solution for spatial step $\delta x = 0.01$ is very hard to distinguish from the exact solution, meaning it is a very good approximation. 
+
+
 \begin{figure}[h]
 	\centering 
 	\includegraphics[width=0.5\textwidth]{figures/euler}
@@ -266,10 +269,21 @@ Running the Neural Network we get the following MSE scores:
 
 The neural network is very slow in solving the differential equation compared to the analytical solution. 
 
+\subsection{Eigenvectors and eigenvalues}
+
+\section{Method - implementation of algorithms}
+Solving the problem with the Forward Euler Scheme is done iterating in time and space over equation \eqref{eq:euler}, returning $u$ and $x$ values for a given initial function and total time $T$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated. 
+\
+The neural network is build using functionalities of \textit{tensorflow}. It solved the diffusion equation using a given number of layers, neurons, total time and learning rate. A cost function is calculated based on a trial solution, which is then minimized. The network iterates until a given threshold cost value is reached, then return $u$ and $x$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated.  
+\
+Computing the eigenpairs is done using the approach described in section 2.5. Functions defining the function $f$ and the eigenvalues are defined and calculated using the symmetric matrix $A$. Network returns eigenvectors $v_{dnn}$, time $t$ and number of completed iterations $i$. 
+
 \section{Conclusion}
 
 
 \section{Future Work}
+
+Future work would include investigating how the neural network performs for different learning rates and number of iterations. It is obvious that the performs is dependent on both of these, so investigating this could result in a better performance and time consumption trade-off. How to make the neural network algorithm faster would in it self be an interesting topic for continuing research. 
 
 \section{Appendix}
 
@@ -281,40 +295,21 @@ The neural network is very slow in solving the differential equation compared to
 \medskip
 
 \begin{thebibliography}{9}
-\bibitem{Hastie}
-Hastie, Trevor. Tibshirani, Robert. Friedman, Jerome.
-\textit{The Elements of Statistical Learning}.
-\textit{Data Mining, Interference, and Prediction}.\\
-Second Edition.\\
-Springer, 2009.\\
-Chapter 4, Chapter 11
 
-\bibitem{slides}
-M. Hjorth-Jensen
-Lecture Notes in FYS-STK4155. \textit{Data Analysis and Machine Learning: Logistic Regression and Neural Networks.}\\
-URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/LogReg}\\
-URL: \url{https://github.com/CompPhysics/MachineLearning/tree/master/doc/pub/NeuralNet}\\
-Unpublished, 2019. 
+\bibitem{lagaris}
+\textit{Artificial neural networks for solving ordinary and partial differential equations.}\\
+Lagaris, Isaac E and Likas, Aristidis and Fotiadis, Dimitrios I\\
+IEEE \textit{transations on neural networks}, 9(5):987-1000, 1998.
 
-\bibitem{Nielsen}
-Nielsen, Michael\\
-URL: \url{http://neuralnetworksanddeeplearning.com}\\
-Downloaded 13.10.19
- 
-\bibitem{data}
-\textit{The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients}.\\ 
-I. Yeh and C. Lien\\
-URL: \url{https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf}
+\bibitem{yi}
+\textit{Neural networks based approach for computing eigenvectors and eigenvalues of symmetric matrix.}\\ 
+Yi, Zhang and Fu, Yan and Tang, Hua Jin\\
+\textit{Computers and Mathematics with Applications}, 47(8-9): 1155-1164, 2004.
 
-\bibitem{vladimir}
-\textit{Default Payments of Credit Card Clients in Taiwan from 2005}.\\
-Drugov, Vladimir G.\\
-URL: \url{https://rstudio-pubs-static.s3.amazonaws.com/281390_8a4ea1f1d23043479814ec4a38dbbfd9.html}\\
 \end{thebibliography} 
 
-
 \end{@twocolumnfalse}
+\
 ]
-%\end{multicols}
 
 \end{document}
