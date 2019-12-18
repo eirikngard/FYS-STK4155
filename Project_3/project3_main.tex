@@ -275,17 +275,24 @@ Running the Neural Network we get the following MSE scores:
 	\label{nnmse}
 \end{figure}
 
-The neural network is very slow in solving the differential equation compared to the analytical solution. \textbf{COMPARE WITH LITTERATURE}
-
+The neural network is very slow in solving the differential equation compared to the analytical solution.
 \subsection{Eigenvectors and eigenvalues}
 
 
 \section{Discussion}
-
+Letting the finite difference approach serve as a benchmark, the MSE is on the order of $10^3$ for $\delta x = 0.01$ and $10^1$ for $\delta x = 0.1$ lower than for the neural network. Depending on what model the neural network could have been used in, the MSE of the neural network is still quite low. However, in a complex model the Euler solution would be preferred over the neural network. Keeping the calculation error as small as possible is often crucial for obtaining good result over time. Also, since the network algorithm is considerably slower compared to the Euler algorithm it would most likely cause serious problems for complex models or models iterating over large periods of time or space. 
+\
+This neural network is not tuned in any particular way. Since it is already providing relatively low MSE, tuning it would definitely improve the performance. Running the network with varying iterations and learning rate would most likely reveal a lower MSE. Additionally, optimizing the temporal and spacial steps to the specific problem of interest would most likely improve the time consumption, possibly making it comparable to the Euler approach.      
+\textbf{COMPARE WITH LITTERATURE}
+SOMETHING ON THAT I EPECT THE MSE TO FEIALRY SIMILAR TI EULER. 
 
 \section{Conclusion and Future Work}
 
-Future work would include investigating how the neural network performs for different learning rates and number of iterations. It is obvious that the performs is dependent on both of these, so investigating this could result in a better performance and time consumption trade-off. How to make the neural network algorithm faster would in it self be an interesting topic for continuing research. 
+A neural network has been used to solve the diffusion equation. Performance has been compared to solution obtained by finite difference. Based on this study, partial differential equations can be solved using a neural network, despite being slower and yielding higher MSE compare to the Euler approach. 
+\\
+Future work would include investigating how the neural network performs for different learning rates and number of iterations. It is obvious that the performs is dependent on both of these, so investigating this could result in a better performance and time consumption trade-off. How to make the neural network algorithm faster would in it self be an interesting topic for continuing research, as neural networks already have a broad range of applications who all could benefit from a fastest possible algorithm. 
+
+ 
 
 \section{Appendix}
 
