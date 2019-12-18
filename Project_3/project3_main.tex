@@ -23,7 +23,9 @@
 \begin{@twocolumnfalse}
 \maketitle
 \begin{abstract}
-
+In this paper a neural network is used for solving the diffusion equation, comparing the performance with a traditional finite difference approach using a Forward Euler scheme. Using the finite difference approach the resulting MSE ranges from order $10^{-4}$ to $10^{-6}$ with spatial steps $10^{-1}$ and $10^{-2}$ respectively. Results obtained by the neural network gives MSE on the order of $10^{-3}$ for spatial steps $10^{-1}$ and $10^{-2}$, which indicates that you can indeed solve the diffusion equation using a neural network. Despite providing low MSE, the neural network is slower compared to the finite difference approach.  
+\
+SOMETHING ON THE EIGENVALUES WHEN FOUND 
 
 \end{abstract}
 
@@ -40,7 +42,7 @@ Intro on the field of differential equations and solving them. How to use a NN f
 The question of interest regarding the use of NN's is whether they have the ability to outperform traditional algorithms in speed and efficiency. In this project this will be investigated comparing the Forward Euler approach with the Neural Network approach. Furthermore, following the approach in the paper by \cite{yi} et. al. (year), the NN will be used to compute extrema eigenvectors and corresponding eigenvalues. In this project the Diffusion Equation will be solved. Physically this equation can for example represent the temperature gradient through a rod, describing how the temperature decays along the rod with time.  
 \\
 \\
-Very short and specific on what can be found in the differnt sections. 
+In section 2 all theory and background information and ideas will be presented, including the metrics used to evaluate the results. Section 3 describes how the algorithms are built and what they produce. In section 4 the methods used solving the diffusion equation will be compared and main findings will be presented, and section 5 provides a discussion of pros and cons of the respective methods. Finally, section 6 provides a conclusion and suggestions for future work.   
 \
 \section{Theory}
 
@@ -218,6 +220,12 @@ MSE = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2
 where $n$ is the number of samples. MSE value of 0 would prediction of the observed value, thus the closer to zero the better prediction.  
  
 
+\section{Method - implementation of algorithms}
+Solving the problem with the Forward Euler Scheme is done iterating in time and space over equation \eqref{eq:euler}, returning $u$ and $x$ values for a given initial function and total time $T$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated. 
+\\
+The neural network is build using functionalities of \textit{tensorflow}. It solved the diffusion equation using a given number of layers, neurons, total time and learning rate. A cost function is calculated based on a trial solution, which is then minimized. The network iterates until a given threshold cost value is reached, then return $u$ and $x$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated.  
+\\
+Computing the eigenpairs is done using the approach described in section 2.5. Functions defining the function $f$ and the eigenvalues are defined and calculated using the symmetric matrix $A$. Then the neural network is designed similarly to the one described above, now returning eigenvectors $v_{dnn}$, a time vector $t$ and number of completed iterations $i$. The eigenvectors produced by the network is then used to calculate eigenvalues, which is then plotted with time to verify convergence. Also, \textit{numpy.linalg} is used to calculate reference eigenpairs. 
 
 \section{Results}
 
@@ -267,21 +275,15 @@ Running the Neural Network we get the following MSE scores:
 	\label{nnmse}
 \end{figure}
 
-The neural network is very slow in solving the differential equation compared to the analytical solution. 
+The neural network is very slow in solving the differential equation compared to the analytical solution. \textbf{COMPARE WITH LITTERATURE}
 
 \subsection{Eigenvectors and eigenvalues}
 
-\section{Method - implementation of algorithms}
-Solving the problem with the Forward Euler Scheme is done iterating in time and space over equation \eqref{eq:euler}, returning $u$ and $x$ values for a given initial function and total time $T$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated. 
-\
-The neural network is build using functionalities of \textit{tensorflow}. It solved the diffusion equation using a given number of layers, neurons, total time and learning rate. A cost function is calculated based on a trial solution, which is then minimized. The network iterates until a given threshold cost value is reached, then return $u$ and $x$. Thereafter the solutions are plotted and the mean squared error from the exact solution is calculated.  
-\
-Computing the eigenpairs is done using the approach described in section 2.5. Functions defining the function $f$ and the eigenvalues are defined and calculated using the symmetric matrix $A$. Network returns eigenvectors $v_{dnn}$, time $t$ and number of completed iterations $i$. 
 
-\section{Conclusion}
+\section{Discussion}
 
 
-\section{Future Work}
+\section{Conclusion and Future Work}
 
 Future work would include investigating how the neural network performs for different learning rates and number of iterations. It is obvious that the performs is dependent on both of these, so investigating this could result in a better performance and time consumption trade-off. How to make the neural network algorithm faster would in it self be an interesting topic for continuing research. 
 
